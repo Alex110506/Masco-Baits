@@ -16,10 +16,13 @@ const confirmOrderEmail=require("./assets/confirm-email")
 const deliverOrderEmail=require("./assets/delivery-email")
 
 const db = mysql.createPool({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT,
+    waitForConnections: true,
+    connectionLimit:30,
     multipleStatements: true 
 });
 
