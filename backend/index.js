@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bcrypt=require("bcryptjs");
 const { hash } = require('crypto');
 const { stat } = require('fs');
@@ -15,7 +15,7 @@ const placedOrderEmail=require("./assets/placed-email")
 const confirmOrderEmail=require("./assets/confirm-email")
 const deliverOrderEmail=require("./assets/delivery-email")
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
@@ -23,13 +23,7 @@ const db = mysql.createConnection({
     multipleStatements: true 
 });
 
-db.connect((err) => {
-    if(err){
-        console.log(err);
-    }else{
-        console.log("MYSQL Connected...");
-    }
-}); 
+console.log("MySQL connected...");
 
 
 const app = express();
