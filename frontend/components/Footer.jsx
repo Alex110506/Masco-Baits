@@ -8,11 +8,11 @@ export default function Footer() {
                 <div>
                     <h4>Despre Masco Baits</h4>
                     <p>
-                        Masco Baits SRL<br />
-                        CUI: RO12345678<br />
-                        JXX/1234/2024<br />
-                        contact@mascobaits.ro<br />
-                        +40 712 345 678
+                        MASCO-BAITS SRL<br />
+                        CUI: 42410332<br />
+                        J02/348/2020<br />
+                        masco.baits@gmail.com<br />
+                        +40 749 048 838
                     </p>
                 </div>
 

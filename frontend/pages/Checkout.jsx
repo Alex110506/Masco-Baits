@@ -210,19 +210,19 @@ export default function Checkout(){
                             <div className="det-tansf">
                                 <div className="det-transf-sect">
                                     <span>IBAN:&nbsp;</span>
-                                    <span>222222222</span>
+                                    <span>RO49BTRLRONCRT0546327801</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Nume titular:&nbsp;</span>
-                                    <span>Masco Baits</span>
+                                    <span>MASCO-BAITS SRL</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Banca:&nbsp;</span>
-                                    <span>Banca transilvania</span>
+                                    <span>Banca Transilvania</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Cod SWIFT:&nbsp;</span>
-                                    <span>AAAAROBU</span>
+                                    <span>BTRLRO22</span>
                                 </div>
                                 
                             </div>
@@ -231,10 +231,7 @@ export default function Checkout(){
                             <p>Plata se va realiza la momentul livrării la curier.</p>
                         </div>
                     </div>
-                    <div className="det-transf-sect cod-comanda">
-                        <span>Cod Comandă:&nbsp;</span>
-                        <span>{orderId}</span>
-                    </div>
+                    
                     <div className="fin-btn-cont">
                         <button disabled={false} className="fin-btn-check" type="submit">Finalizați Comanda</button>
                     </div>

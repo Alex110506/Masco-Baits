@@ -86,7 +86,7 @@ export default function Confirmation(){
                                     <p>Comanda ta este acum în curs de procesare. Vei primi un e-mail de confirmare cu detaliile comenzii tale.</p>
                                     <h2>📦 Ce urmează?</h2>
                                     <ul>
-                                        <li>Vom verifica și pregăti comanda ta.</li>
+                                        <li>Vom verifica și pregăti comanda ta în termen de 5-10 zile.</li>
                                         <li>Vei primi un e-mail când comanda este acceptată și pregătită pentru livrare.</li>
                                     </ul>
                                     <h3>💳 Metoda de plată aleasă: {loadedData.details.modalitate}</h3>
@@ -102,8 +102,8 @@ export default function Confirmation(){
                                         <li>Telefon: {loadedData.details.telefon}</li>
                                         <li>E-mail: {loadedData.details.email}</li>
                                     </ul>
-                                    <h3>📅 Estimare livrare: 4.04.2025</h3>
-                                    <h3>Dacă ai întrebări, nu ezita să ne contactezi la [email sau telefon].</h3>
+                                    <h3>📅 Estimare livrare: 1-3 zile</h3>
+                                    <h3>Dacă ai întrebări, nu ezita să ne contactezi la masco.baits@gmail.com sau +40749048838.</h3>
                                     <h2>Mulțumim pentru încredere și îți dorim fir întins! 🎣</h2>
                                 </div>
                                 <div className="products-conf-cont">

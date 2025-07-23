@@ -63,6 +63,7 @@ export default function Cart(){
                         </div>
                     </div>
                     <h1>Total: {cartSum+costLivrare}</h1>
+                    <p>Comenzile peste 700.00 Lei dispun de livrare gratuită.</p>
                     <div className="check-btn-cont">
                         <button>
                             <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>
