@@ -44,7 +44,7 @@ export default function Home(){
             <div className="bg-cnt"></div>
             <HeroSection></HeroSection>
             <div className="product-list-container">
-                <h1 className="list-title">PRODUSELE NOASTRE</h1>
+                <h1 className="list-title">PRODUSELE NOASTRE (BOILIES ȘI ALTELE)</h1>
                 <div className="list-items">
                     <Link to={"/Boilies"} className="cnt">Boilies</Link>
                     <Link to={"/Boilies_Carlig"} className="cnt">Boilies Carlig</Link>
