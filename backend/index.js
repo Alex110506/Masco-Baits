@@ -45,6 +45,7 @@ app.use(
         "'self'",
         "https://www.googletagmanager.com",
         "https://www.google-analytics.com",
+        "'unsafe-inline'", 
       ],
       connectSrc: [
         "'self'",
@@ -55,7 +56,15 @@ app.use(
         "data:",
         "https://www.google-analytics.com",
       ],
-      styleSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://fonts.googleapis.com",
+      ],
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com",
+      ],
       frameSrc: ["'self'"],
     },
   })
