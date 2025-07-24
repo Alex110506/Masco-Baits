@@ -10,7 +10,7 @@ const session = require("express-session");
 const nodemailer = require("nodemailer");
 require('dotenv').config(); 
 const compression=require("compression")
-const helmet=reuire("helmet")
+const helmet=require("helmet")
 const fs = require('fs');
 
 const placedOrderEmail=require("./assets/placed-email")
