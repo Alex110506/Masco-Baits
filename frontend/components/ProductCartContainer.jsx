@@ -108,7 +108,7 @@ export default function ProductCartContainer(props){
                 <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
             </div>
             <div className="prod-cart-name-cont">
-                <NavLink to={`/${props.category}/${props.id}`} className="cart-prod-tit">
+                <NavLink to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`} className="cart-prod-tit">
                     {props.name}
                 </NavLink>
             </div>
