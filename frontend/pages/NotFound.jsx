@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
+export function loader(){
+    throw new Response("Not Found", { status: 404 });
+}
+
 export default function NotFound() {
   return (
     <>
