@@ -20,12 +20,13 @@ export default function Header(){
                 </button>
                 <div className="dropdown-content">
                     <p>Categorii</p>
-                    <Link to={"/Boilies"}>Boilies</Link>
-                    <Link to={"/Boilies_Carlig"}>Boilies Carlig</Link>
-                    <Link to={"/Pasta_Solubila_Boilies"}>Pasta Solubila Boilies</Link>
-                    <Link to={"/Popup_&_Wafters"}>Pop-up & Wafters</Link >
-                    <Link to={"/Lichide_Nutritive_&_Aditivi"}>Lichide Nutritive & Aditivi</Link>
-                    <Link to={"/Pelete_&_Grundbait"}>Pelete & Grundbait </Link>
+                        <Link to={"/boilies"} className="cnt">Boilies</Link>
+                        <Link to={"/boilies_carlig"} className="cnt">Boilies Carlig</Link>
+                        <Link to={"/boilies_critic_echilibrat"} className="cnt">Boilies Critic Echilibrat</Link>
+                        <Link to={"/pasta_solubila_boilies"} className="cnt">Pasta Solubila Boilies</Link>
+                        <Link to={"/popup_&_wafters"} className="cnt">Pop-up & Wafters</Link >
+                        <Link to={"/lichide_nutritive_&_aditivi"} className="cnt">Lichide Nutritive & Aditivi</Link>
+                        <Link to={"/pelete_&_grundbait"} className="cnt">Pelete & Grundbait </Link>
                     <br/>
                     <p>Despre Noi</p>
                     <Link to={"/"}>Albume Foto & Video</Link>

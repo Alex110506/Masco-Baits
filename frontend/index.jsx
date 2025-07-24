@@ -86,31 +86,31 @@ const router=createBrowserRouter(createRoutesFromElements(
             </Route>
         </Route>
         <Route path="login" element={<Login></Login>}></Route>
-        <Route path="Boilies" element={<Outlet></Outlet>}>
+        <Route path="boilies" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Boilies_Carlig" element={<Outlet></Outlet>}>
+        <Route path="boilies_carlig" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Boilies_Critic_Echilibrat" element={<Outlet></Outlet>}>
+        <Route path="boilies_critic_echilibrat" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Pasta_Solubila_Boilies" element={<Outlet></Outlet>}>
+        <Route path="pasta_solubila_boilies" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Popup_&_Wafters" element={<Outlet></Outlet>}>
+        <Route path="popup_&_wafters" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Lichide_Nutritive_&_Aditivi" element={<Outlet></Outlet>}>
+        <Route path="lichide_nutritive_&_aditivi" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
-        <Route path="Pelete_&_Grundbait" element={<Outlet></Outlet>}>
+        <Route path="pelete_&_grundbait" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
