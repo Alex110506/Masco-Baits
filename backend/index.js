@@ -66,6 +66,7 @@ app.use(
       fontSrc: [
         "'self'",
         "https://fonts.gstatic.com",
+        "https://cdn.jsdelivr.net",
       ],
       frameSrc: ["'self'"],
     },
