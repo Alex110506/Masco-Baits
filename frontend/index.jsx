@@ -15,6 +15,7 @@ import { AuthProvider, useAuth } from "./components/AuthContext";
 import TermsConds from "./pages/TermsConds";
 import AdminPage ,{loader as adminLoader} from "./pages/AdminPage";
 import Analytics from "./components/Analytics";
+import { HelmetProvider } from "react-helmet-async";
 
 async function productsLoader() {
     const items=null
@@ -85,7 +86,31 @@ const router=createBrowserRouter(createRoutesFromElements(
             </Route>
         </Route>
         <Route path="login" element={<Login></Login>}></Route>
-        <Route path=":categoryName" element={<Outlet></Outlet>}>
+        <Route path="Boilies" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Boilies_Carlig" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Boilies_Critic_Echilibrat" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Pasta_Solubila_Boilies" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Popup_&_Wafters" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Lichide_Nutritive_&_Aditivi" element={<Outlet></Outlet>}>
+            <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
+            <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
+        </Route>
+        <Route path="Pelete_&_Grundbait" element={<Outlet></Outlet>}>
             <Route index element={<CategoryPage></CategoryPage>} loader={categoryLoader}></Route>
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
@@ -96,9 +121,12 @@ const router=createBrowserRouter(createRoutesFromElements(
 
 function App(){
     return(
-        <AuthProvider>
-            <RouterProvider router={router}></RouterProvider>
-        </AuthProvider>
+        <HelmetProvider>
+            <AuthProvider>
+                <RouterProvider router={router}></RouterProvider>
+            </AuthProvider>
+        </HelmetProvider>
+        
     )
 }
 
