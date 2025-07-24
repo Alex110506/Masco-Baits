@@ -11,7 +11,7 @@ export default function Footer() {
                         MASCO-BAITS SRL<br />
                         CUI: 42410332<br />
                         J02/348/2020<br />
-                        masco.baits@gmail.com<br />
+                        <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a><br />
                         +40 749 048 838
                     </p>
                 </div>

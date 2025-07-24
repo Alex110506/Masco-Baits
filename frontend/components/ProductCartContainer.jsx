@@ -105,7 +105,7 @@ export default function ProductCartContainer(props){
     return(
         <div className="prod-cont-cart">
             <div className="prod-cart-img-cont">
-                <img src={`../assets/images/prod-imgs/${props.photo}`}></img>
+                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
             </div>
             <div className="prod-cart-name-cont">
                 <NavLink to={`/${props.category}/${props.id}`} className="cart-prod-tit">

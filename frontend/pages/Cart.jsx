@@ -43,7 +43,7 @@ export default function Cart(){
             <div className="cart-page-cont">
                 <div className="products-side-cont">
                     <div className="prod-side-head">
-                        <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                        <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
                         <span>Coșul Meu</span>
                     </div>
                     <div className="prod-side-list">

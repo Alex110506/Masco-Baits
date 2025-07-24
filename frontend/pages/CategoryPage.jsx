@@ -62,7 +62,7 @@ export default function CategoryPage(){
     return (
         <div className="categ-page-cont">
             <div className="categ-banner-cont">
-                <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="header-banner"></img>
                 <span>{categoryName}</span>
             </div>
             {

@@ -9,6 +9,8 @@ const rateLimit = require('express-rate-limit');
 const session = require("express-session");
 const nodemailer = require("nodemailer");
 require('dotenv').config(); 
+const compression=require("compression")
+const helmet=reuire("helmet")
 const fs = require('fs');
 
 const placedOrderEmail=require("./assets/placed-email")
@@ -33,6 +35,8 @@ const app = express();
 
 
 app.use(cors());
+app.use(compression());
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

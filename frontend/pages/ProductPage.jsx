@@ -170,7 +170,7 @@ export default function ProductPage(){
             <div className="prod-dets">
                 <div className="primary-prod-dets-cont">
                     <div className="prod-img-cont-page">
-                        <img src={`../assets/images/prod-imgs/${product.photo}`}></img>
+                        <img src={`../assets/images/prod-imgs/${product.photo}`} alt={product.name + "image"}></img>
                     </div>
                     <div className="prod-dets-cont-page">
                         <div className="categ-cont">

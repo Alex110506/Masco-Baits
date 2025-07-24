@@ -60,7 +60,7 @@ export default function ProductContainer(props){
         <div className="product-cont">
 
             <div className="prod-img-cont">
-                <img src={`../assets/images/prod-imgs/${props.photo}`}></img>
+                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name+"image"}></img>
             </div>
             <div className="prod-name-cont">
                 <NavLink className="prod-name-cont-tit" to={`${props.category}/${props.id}`}>{props.name}</NavLink>
