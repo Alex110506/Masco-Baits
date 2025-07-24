@@ -42,7 +42,7 @@ export default function Confirmation(){
     return(
         <div className="confirmation-page-cont">
             <div className="prod-side-head conf-head">
-                <img src="\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                <img src="\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
                 <span>Comanda cu codul <span className="order-id-conf-span">{orderId}</span>&nbsp;a fost plasată cu <span style={{color:"rgba(238, 16, 77, 1)"}}>SUCCES</span> ! 🎉</span>
             </div>
             <React.Suspense fallback={<h1>Se încarcă...</h1>}>
@@ -103,7 +103,7 @@ export default function Confirmation(){
                                         <li>E-mail: {loadedData.details.email}</li>
                                     </ul>
                                     <h3>📅 Estimare livrare: 1-3 zile</h3>
-                                    <h3>Dacă ai întrebări, nu ezita să ne contactezi la masco.baits@gmail.com sau +40749048838.</h3>
+                                    <h3>Dacă ai întrebări, nu ezita să ne contactezi la <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a> sau +40749048838.</h3>
                                     <h2>Mulțumim pentru încredere și îți dorim fir întins! 🎣</h2>
                                 </div>
                                 <div className="products-conf-cont">

@@ -87,7 +87,7 @@ export default function Checkout(){
     return(
         <div className="checkout-pg-cont">
             <div className="prod-side-head check-head">
-                <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
                 <span>Finalizare Comandă</span>
             </div>
             <form className="comanda-info-cont" onSubmit={finalizeCheck}>

@@ -3,7 +3,7 @@ import React from "react";
 export default function ProductConfContainer(props){
     return(
         <div className="product-conf-cont">
-            <img src={`../assets/images/prod-imgs/${props.photo}`}></img>
+            <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
             <div className="prod-dets-cont">
                 <div className="prod-name-brand-cont-conf conf-sect-prod">
                     <h2>{props.name}</h2>
