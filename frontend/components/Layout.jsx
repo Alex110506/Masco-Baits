@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import Analytics from "./Analytics";
 
 
 export default function Layout(){
@@ -10,6 +11,7 @@ export default function Layout(){
 
     return(
         <div className="whole-page">
+            <Analytics></Analytics>
             <Header></Header>
             <main>
                 <React.Suspense fallback={<h1>Loading...</h1>}>

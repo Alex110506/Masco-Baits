@@ -14,6 +14,7 @@ import ProductPage , {loader as productPageLoader} from "./pages/ProductPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import TermsConds from "./pages/TermsConds";
 import AdminPage ,{loader as adminLoader} from "./pages/AdminPage";
+import Analytics from "./components/Analytics";
 
 async function productsLoader() {
     const items=null
