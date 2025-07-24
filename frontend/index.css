@@ -375,6 +375,7 @@ header {
     font-size: 30px;
     font-weight:700;
     padding: 13px;
+    margin: 0;
 }
 
 .list-items{
@@ -635,7 +636,7 @@ header {
     justify-content: center;
     align-items: center;
 }
-.new-prod-cont h1{
+.new-prod-cont h2{
     font-size: 36px;
     width: 100%;
     padding-left: 10vw;
@@ -652,7 +653,7 @@ header {
 }
 
 @media only screen and (max-width: 1200px){
-    .new-prod-cont h1{
+    .new-prod-cont h2{
         margin: 2vw;
         margin-top: 4vw;
         font-size: min(4rem,8vw);

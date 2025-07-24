@@ -44,7 +44,7 @@ export default function Home(){
             <div className="bg-cnt"></div>
             <HeroSection></HeroSection>
             <div className="product-list-container">
-                <div className="list-title">PRODUSELE NOASTRE</div>
+                <h1 className="list-title">PRODUSELE NOASTRE</h1>
                 <div className="list-items">
                     <Link to={"/Boilies"} className="cnt">Boilies</Link>
                     <Link to={"/Boilies_Carlig"} className="cnt">Boilies Carlig</Link>
@@ -61,7 +61,7 @@ export default function Home(){
             </div>
             <section className="products-cont">
                 <div className="new-prod-cont">
-                    <h1>Promotii</h1>
+                    <h2>Promotii</h2>
                     <div className="new-prod-list">
                         {promElems}
                     </div>
