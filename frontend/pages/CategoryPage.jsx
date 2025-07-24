@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData,useRouteLoaderData } from "react-router-dom";
 import ProductContainerCateg from "../components/ProductContainerCateg";
+import Canonical from "../components/Canonical";
 
 export function loader({request}){
     const url=new URL(request.url).pathname;
@@ -60,6 +61,8 @@ export default function CategoryPage(){
     console.log(categProds)
 
     return (
+        <>
+        <Canonical url={data}></Canonical>
         <div className="categ-page-cont">
             <div className="categ-banner-cont">
                 <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="header-banner"></img>
@@ -124,5 +127,6 @@ export default function CategoryPage(){
                 </div>
             : null}
         </div>
+        </>
     )
 }

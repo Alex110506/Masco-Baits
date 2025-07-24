@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCartContainer from "../components/ProductCartContainer";
 import { NavLink, useNavigate,useRouteLoaderData } from "react-router-dom";
+import Canonical from "../components/Canonical";
 
 export default function Cart(){
     React.useEffect(() => {
@@ -40,6 +41,7 @@ export default function Cart(){
 
     return(
         <>
+            <Canonical url="https://masco-baits-production.up.railway.app/cart"></Canonical>
             <div className="cart-page-cont">
                 <div className="products-side-cont">
                     <div className="prod-side-head">

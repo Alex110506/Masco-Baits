@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData, useRouteLoaderData,Await,defer} from "react-router-dom";
 import RevCard from "../components/RevCard";
 import { useAuth } from "../components/AuthContext";
+import Canonical from "../components/Canonical";
 
 export function loader({request}){
     const url=new URL(request.url).pathname;
@@ -165,6 +166,8 @@ export default function ProductPage(){
     ))
 
     return(
+        <>
+        <Canonical url={`https://masco-baits-production.up.railway.app/${product.category.replace(/ /g, "_").toLowerCase()}/${id}`}></Canonical>
         <div className="product-page-cont">
             <h1 className="prod-name-cont-page">{product.name}</h1>
             <div className="prod-dets">
@@ -283,5 +286,6 @@ export default function ProductPage(){
                 </div>
             </div>
         </div>
+        </>
     )
 }

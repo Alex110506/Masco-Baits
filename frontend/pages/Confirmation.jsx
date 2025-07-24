@@ -1,6 +1,7 @@
 import React from "react";
 import { Await, defer, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import ProductConfContainer from "../components/ProductConfContainer";
+import Canonical from "../components/Canonical";
 
 export function loader({request}){
     const url=new URL(request.url).pathname;
@@ -40,6 +41,8 @@ export default function Confirmation(){
     }, []);
 
     return(
+        <>
+        <Canonical url={`https://masco-baits-production.up.railway.app/cart/checkout/confirmation/${orderId}`}></Canonical>
         <div className="confirmation-page-cont">
             <div className="prod-side-head conf-head">
                 <img src="\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
@@ -130,5 +133,6 @@ export default function Confirmation(){
             </React.Suspense>
             
         </div> 
+        </>
     )
 }

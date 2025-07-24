@@ -16,6 +16,7 @@ import TermsConds from "./pages/TermsConds";
 import AdminPage ,{loader as adminLoader} from "./pages/AdminPage";
 import Analytics from "./components/Analytics";
 import { HelmetProvider } from "react-helmet-async";
+import NotFound from "./pages/NotFound";
 
 async function productsLoader() {
     const items=null
@@ -115,7 +116,7 @@ const router=createBrowserRouter(createRoutesFromElements(
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
         <Route path="termeni&conditii" element={<TermsConds></TermsConds>}></Route>
-        
+        <Route path="*" element={<NotFound />} />
     </Route>
 ))
 

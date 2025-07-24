@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate , useRouteLoaderData} from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
+import Canonical from "../components/Canonical";
 
 export default function Checkout(){
     const {userData,isLoggedIn}=useAuth()
@@ -82,9 +83,11 @@ export default function Checkout(){
         }
     }
 
-        
+    
 
     return(
+        <>
+        <Canonical url="https://masco-baits-production.up.railway.app/cart/checkout"></Canonical>
         <div className="checkout-pg-cont">
             <div className="prod-side-head check-head">
                 <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
@@ -238,5 +241,6 @@ export default function Checkout(){
                 </div>
             </form>
         </div>
+        </>
     )
 }
