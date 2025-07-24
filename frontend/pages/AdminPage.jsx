@@ -1,6 +1,7 @@
 import React from "react";
 import { Await,useLoaderData,defer } from "react-router-dom";
 import OrderContAdmin from "../components/OrderContAdmin";
+import Canonical from "../components/Canonical";
 
 export function loader() {
     const dataPromise = fetch("/api/admin/recentOrders", {
@@ -30,6 +31,8 @@ export default function AdminPage(){
     const [orders,setOrders]=React.useState([])
 
     return (
+        <>
+        <Canonical url="https://masco-baits-production.up.railway.app/admin"></Canonical>
         <div className="admin-page-cont">
             <h1>Pagina de Admin</h1>
             <div className="admin-sect">
@@ -89,6 +92,6 @@ export default function AdminPage(){
                 </div>
             </div>
         </div>
-        
+        </>
     )
 }

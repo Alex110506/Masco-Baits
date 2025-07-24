@@ -1,10 +1,13 @@
 import React from "react";
+import Canonical from "../components/Canonical";
 
 export default function TermsConds(){
     React.useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
     return(
+        <>
+        <Canonical url="https://masco-baits-production.up.railway.app/termeni&conditii"></Canonical>
         <div class="container">
             <h1 className="foot-side-head"><img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img> Termeni și Condiții - Masco Baits</h1>
             <p><strong>Ultima actualizare:</strong> 24.07.2025</p>
@@ -103,5 +106,6 @@ export default function TermsConds(){
             🕐 Program: Luni-Vineri, 09:00-17:00
             </p>
         </div>
+        </>
     )
 }

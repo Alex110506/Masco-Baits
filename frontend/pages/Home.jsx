@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import ProductContainer from "../components/ProductContainer";
 import { Link, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
+import Canonical from "../components/Canonical";
 
 export default function Home(){
 
@@ -40,6 +41,8 @@ export default function Home(){
 
 
     return(
+        <>
+        <Canonical url="https://masco-baits-production.up.railway.app"></Canonical>
         <div className="home-cont">
             <div className="bg-cnt"></div>
             <HeroSection></HeroSection>
@@ -69,5 +72,6 @@ export default function Home(){
             </section>
             
         </div>
+        </>
     )
 }
