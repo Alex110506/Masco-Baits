@@ -50,6 +50,7 @@ app.use(
       connectSrc: [
         "'self'",
         "https://www.google-analytics.com",
+        "https://*.google-analytics.com",
       ],
       imgSrc: [
         "'self'",
