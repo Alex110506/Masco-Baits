@@ -37,6 +37,29 @@ const app = express();
 app.use(cors());
 app.use(compression());
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        "https://www.googletagmanager.com",
+        "https://www.google-analytics.com",
+      ],
+      connectSrc: [
+        "'self'",
+        "https://www.google-analytics.com",
+      ],
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https://www.google-analytics.com",
+      ],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      frameSrc: ["'self'"],
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -70,7 +70,7 @@ export default function HeroSection(){
                 <div className="mob-sect1">
                     <img id="logo-img" src="../assets/images/logo/maco-baits-logo.png.jpg" alt="company logo"></img>
                     <div className="mob-sect1-slide" ref={sect3Ref}>
-                        <img className="active3" src="..\assets\images\mainpage\WhatsApp Image 2025-03-31 at 14.32.14_2652d762.wenb" alt="landscape image"/>
+                        <img className="active3" src="..\assets\images\mainpage\WhatsApp Image 2025-03-31 at 14.32.14_2652d762.webp" alt="landscape image"/>
                         <img src="..\assets\images\mainpage\WhatsApp Image 2025-03-31 at 14.32.14_7085cd72.webp" alt="landscape image"/>
                         <img src="..\assets\images\mainpage\WhatsApp Image 2025-03-31 at 14.32.15_82bc644e.webp" alt="landscape image"/>
                     </div>
