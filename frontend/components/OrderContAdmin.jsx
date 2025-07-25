@@ -93,7 +93,7 @@ export default function OrderContAdmin(props){
                     <button>Salvează</button>
                 </form>
             </div>
-            {products.length>0 ? 
+            {productsOrder.length>0 ? 
                 <div className="prod-dets-admin-cont">
                     <div className="adress-cont-admin">
                         <p>Județ: {props.judet}</p>
