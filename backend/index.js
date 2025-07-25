@@ -585,7 +585,7 @@ app.post("/api/admin/recentOrders",requireLogin,requireAdmin,(req,res)=>{
 
 app.post("/api/admin/getProducts",requireLogin,requireAdmin,(req,res)=>{
   const id=req.body
-  const query="SELECT * FROM order_items WHERE orderid=?"
+  const query="SELECT * FROM order_items WHERE orderid=?;"
   db.query(query,[id],(err,result)=>{
     if(err){
       console.log(err)

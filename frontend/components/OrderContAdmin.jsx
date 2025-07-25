@@ -36,7 +36,7 @@ export default function OrderContAdmin(props){
             method:"POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: JSON.stringify({id,status})
+            body: JSON.stringify({id})
         })
         const data=await res.json()
         if(res.ok){
