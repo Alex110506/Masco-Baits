@@ -91,7 +91,8 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90vw;
+    width: 100vw;
+    padding: 10px;
     max-width: 1200px;
     padding-bottom: 30px;
     justify-self: center;
