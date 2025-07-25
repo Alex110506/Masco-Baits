@@ -757,6 +757,13 @@ header {
     gap: 0.4rem;
 }
 
+.prod-info-cart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+
 .prod-cart-img-cont img{
     height: 8rem;
 }
@@ -837,14 +844,20 @@ header {
         flex-direction: column;
     }
     .prod-cont-cart{
+        flex-direction: row;
+        justify-content: left;
+    }
+    .prod-info-cart{
         flex-direction: column;
         justify-content: left;
     }
     .quant-cont{
         align-items: end;
+        display: flex;
+        flex-direction: row;
     }
     .prod-cart-img-cont img{
-        height: 70vw;
+        height: 24vw;
     }
     .prod-cart-img-cont{
         display: flex;
