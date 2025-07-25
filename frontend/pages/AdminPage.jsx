@@ -69,6 +69,12 @@ export default function AdminPage(){
                                                             telefon={order.telefon}
                                                             date={order.date}
                                                             status={order.status}
+                                                            judet={order.judet}
+                                                            oras={order.oras}
+                                                            adresa={order.adresa}
+                                                            cod_postal={order.cod_postal}
+                                                            modalitate={order.modalitate}
+                                                            price={order.price}
                                                         >
                                                         </OrderContAdmin>
                                                     )

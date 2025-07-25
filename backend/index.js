@@ -50,6 +50,7 @@ app.use(
       connectSrc: [
         "'self'",
         "https://www.google-analytics.com",
+        "https://*.google-analytics.com",
       ],
       imgSrc: [
         "'self'",
@@ -60,6 +61,7 @@ app.use(
         "'self'",
         "'unsafe-inline'",
         "https://fonts.googleapis.com",
+        "https://cdn.jsdelivr.net",
       ],
       fontSrc: [
         "'self'",
