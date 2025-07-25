@@ -107,26 +107,28 @@ export default function ProductCartContainer(props){
             <div className="prod-cart-img-cont">
                 <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
             </div>
-            <div className="prod-cart-name-cont">
-                <NavLink to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`} className="cart-prod-tit">
-                    {props.name}
-                </NavLink>
-            </div>
-            <div className="prod-cart-brand-cont">
-                <span>Brand: {props.brand}</span>
-            </div>
-            <div className="prod-cart-prc-cont">
-                <span>{props.price} Lei</span>
-            </div>
-            <div className="quant-cont">
-                <form className="buc-cont" onSubmit={handleQuant}>
-                    <button onClick={()=>setAction("remove")} disabled={loading}>-</button>
-                    <span>{props.pcs}</span>
-                    <button onClick={()=>setAction("add")} disabled={loading}>+</button>
-                </form>
-                <form className="del-it-cont" onSubmit={handleDel}>
-                    <button>Sterge&nbsp;Produs</button>
-                </form>
+            <div className="prod-info-cart">
+                <div className="prod-cart-name-cont">
+                    <NavLink to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`} className="cart-prod-tit">
+                        {props.name}
+                    </NavLink>
+                </div>
+                <div className="prod-cart-brand-cont">
+                    <span>Brand: {props.brand}</span>
+                </div>
+                <div className="prod-cart-prc-cont">
+                    <span>{props.price} Lei</span>
+                </div>
+                <div className="quant-cont">
+                    <form className="buc-cont" onSubmit={handleQuant}>
+                        <button onClick={()=>setAction("remove")} disabled={loading}>-</button>
+                        <span>{props.pcs}</span>
+                        <button onClick={()=>setAction("add")} disabled={loading}>+</button>
+                    </form>
+                    <form className="del-it-cont" onSubmit={handleDel}>
+                        <button>Șterge</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
