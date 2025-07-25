@@ -56,6 +56,7 @@ app.use(
         "'self'",
         "data:",
         "https://www.google-analytics.com",
+        "https://www.googletagmanager.com",
       ],
       styleSrc: [
         "'self'",
