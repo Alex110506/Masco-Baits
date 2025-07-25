@@ -832,11 +832,11 @@ header {
         flex-direction: column;
     }
     .checkout-side-cont{
-        width: 90vw;
+        width: calc(100vw - 20px);
         margin-bottom: 5vw
     }
     .prod-cont-cart{
-        width: 90vw;
+        width: calc(100vw - 20px);
     }
 }
 
