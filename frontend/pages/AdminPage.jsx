@@ -33,6 +33,7 @@ export default function AdminPage(){
     return (
         <>
         <Canonical url="https://masco-baits-production.up.railway.app/admin"></Canonical>
+
         <div className="admin-page-cont">
             <h1>Pagina de Admin</h1>
             <div className="admin-sect">
