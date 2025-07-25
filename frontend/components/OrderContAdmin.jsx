@@ -43,6 +43,7 @@ export default function OrderContAdmin(props){
             if(data.status==0){
                 setError(data.message)
             }else{
+                console.log(data.result)
                 setProductsOrder(data.result)
             }
         }else{
@@ -52,15 +53,11 @@ export default function OrderContAdmin(props){
 
     const prodElems=productsOrder.map((product)=>{
         return(
-            <div className="prod-admin-cont">
-                <table>
-                    <tr>
-                        <td>{product.name}</td>
-                        <td>Preț: {product.price}</td>
-                        <td>Bucăți: {product.quantity}</td>
-                    </tr>
-                </table>
-            </div>
+            <tr>
+                <td>{product.name}</td>
+                <td>{product.price} Lei</td>
+                <td>{product.quantity}</td>
+            </tr> 
         )
     })
     const costLivrare=props.price>=700 ? 0 : 25
@@ -79,7 +76,7 @@ export default function OrderContAdmin(props){
                     <p>Email: {props.email}</p>
                     <p>Telefon: {props.telefon}</p>
                     <p>Data comenzii: {props.date}</p>
-                    <button onClick={handleDetails}>Vezi detalii comandă</button>
+                    <button onClick={handleDetails} disabled={productsOrder.length>0 ? true : false}>Vezi detalii comandă</button>
                 </div>
                 <form onSubmit={handleStatusChange} className="order-adm-form">
                     <h2>Setează Status</h2>
@@ -101,9 +98,24 @@ export default function OrderContAdmin(props){
                         <p>Adresă: {props.adresa}</p>
                         <p>Cod Poștal: {props.cod_postal}</p>
                         <h3>Metodă de plată: {props.modalitate}</h3>
+                        <button onClick={()=>setProductsOrder([])}>Vezi mai puțin</button>
                     </div>
                     <div className="prods-cont-admin">
-                        {prodElems}
+                        <div className="prod-admin-cont">
+                        <table className="modern-table">
+                        <thead>
+                            <tr>
+                                <th>Produs</th>
+                                <th>Preț</th>
+                                <th>Bucăți</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {prodElems}
+                        </tbody>
+                        </table>
+                    </div>
+                        
                         <p>Cost produse: {props.price} Lei</p>
                         <p>Cost Livrare: {costLivrare} Lei</p>
                         <h2>Total: {Number(props.price) + Number(costLivrare)} Lei </h2>
