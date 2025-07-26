@@ -18,7 +18,7 @@ export default function Login(){
 
     return(
         <>
-            <Canonical url="https://masco-baits-production.up.railway.app/login"></Canonical>
+            <Canonical url="https://www.masco-baits.ro/login"></Canonical>
             {isLoggedIn===false ? 
             <div className="form-structor">
                 

@@ -42,7 +42,7 @@ export default function Home(){
 
     return(
         <>
-        <Canonical url="https://masco-baits-production.up.railway.app"></Canonical>
+        <Canonical url="https://www.masco-baits.ro"></Canonical>
         <div className="home-cont">
             <div className="bg-cnt"></div>
             <HeroSection></HeroSection>

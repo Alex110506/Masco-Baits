@@ -10,7 +10,7 @@ export default function NotFound() {
     <>
       <Helmet>
         <title>404 - Pagina nu a fost găsită | Masco Baits</title>
-        <link rel="canonical" href="https://masco-baits-production.up.railway.app/404" />
+        <link rel="canonical" href="https://www.masco-baits.ro/404" />
       </Helmet>
 
       <div className="not-found-container">

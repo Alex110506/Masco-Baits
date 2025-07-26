@@ -107,7 +107,7 @@ function confirmOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
     <p>Îți mulțumim că ai ales <strong>Masco Baits</strong>! Pentru întrebări sau informații suplimentare, nu ezita să ne contactezi.</p>
 
     <div class="footer">
-      Masco Baits © 2025 · contact: <a href="mailto:support@masco-baits.ro">support@masco-baits.ro</a>
+      Masco Baits © 2025 · contact: <a href="mailto:masco.baits@gmail.com">masco.baits@gmail.com</a>
     </div>
   </div>
 </body>

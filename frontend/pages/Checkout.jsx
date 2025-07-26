@@ -87,7 +87,7 @@ export default function Checkout(){
 
     return(
         <>
-        <Canonical url="https://masco-baits-production.up.railway.app/cart/checkout"></Canonical>
+        <Canonical url="https://www.masco-baits.ro/cart/checkout"></Canonical>
         <div className="checkout-pg-cont">
             <div className="prod-side-head check-head">
                 <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
