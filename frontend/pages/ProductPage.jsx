@@ -167,7 +167,7 @@ export default function ProductPage(){
 
     return(
         <>
-        <Canonical url={`https://masco-baits-production.up.railway.app/${product.category.replace(/ /g, "_").toLowerCase()}/${id}`}></Canonical>
+        <Canonical url={`https://www.masco-baits.ro/${product.category.replace(/ /g, "_").toLowerCase()}/${id}`}></Canonical>
         <div className="product-page-cont">
             <h1 className="prod-name-cont-page">{product.name}</h1>
             <div className="prod-dets">

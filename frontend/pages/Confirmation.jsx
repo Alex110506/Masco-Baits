@@ -42,7 +42,7 @@ export default function Confirmation(){
 
     return(
         <>
-        <Canonical url={`https://masco-baits-production.up.railway.app/cart/checkout/confirmation/${orderId}`}></Canonical>
+        <Canonical url={`https://www.masco-baits.ro/cart/checkout/confirmation/${orderId}`}></Canonical>
         <div className="confirmation-page-cont">
             <div className="prod-side-head conf-head">
                 <img src="\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>

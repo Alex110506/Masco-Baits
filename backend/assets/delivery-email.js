@@ -111,7 +111,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
     <p>Îți mulțumim că ai ales <strong>Masco Baits</strong>! Dacă ai întrebări despre livrare, ne poți contacta oricând.</p>
 
     <div class="footer">
-      Masco Baits © 2025 · contact: <a href="mailto:support@masco-baits.ro">support@masco-baits.ro</a>
+      Masco Baits © 2025 · contact: <a href="mailto:masco.baits@gmail.com">masco.baits@gmail.com</a>
     </div>
   </div>
 </body>

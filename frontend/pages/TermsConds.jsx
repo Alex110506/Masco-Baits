@@ -7,7 +7,7 @@ export default function TermsConds(){
     }, []);
     return(
         <>
-        <Canonical url="https://masco-baits-production.up.railway.app/termeni&conditii"></Canonical>
+        <Canonical url="https://www.masco-baits.ro/termeni&conditii"></Canonical>
         <div class="container">
             <h1 className="foot-side-head"><img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img> Termeni și Condiții - Masco Baits</h1>
             <p><strong>Ultima actualizare:</strong> 24.07.2025</p>

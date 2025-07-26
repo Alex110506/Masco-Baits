@@ -41,7 +41,7 @@ export default function Cart(){
 
     return(
         <>
-            <Canonical url="https://masco-baits-production.up.railway.app/cart"></Canonical>
+            <Canonical url="https://www.masco-baits.ro/cart"></Canonical>
             <div className="cart-page-cont">
                 <div className="products-side-cont">
                     <div className="prod-side-head">
