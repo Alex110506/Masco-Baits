@@ -33,6 +33,17 @@ console.log("MySQL connected...");
 
 const app = express();
 
+app.use((req, res, next) => {
+  const host = req.headers.host;
+
+  if (host === 'masco-baits.ro') {
+    const fullUrl = 'https://www.masco-baits.ro' + req.originalUrl;
+    return res.redirect(301, fullUrl); // 301 = permanent redirect
+  }
+
+  next(); 
+});
+
 
 app.use(cors());
 app.use(compression());
