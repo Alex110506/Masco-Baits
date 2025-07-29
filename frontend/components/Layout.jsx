@@ -8,10 +8,20 @@ import CookieConsent from "./CookieConsent";
 export default function Layout(){
 
     const data=useLoaderData();
+    const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+
+    useEffect(() => {
+        const consent = localStorage.getItem("cookie_consent");
+        if (consent === "true") {
+        setAnalyticsAllowed(true);
+        }
+    }, []);
+
+    
 
     return(
         <div className="whole-page">
-            <Analytics></Analytics>
+            {analyticsAllowed ? <Analytics></Analytics> : null}
             <Header></Header>
             <main>
                 <CookieConsent></CookieConsent>
