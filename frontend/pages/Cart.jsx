@@ -9,6 +9,7 @@ export default function Cart(){
     }, []);
 
     const {cartProd,products}=useRouteLoaderData("root");
+    const [error,setError]=React.useState("")
 
     let cartSum=0
     cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity) 
@@ -65,10 +66,14 @@ export default function Cart(){
                         </div>
                     </div>
                     <h1>Total: {cartSum+costLivrare}</h1>
+                    {error ? <h2>{error}</h2> : null}
                     <p>Comenzile peste 700.00 Lei dispun de livrare gratuită.</p>
                     <div className="check-btn-cont">
                         <button>
-                            <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>
+                            {cartProd.length>0 ? 
+                                <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>:
+                                <h3 style={{color:"red"}}>Trebuie să aveți cel putin un produs în coș pentru a comanda.</h3>
+                            }
                         </button>
                     </div>
                     

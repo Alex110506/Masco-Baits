@@ -68,19 +68,24 @@ export default function Checkout(){
     //in pagina de confirmare preiau comanda din baza de date si afisez datele
     const finalizeCheck=async (e)=>{
         e.preventDefault()
-        const res=await fetch("/order/send",{
-            method:"POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({cartProd,costProd,costLivr,nume,email,telefon,judet,localitate,adresa,codPostal,modalitate})
-        })
-        const data=await res.json();
-        if(res.ok){
-            const orderId=data.orderId
-            navigate(`/cart/checkout/confirmation/${orderId}`)
+        if(cartProd.length>0){
+                const res=await fetch("/order/send",{
+                method:"POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({cartProd,costProd,costLivr,nume,email,telefon,judet,localitate,adresa,codPostal,modalitate})
+            })
+            const data=await res.json();
+            if(res.ok){
+                const orderId=data.orderId
+                navigate(`/cart/checkout/confirmation/${orderId}`)
+            }else{
+                setError(data.message)
+            }
         }else{
-            setError(data.message)
+            setError("Comanda nu poate fi goală!")
         }
+        
     }
 
     
