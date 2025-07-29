@@ -12,6 +12,7 @@ require('dotenv').config();
 const compression=require("compression")
 const helmet=require("helmet")
 const fs = require('fs');
+const mysqlSession=require("express-mysql-session")(session)
 
 const placedOrderEmail=require("./assets/placed-email")
 const confirmOrderEmail=require("./assets/confirm-email")
@@ -88,8 +89,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
+  key: 'user-data',
   secret: process.env.SESSION_SECRET,
   resave: false,
+  store:mysqlSession,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
