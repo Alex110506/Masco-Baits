@@ -1620,6 +1620,12 @@ header {
         display: flex;
         flex-direction: column;
     }
+    .categ-cont h2{
+        font-size: min(1.3rem,3vw);
+    }
+    .categ-cont p{
+        font-size: min(1rem,2vw);
+    }
 }
 
 .user-page-cont-main{
