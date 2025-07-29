@@ -1621,10 +1621,10 @@ header {
         flex-direction: column;
     }
     .categ-cont h2{
-        font-size: min(1.3rem,3vw);
+        font-size: min(1.5rem,4vw);
     }
     .categ-cont p{
-        font-size: min(1rem,2vw);
+        font-size: min(1.2rem,3vw);
     }
 }
 
