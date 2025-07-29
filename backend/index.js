@@ -18,15 +18,22 @@ const placedOrderEmail=require("./assets/placed-email")
 const confirmOrderEmail=require("./assets/confirm-email")
 const deliverOrderEmail=require("./assets/delivery-email")
 
+const store = new mysqlSession({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+});
+
 const db = mysql.createPool({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT,
-    waitForConnections: true,
-    connectionLimit:30,
-    multipleStatements: true 
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT,
+  waitForConnections: true,
+  connectionLimit:30,
+  multipleStatements: true 
 });
 
 console.log("MySQL connected...");
@@ -92,7 +99,7 @@ app.use(session({
   key: 'user-data',
   secret: process.env.SESSION_SECRET,
   resave: false,
-  store:mysqlSession,
+  store: store,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
