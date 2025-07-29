@@ -12,18 +12,18 @@ require('dotenv').config();
 const compression=require("compression")
 const helmet=require("helmet")
 const fs = require('fs');
-const mysqlSession=require("express-mysql-session")(session)
+//const mysqlSession=require("express-mysql-session")(session)
 
 const placedOrderEmail=require("./assets/placed-email")
 const confirmOrderEmail=require("./assets/confirm-email")
 const deliverOrderEmail=require("./assets/delivery-email")
 
-const store = new mysqlSession({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-});
+// const store = new mysqlSession({
+//   host: process.env.MYSQLHOST,
+//   user: process.env.MYSQLUSER,
+//   password: process.env.MYSQLPASSWORD,
+//   database: process.env.MYSQLDATABASE,
+// });
 
 const db = mysql.createPool({
   host: process.env.MYSQLHOST,
@@ -99,7 +99,6 @@ app.use(session({
   key: 'user-data',
   secret: process.env.SESSION_SECRET,
   resave: false,
-  store: store,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
