@@ -10,7 +10,7 @@ export default function Layout(){
     const data=useLoaderData();
     const [analyticsAllowed, setAnalyticsAllowed] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const consent = localStorage.getItem("cookie_consent");
         if (consent === "true") {
         setAnalyticsAllowed(true);
