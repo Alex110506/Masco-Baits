@@ -1620,9 +1620,17 @@ header {
         display: flex;
         flex-direction: column;
     }
+    .categ-cont,.diam-cont,.quant-cont-page,.desc-cont{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: start;
+        justify-content: left;
+        margin-top: 0.7rem;
+    }
     .categ-cont h2,.diam-cont h2,.quant-cont-page h2,.desc-cont h2{
         font-size: min(1.6rem,5vw);
-        margin-top: 0.7rem;
+        margin: 0;
     }
     .categ-cont p,.diam-cont p,.quant-cont-page p,.desc-cont p{
         font-size: min(1.3rem,4vw);
