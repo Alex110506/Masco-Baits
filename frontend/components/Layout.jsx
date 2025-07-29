@@ -8,7 +8,7 @@ import CookieConsent from "./CookieConsent";
 export default function Layout(){
 
     const data=useLoaderData();
-    const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+    const [analyticsAllowed, setAnalyticsAllowed] = React.useState(false);
 
     useEffect(() => {
         const consent = localStorage.getItem("cookie_consent");
