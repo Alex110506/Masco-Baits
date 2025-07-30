@@ -5,25 +5,7 @@ import { useAuth } from "./AuthContext";
 
 export default function ProductContainer(props){
 
-    //sa fac stelele in functie de review
     const {isLoggedIn,setIsLoggedIn}=useAuth()
-
-    const rating = Math.floor(2 * props.rating);
-    let stars = [];
-
-    for (let i = 0; i < Math.floor(rating / 2); i++) {
-    stars.push(<i className="bi bi-star-fill" style={{color:"gold"}} key={i}></i>);
-    }
-
-    if (rating % 2 === 1) {
-    stars.push(<i className="bi bi-star-half" style={{color:"gold"}} key={stars.length}></i>);
-    }
-
-    while (stars.length < 5) {
-    stars.push(<i className="bi bi-star" style={{color:"gold"}} key={stars.length}></i>);
-    }
-
-    const nrRevs=props.nrRevs
 
     const handleCart= async (e)=>{
         e.preventDefault();
