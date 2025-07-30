@@ -2178,6 +2178,8 @@ header {
 }
 
 
+
+
 .gallery-container {
     padding: 20px;
     max-width: 1000px;
@@ -2185,16 +2187,12 @@ header {
     font-family: Arial, sans-serif;
 }
 
-
-.gallery-title-cont{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+.gallery-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
 }
-
 
 .photo-grid {
     display: grid;

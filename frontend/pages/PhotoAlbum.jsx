@@ -24,10 +24,7 @@ export default function PhotoGallery() {
 
     return (
         <div className="gallery-container">
-            <div className="gallery-title-cont">
-                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
-                <h1 className="gallery-title">Album Foto Video</h1>
-            </div>
+            <h1 className="gallery-title">Album Foto Video</h1>
             
 
             <div className="photo-grid">
