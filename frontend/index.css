@@ -681,7 +681,7 @@ header {
     justify-content: left;
     gap: 20px;
 }
-.prod-side-head img,.gallery-container img{
+.prod-side-head img{
     height: 15vw;
     min-height: 5rem;
     max-height: 8rem;
