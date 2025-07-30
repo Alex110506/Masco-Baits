@@ -29,8 +29,8 @@ export default function Header(){
                         <Link to={"/pelete_&_grundbait"} className="cnt">Pelete & Grundbait </Link>
                     <br/>
                     <p>Despre Noi</p>
-                    <Link to={"/"}>Albume Foto & Video</Link>
-                    <Link to={"/"}>Recenzii Clienți</Link>
+                    <Link to={"/albume-foto-video"}>Albume Foto & Video</Link>
+                    <Link to={"/recenzii"}>Recenzii Clienți</Link>
                 </div>
             </div>
             <NavLink to="/">

@@ -47,9 +47,6 @@ export default function ProductContainer(props){
             <div className="prod-name-cont">
                 <NavLink className="prod-name-cont-tit" to={`${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`}>{props.name}</NavLink>
             </div>
-            <div className="prod-rev-cont">
-                {stars}
-            </div>
             <form className="price-add-cont" onSubmit={handleCart}>
                 <div className="price-cont">
                     <span>{props.price} Lei</span>

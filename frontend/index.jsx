@@ -117,6 +117,8 @@ const router=createBrowserRouter(createRoutesFromElements(
             <Route path=":productId" element={<ProductPage></ProductPage>} loader={productPageLoader}></Route>
         </Route>
         <Route path="termeni&conditii" element={<TermsConds></TermsConds>}></Route>
+        <Route path="albume-foto-video" element={<PhotoAlbumm />}></Route>
+        <Route path="recenzii" element={<TermsConds></TermsConds>}></Route>
         <Route path="*" loader={notFoundLoader} errorElement={<NotFound></NotFound>} element={<div></div>} />
     </Route>
 ))

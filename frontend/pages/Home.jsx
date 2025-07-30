@@ -60,8 +60,8 @@ export default function Home(){
                 </div>
             </div>
             <div className="others-container">
-                <Link to={"/"} className="foto-cont cont">Albume Foto & Video</Link>
-                <Link to={"/"} className="rev-cont cont">Recenzii Clienți</Link>
+                <Link to={"/albume-foto-video"} className="foto-cont cont">Albume Foto & Video</Link>
+                <Link to={"/recenzii"} className="rev-cont cont">Recenzii Clienți</Link>
             </div>
             <section className="products-cont">
                 <div className="new-prod-cont">
