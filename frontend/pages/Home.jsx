@@ -45,6 +45,7 @@ export default function Home(){
         <Canonical url="https://www.masco-baits.ro"></Canonical>
         <div className="home-cont">
             <div className="bg-cnt"></div>
+            <h1>ANTENTIE! Aceasta este o versiune de test!</h1>
             <HeroSection></HeroSection>
             <div className="product-list-container">
                 <h1 className="list-title">PRODUSELE NOASTRE (BOILIES ȘI ALTELE)</h1>

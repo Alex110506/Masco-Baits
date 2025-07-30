@@ -69,12 +69,14 @@ export default function Cart(){
                     {error ? <h2>{error}</h2> : null}
                     <p>Comenzile peste 700.00 Lei dispun de livrare gratuită.</p>
                     <div className="check-btn-cont">
-                        <button>
+                        
                             {cartProd.length>0 ? 
-                                <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>:
+                                <button>
+                                    <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>
+                                </button>:
                                 <h3 style={{color:"red"}}>Trebuie să aveți cel putin un produs în coș pentru a comanda.</h3>
                             }
-                        </button>
+                        
                     </div>
                     
                 </div>
