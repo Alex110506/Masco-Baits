@@ -24,9 +24,11 @@ export default function PhotoGallery() {
 
     return (
         <div className="gallery-container">
-            <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
-
-            <h1 className="gallery-title">Album Foto Video</h1>
+            <div className="gallery-title-cont">
+                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
+                <h1 className="gallery-title">Album Foto Video</h1>
+            </div>
+            
 
             <div className="photo-grid">
                 {currentPhotos.map((photo, index) => (
