@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./PhotoGallery.css"; // Import your CSS file
 
 export default function PhotoGallery() {
     const photos = [];
