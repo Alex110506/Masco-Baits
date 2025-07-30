@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
+const photos = [];
+const PHOTOS_PER_PAGE = 12;
+
+for (let i = 4968; i <= 5091; i++) {
+    photos.push(`IMG_${String(i)}.JPG`);
+}
+
 export default function PhotoGallery() {
-    const photos = [];
-    const PHOTOS_PER_PAGE = 10;
-
-    for (let i = 4968; i <= 5091; i++) {
-        photos.push(`IMG_${i}.jpg`);
-    }
-
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalPages = Math.ceil(photos.length / PHOTOS_PER_PAGE);
