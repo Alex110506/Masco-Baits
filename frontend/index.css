@@ -453,6 +453,10 @@ header {
     }
 }
 
+.cnt-head{
+    color: black;
+}
+
 @media only screen and (max-width: 600px){
     .upper-part{
         display: none;
@@ -677,7 +681,7 @@ header {
     justify-content: left;
     gap: 20px;
 }
-.prod-side-head img{
+.prod-side-head img,.gallery-container img{
     height: 15vw;
     min-height: 5rem;
     max-height: 8rem;
@@ -2179,6 +2183,10 @@ header {
     max-width: 1000px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
+}
+.gallery-container img{
+    justify-self: center;
+    align-self: center;
 }
 
 .gallery-title {
