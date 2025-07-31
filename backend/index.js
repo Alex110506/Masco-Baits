@@ -620,6 +620,7 @@ app.post("/api/admin/getProducts",requireLogin,requireAdmin,(req,res)=>{
   })
 })
 
+
 app.use((req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });

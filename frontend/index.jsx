@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client"
 
-import {useLocation, createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider, json } from "react-router-dom";
+import {useLocation, createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider, json,Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
@@ -79,7 +79,8 @@ async function productsLoader() {
 
 const router=createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout></Layout>} loader={productsLoader} id="root">
-        <Route index element={<Home></Home>}></Route>
+        <Route index element={<Navigate to="/home" replace/>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
         <Route path="admin" loader={adminLoader} element={<AdminPage></AdminPage>}></Route>
         <Route path="cart" element={<Outlet/>}>
             <Route index element={<Cart></Cart>}></Route>
