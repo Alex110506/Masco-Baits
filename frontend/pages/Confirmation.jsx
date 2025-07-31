@@ -29,7 +29,6 @@ export function loader({request}){
 export default function Confirmation(){
 
     const [orderId,setOrderId]=React.useState("")
-    const [costLivr,setCostLivr]=React.useState(0)
     const {products}=useRouteLoaderData("root")
 
     const data=useLoaderData();
@@ -82,6 +81,8 @@ export default function Confirmation(){
                                     quantity={item.quantity}
                                 ></ProductConfContainer>
                             }) 
+
+                            const costLivr=Number(loadedData.details.price)>=700 ? 0 : 25
 
                             return(
                                 <><div className="detail-cont-conf">

@@ -38,7 +38,7 @@ export default function Cart(){
         navigate("/checkout")
     }
 
-    const costLivrare=25
+    const costLivrare=cartSum>=700 ? 0 : 25
 
     return(
         <>
