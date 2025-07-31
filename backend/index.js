@@ -461,7 +461,6 @@ app.post("/order/send", (req, res) => {
   } = req.body;
 
   const userId = req.session.user?.id || 0;
-  const totalPrice = costProd + costLivr;
 
   const insertOrderQuery = `
     INSERT INTO orders (userid, price, username, email, telefon, judet, oras, adresa, cod_postal, modalitate)
@@ -469,7 +468,7 @@ app.post("/order/send", (req, res) => {
   `;
 
   db.query(insertOrderQuery, [
-    userId, totalPrice, nume, email, telefon,
+    userId, costProd, nume, email, telefon,
     judet, localitate, adresa, codPostal, modalitate
   ], (err, result) => {
     if (err) {
@@ -532,7 +531,8 @@ app.post("/order/getConf",(req,res)=>{
           console.log(err);
           res.status(500).json({message:"database error",status:0})
         }else{
-          const htmlContent=String(placedOrderEmail(result1,orderId,result[0].date,result[0].username,result[0].email,result[0].telefon,result[0].adresa,result[0].judet,result[0].localitate,result[0].price,25,result[0].modalitate))
+          const costLivr=Number(result[0].price)>=700 ? 0 : 25
+          const htmlContent=String(placedOrderEmail(result1,orderId,result[0].date,result[0].username,result[0].email,result[0].telefon,result[0].adresa,result[0].judet,result[0].localitate,result[0].price,costLivr,result[0].modalitate))
           sendEmail({
             to:result[0].email,
             subject:"Comandă Plasată",
@@ -579,7 +579,8 @@ app.post("/orders/changeStatus",requireLogin,requireAdmin,(req,res)=>{
             sendEmail({to:result1[0].email,subject:"Comandă Confirmată",text:null,html:htmlContent})
           }else{
             if(status=="livrare"){
-              const htmlContent=String(deliverOrderEmail(id,result1[0].date,result1[0].username,result1[0].email,result1[0].telefon,result1[0].adresa,result1[0].judet,result1[0].oras,result1[0].modalitate,result1[0].price,25))
+              const costLivr=result1[0].price>=700 ? 0 : 25
+              const htmlContent=String(deliverOrderEmail(id,result1[0].date,result1[0].username,result1[0].email,result1[0].telefon,result1[0].adresa,result1[0].judet,result1[0].oras,result1[0].modalitate,result1[0].price,costLivr))
               sendEmail({to:result1[0].email,subject:"Comandă pe Drum",text:null,html:htmlContent})
             }
           }

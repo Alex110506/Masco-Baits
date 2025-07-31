@@ -20,7 +20,6 @@ export default function Checkout(){
     const [telefon,setTelefon]=React.useState("")
 
     const [costProd,setCostProd]=React.useState(0)
-    const [costLivr,setCostLivr]=React.useState(0)
     
     const [error,setError]=React.useState("")
 
@@ -63,6 +62,7 @@ export default function Checkout(){
 
     const navigate=useNavigate() 
 
+    const costLivr=costProd>=700 ? 0 : 25
 
     //trimit comanda la baza de date cu detaliile si trimit in url doar id u la comanda
     //in pagina de confirmare preiau comanda din baza de date si afisez datele
