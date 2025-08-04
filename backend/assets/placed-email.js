@@ -165,7 +165,7 @@ function placedOrderEmail(products,id,data,nume,email,telefon,adresa,judet,local
     <div class="footer">
       <p>Îți mulțumim că ai ales <strong>Masco Baits</strong>!</p>
       <p>Te vom anunța prin email când comanda este expediată.</p>
-      <p><a href="https://www.masco-baits.ro" target="_blank">www.masco-baits.ro</a></p>
+      <p><a href="https://www.masco-baits.ro/home" target="_blank">www.masco-baits.ro</a></p>
     </div>
   </div>
 </body>
