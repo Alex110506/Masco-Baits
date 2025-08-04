@@ -42,6 +42,12 @@ export default function Checkout(){
             ramb.style.display = "none";
         }
 
+        let costProdAux=0
+        cartProd.forEach((item)=>{
+            costProdAux+=(Number(item.product.price)*Number(item.quantity))
+        })
+        setCostProd(costProdAux)
+
     }, [modalitate]);
 
     React.useEffect(()=>{
