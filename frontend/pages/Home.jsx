@@ -3,7 +3,7 @@ import HeroSection from "../components/HeroSection";
 import ProductContainer from "../components/ProductContainer";
 import { Link, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
-import Canonical from "../components/Canonical";
+import CanonicalHome from "../components/CanonicalHome";
 
 export default function Home(){
 
@@ -42,7 +42,7 @@ export default function Home(){
 
     return(
         <>
-        <Canonical url="https://www.masco-baits.ro"></Canonical>
+        <CanonicalHome url="https://www.masco-baits.ro"></CanonicalHome>
         <div className="home-cont">
             <div className="bg-cnt"></div>
             <h1>ANTENTIE! Aceasta este o versiune de test!</h1>
