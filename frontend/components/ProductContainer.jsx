@@ -45,7 +45,7 @@ export default function ProductContainer(props){
                 <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name+"image"}></img>
             </div>
             <div className="prod-name-cont">
-                <NavLink className="prod-name-cont-tit" to={`${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`}>{props.name}</NavLink>
+                <NavLink className="prod-name-cont-tit" to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`}>{props.name}</NavLink>
             </div>
             <form className="price-add-cont" onSubmit={handleCart}>
                 <div className="price-cont">
