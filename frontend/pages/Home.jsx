@@ -42,7 +42,7 @@ export default function Home(){
 
     return(
         <>
-        <CanonicalHome url="https://www.masco-baits.ro"></CanonicalHome>
+        <CanonicalHome url="https://www.masco-baits.ro/home"></CanonicalHome>
         <div className="home-cont">
             <div className="bg-cnt"></div>
             <h1>ANTENTIE! Aceasta este o versiune de test!</h1>
