@@ -117,7 +117,7 @@ export default function ProductCartContainer(props){
                     <span>Brand: {props.brand}</span>
                 </div>
                 <div className="prod-cart-prc-cont">
-                    <span>{props.price} Lei</span>
+                    <span>{Number(props.price).toFixed(2)} Lei</span>
                 </div>
                 <div className="quant-cont">
                     <form className="buc-cont" onSubmit={handleQuant}>

@@ -64,7 +64,7 @@ export default function Home(){
             </div>
             <section className="products-cont">
                 <div className="new-prod-cont">
-                    <h2>Promotii</h2>
+                    <h2>Produse pentru Tine</h2>
                     <div className="new-prod-list">
                         {promElems}
                     </div>

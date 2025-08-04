@@ -11,7 +11,8 @@ export default function Header(){
 
     let cartSum=0
     cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity)    
-
+    if(cartSum<700) cartSum+=25
+    cartSum=Number(cartSum).toFixed(2)
     return (
         <header>
             <div className="dropdown">

@@ -117,14 +117,14 @@ export default function Confirmation(){
                                     <div className="check-price-cont conf-price-cont">
                                         <div className="cst-cont-chk cst-conf">
                                             <span>Cost Produse:</span>
-                                            <span>{loadedData.details.price} Lei</span>
+                                            <span>{Number(loadedData.details.price).toFixed(2)} Lei</span>
                                         </div>
                                         <div className="lvr-cont-chk lvr-conf">
                                             <span>Cost Livrare:</span>
-                                            <span>{costLivr} Lei</span>
+                                            <span>{Number(costLivr).toFixed(2)} Lei</span>
                                         </div>
                                     </div>
-                                    <h2>Total: {loadedData.details.price+costLivr} Lei</h2>
+                                    <h2>Total: {Number(loadedData.details.price+costLivr).toFixed(2)} Lei</h2>
                                 </div></>
                             ) 
                            
