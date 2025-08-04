@@ -49,7 +49,7 @@ export default function ProductContainer(props){
             </div>
             <form className="price-add-cont" onSubmit={handleCart}>
                 <div className="price-cont">
-                    <span>{props.price} Lei</span>
+                    <span>{Number(props.price).toFixed(2)} Lei</span>
                 </div>
                 <div className="add-btn-cont">
                     <button>

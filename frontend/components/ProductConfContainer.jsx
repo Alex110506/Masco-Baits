@@ -11,7 +11,7 @@ export default function ProductConfContainer(props){
                 </div>
                 <div className="prc-cont-conf conf-sect-prod">
                     <h2>Pret:&nbsp;</h2>
-                    <p>{props.price} Lei</p>
+                    <p>{Number(props.price).toFixed(2)} Lei</p>
                 </div>
                 <div className="quant-cont-conf conf-sect-prod">
                     <h2>Cantitate:&nbsp;</h2>
@@ -19,7 +19,7 @@ export default function ProductConfContainer(props){
                 </div>
                 <div className="subtot-cont-conf conf-sect-prod">
                     <h2>Subtotal:&nbsp;</h2>
-                    <p>{props.price*props.quantity} Lei</p>
+                    <p>{Number(props.price*props.quantity).toFixed(2)} Lei</p>
                 </div>
             </div>
         </div>

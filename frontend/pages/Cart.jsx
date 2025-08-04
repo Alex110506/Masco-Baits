@@ -58,14 +58,14 @@ export default function Cart(){
                     <div className="detalii">
                         <div className="cost-cont">
                             <span>Cost Produse:</span>
-                            <span>{cartSum}</span>
+                            <span>{Number(cartSum).toFixed(2)}</span>
                         </div>
                         <div className="livr-cont">
                             <span>Cost Livrare:</span>
-                            <span>{costLivrare} Lei</span>
+                            <span>{Number(costLivrare).toFixed(2)} Lei</span>
                         </div>
                     </div>
-                    <h1>Total: {cartSum+costLivrare}</h1>
+                    <h1>Total: {Number(cartSum+costLivrare).toFixed(2)}</h1>
                     {error ? <h2>{error}</h2> : null}
                     <p>Comenzile peste 700.00 Lei dispun de livrare gratuită.</p>
                     <div className="check-btn-cont">

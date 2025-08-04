@@ -211,7 +211,7 @@ export default function ProductPage(){
                 
                 <div className="add-cart-cont">
                     <form className="add-cart-card" onSubmit={handleCart}>
-                        <h2>{price} Lei</h2>
+                        <h2>{Number(price).toFixed(2)} Lei</h2>
                         <p className="stock-p"><span className="in-stock-color-circ">&#9679;</span> In Stoc {/*Sa punn in baza de date in stoc status*/}</p>
                         <div className="pcs-cont">
                             <input value={pcs} type="number" onChange={(e) => setPcs(e.target.value)}></input>

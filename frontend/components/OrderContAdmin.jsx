@@ -55,7 +55,7 @@ export default function OrderContAdmin(props){
         return(
             <tr>
                 <td>{product.name}</td>
-                <td>{product.price} Lei</td>
+                <td>{Number(product.price).toFixed(2)} Lei</td>
                 <td>{product.quantity}</td>
             </tr> 
         )
@@ -116,9 +116,9 @@ export default function OrderContAdmin(props){
                         </table>
                     </div>
                         
-                        <p>Cost produse: {props.price} Lei</p>
-                        <p>Cost Livrare: {costLivrare} Lei</p>
-                        <h2>Total: {Number(props.price) + Number(costLivrare)} Lei </h2>
+                        <p>Cost produse: {Number(props.price).toFixed(2)} Lei</p>
+                        <p>Cost Livrare: {Number(costLivrare).toFixed(2)} Lei</p>
+                        <h2>Total: {Number(props.price).toFixed(2) + Number(costLivrare).toFixed(2)} Lei </h2>
                     </div>
                     
                 </div>

@@ -105,14 +105,14 @@ export default function Checkout(){
                     <div className="check-price-cont">
                         <div className="cst-cont-chk">
                             <span>Cost Produse:</span>
-                            <span>{costProd} Lei</span>
+                            <span>{Number(costProd).toFixed(2)} Lei</span>
                         </div>
                         <div className="lvr-cont-chk">
                             <span>Cost Livrare:</span>
-                            <span>{costLivr} Lei</span>
+                            <span>{Number(costLivr).toFixed(2)} Lei</span>
                         </div>
                     </div>
-                    <h2>Total: {costProd+costLivr} Lei</h2>
+                    <h2>Total: {Number(costProd+costLivr).toFixed(2)} Lei</h2>
                 </div>
                 <div className="det-liv-cont">
                     <h1>Detalii Contact:</h1>
