@@ -118,7 +118,7 @@ export default function OrderContAdmin(props){
                         
                         <p>Cost produse: {Number(props.price).toFixed(2)} Lei</p>
                         <p>Cost Livrare: {Number(costLivrare).toFixed(2)} Lei</p>
-                        <h2>Total: {Number(props.price).toFixed(2) + Number(costLivrare).toFixed(2)} Lei </h2>
+                        <h2>Total: {(Number(props.price) + Number(costLivrare)).toFixed(2)} Lei </h2>
                     </div>
                     
                 </div>
