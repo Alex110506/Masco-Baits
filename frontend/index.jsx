@@ -23,16 +23,11 @@ import ReviewPage from "./pages/ReviewPage";
 import SearchResultPage , {loader as searchLoader} from "./pages/SearchResultPage";
 
 async function productsLoader() {
-    const items=null
     let products=[]
-    if(items){
-        products=items
-    }else{
-        const res = await fetch('/api/products');
-        if (!res.ok) throw new Error('Failed to load products');
-        products = await res.json();
-        localStorage.setItem("products",JSON.stringify(products))
-    }
+    const res = await fetch('/api/products');
+    if (!res.ok) throw new Error('Failed to load products');
+    products = await res.json();
+    localStorage.setItem("products",JSON.stringify(products))
     
 
     try {
@@ -65,24 +60,15 @@ async function productsLoader() {
 
         console.log(cartProd)
 
-        // const cartProd = cart.map(cartItem => ({
-        //     product: productMap.get(cartItem.productid),
-        //     quantity: cartItem.quantity
-        // })).filter(item => item.product);
         return {cartProd,products}
     }
     
-    // const products=[{id:4,name:"boilies peletffdsf  sdfsdf sdfe hot quid ceva123",price:123,diameter:"14",category:"boilies",brand:"masco baits",photo:"",description:"",rating:3.2,nrRevs:7,promotie:1,quantity:"1000,10000"}
-    //     ,{id:5,name:"boilies",price:123,diameter:"14,20,22",category:"boilies",brand:"masco baits",photo:"",description:"",rating:4.5,nrRevs:20,promotie:1,quantity:"1000"}
-    //     ,{id:6,name:"boilies",price:123,diameter:null,category:"boilies",brand:"masco baits",photo:"",description:"descriere",rating:0,nrRevs:null,promotie:1,quantity:"1000,10000,100"}
-    // ]
-    // return {products}
 }
 
 const router=createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout></Layout>} loader={productsLoader} id="root">
         <Route index element={<Navigate to="/home" replace/>}></Route>
-        <Route path="/home" element={<Outlet></Outlet>}>
+        <Route path="home" element={<Outlet></Outlet>}>
             <Route index element={<Home></Home>}></Route>
             <Route path=":search" loader={searchLoader} element={<SearchResultPage></SearchResultPage>}></Route>
         </Route>
