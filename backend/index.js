@@ -53,13 +53,6 @@ app.use((req, res, next) => {
   next(); 
 });
 
-app.use((req, res, next) => {
-  const allowed = ['application/json', 'application/x-www-form-urlencoded'];
-  if (req.method === 'POST' && !allowed.includes(req.headers['content-type']?.split(';')[0])) {
-    return res.status(415).json({ message: 'Unsupported Content-Type' });
-  }
-  next();
-});
 
 
 
@@ -120,6 +113,9 @@ app.use(session({
 }));
 
 
+
+
+
 const frontendPath = path.join(__dirname, 'frontend', 'dist');
 app.use(express.static(frontendPath));
 
@@ -167,6 +163,13 @@ const cartLimiter = rateLimit({
 });
 
 
+app.use((req, res, next) => {
+  const allowed = ['application/json', 'application/x-www-form-urlencoded'];
+  if (req.method === 'POST' && !allowed.includes(req.headers['content-type']?.split(';')[0])) {
+    return res.status(415).json({ message: 'Unsupported Content-Type' });
+  }
+  next();
+});
 
 const transporter = nodemailer.createTransport({
     service: "Gmail",
