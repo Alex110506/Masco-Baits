@@ -262,7 +262,6 @@ app.post("/register",loginLimiter,[
               console.log(err)
               res.status(500).json({message:"Eroare baza de date!",status:0})
             }else{
-              req.session.regenerate()
               req.session.user = { id: result[0].id , username: username };
               sendEmail({
                 to: email,
@@ -308,7 +307,6 @@ app.post("/login",loginLimiter,[
       if(result.length>0){
         bcrypt.compare(password,result[0].password,(err,match)=>{
           if(match){
-            req.session.regenerate()
             req.session.user = { id: result[0].id, username: result[0].username , role:result[0].rol};
             res.json({message:"Logat cu succes!",status:1})
           }else{
