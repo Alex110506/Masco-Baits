@@ -21,7 +21,10 @@ export default function RevCard(props){
     return(
         <div key={props.id} className="user-rev-cont">
             <div className="user-rev-card-big">
-                <h3>Produs: {product.name}</h3>
+                {props.productId==0?
+                    <h3>Părere Site</h3>:
+                    <h3><span style={{fontWeight:"500",}}>Produs:</span> {product.name}</h3>
+                }
                 <h4>{props.username}: <span style={{color:"gold"}}>{showStars(props.rating)}</span></h4>
                 <p>{props.comment!=="" ? props.comment : <span style={{color:"rgba(255, 255, 255, 0.7)"}}>(Niciun comentariu.)</span>}</p>
             </div>
