@@ -13,7 +13,6 @@ const compression=require("compression")
 const helmet=require("helmet")
 const fs = require('fs');
 const mysqlSession=require("express-mysql-session")(session)
-const {body,validationResult}=require("express-validator")
 
 const placedOrderEmail=require("./assets/placed-email")
 const confirmOrderEmail=require("./assets/confirm-email")
@@ -34,7 +33,7 @@ const db = mysql.createPool({
   port: process.env.MYSQLPORT,
   waitForConnections: true,
   connectionLimit:30,
-  multipleStatements: false
+  multipleStatements: true 
 });
 
 console.log("MySQL connected...");
@@ -52,15 +51,6 @@ app.use((req, res, next) => {
 
   next(); 
 });
-
-app.use((req, res, next) => {
-  const allowed = ['application/json', 'application/x-www-form-urlencoded'];
-  if (req.method === 'POST' && !allowed.includes(req.headers['content-type']?.split(';')[0])) {
-    return res.status(415).json({ message: 'Unsupported Content-Type' });
-  }
-  next();
-});
-
 
 
 app.use(cors());
@@ -102,8 +92,8 @@ app.use(
     },
   })
 );
-app.use(express.json({limit:"1mb"}));
-app.use(express.urlencoded({ extended: true ,limit:"1mb"}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
   key: 'user-data',
@@ -129,7 +119,7 @@ function requireLogin(req, res, next) {
 }
 
 function requireAdmin(req,res,next){
-  if(req.session.user.role=="user") return res.status(403).json({message:"You don't have admin permissions",status:0})
+  if(req.session.user.role=="user") return res.stat(403).json({message:"You don't have admin permissions",status:0})
   next()
 }
 
@@ -143,29 +133,6 @@ const loginLimiter = rateLimit({
     });
   },
 });
-
-const actionLimiter=rateLimit({
-  windowMs: 5*60*1000,
-  max:5,
-  handler: (req, res) => {
-    return res.status(429).json({
-      message: "Ai încercat de prea multe ori. Te rog așteaptă 5 minute.",
-      status: 0,
-    })
-  }
-})
-
-const cartLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000, 
-  max: 30,
-  handler: (req, res) => {
-    return res.status(429).json({
-      status: 0,
-      message: "Prea multe acțiuni într-un timp scurt. Încearcă din nou în câteva minute.",
-    })
-  }
-});
-
 
 
 const transporter = nodemailer.createTransport({
@@ -200,48 +167,7 @@ const emailText=fs.readFileSync(path.join(__dirname, 'assets','welcome-text.txt'
 const emailContent=fs.readFileSync(path.join(__dirname, 'assets','welcome-email.html'), 'utf-8');
 
 
-app.post("/register",loginLimiter,[
-  body('username')
-    .trim()
-    .isLength({ min: 3, max: 20 }).withMessage('Username must be 3-20 characters long')
-    .matches(/^[a-zA-Z0-9_]+$/).withMessage('Username must contain only letters, numbers, and underscores'),
-
-  body('password')
-    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
-    .matches(/[a-z]/).withMessage('Password must contain a lowercase letter')
-    .matches(/[A-Z]/).withMessage('Password must contain an uppercase letter')
-    .matches(/[0-9]/).withMessage('Password must contain a number'),
-  body('email')
-    .isEmail().withMessage('Invalid email address')
-    .normalizeEmail(),
-
-  body('tel')
-    .isLength({ min: 6, max: 20 })
-    .matches(/^[0-9+\-\s().]+$/)
-    .withMessage('Phone number contains invalid characters'),
-
-
-  body('judet')
-    .trim()
-    .notEmpty().withMessage('County (judet) is required')
-    .isLength({ max: 50 }).withMessage('County too long'),
-
-  body('oras')
-    .trim()
-    .notEmpty().withMessage('City (oras) is required')
-    .isLength({ max: 50 }).withMessage('City too long'),
-
-  body('adress')
-    .trim()
-    .notEmpty().withMessage('Address is required')
-    .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
-],(req,res)=>{
-
-  const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: errors.array().map(err => err.msg).join(', '),status:0 });
-    }
-
+app.post("/register",loginLimiter,(req,res)=>{
   const { username, password, email, tel, judet, oras, adress, postalcode } = req.body;
 
 
@@ -281,22 +207,7 @@ app.post("/register",loginLimiter,[
 
 
 
-app.post("/login",loginLimiter,[
-  body('password')
-    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
-    .matches(/[a-z]/).withMessage('Password must contain a lowercase letter')
-    .matches(/[A-Z]/).withMessage('Password must contain an uppercase letter')
-    .matches(/[0-9]/).withMessage('Password must contain a number'),
-
-  body('email')
-    .isEmail().withMessage('Invalid email address')
-    .normalizeEmail(),],(req,res)=>{
-
-  const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: errors.array().map(err => err.msg).join(', '),status:0 });
-    }
-  
+app.post("/login",loginLimiter,(req,res)=>{
   const email=req.body.email
   const password=req.body.password
   const query="SELECT * FROM users WHERE email=?"
@@ -320,9 +231,8 @@ app.post("/login",loginLimiter,[
   })
 })
 
-app.get("/logout",loginLimiter,(req,res)=>{
+app.get("/logout",(req,res)=>{
   req.session.destroy(()=>{
-    res.clearCookie('user-data')
     res.json({message: "logged out"})
   })
 })
@@ -342,29 +252,7 @@ app.get("/user/data",requireLogin,(req,res)=>{
   })
 })
 
-app.post("/user/adressChange",actionLimiter,requireLogin,[
-  body('judet')
-    .trim()
-    .notEmpty().withMessage('County (judet) is required')
-    .isLength({ max: 50 }).withMessage('County too long'),
-
-  body('oras')
-    .trim()
-    .notEmpty().withMessage('City (oras) is required')
-    .isLength({ max: 50 }).withMessage('City too long'),
-
-  body('adress')
-    .trim()
-    .notEmpty().withMessage('Address is required')
-    .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
-
-],(req,res)=>{
-
-  const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ message: errors.array().map(err => err.msg).join(', '),status:0 });
-    }
-
+app.post("/user/adressChange",requireLogin,(req,res)=>{
   const userId=req.session.user.id
   const {judet,oras,adress,postalcode}=req.body
   const query="UPDATE users SET judet=?, oras=?, adresa=?, cod_postal=? WHERE id=?"
@@ -430,14 +318,7 @@ app.get("/api/getrevpage",(req,res)=>{
   })
 })
 
-app.post("/api/products/postreview",actionLimiter,requireLogin,
-  [
-    body('comment')
-      .trim()
-      .isLength({ min: 1, max: 500 }).withMessage('Comment must be between 1 and 500 characters')
-      .matches(/^[A-Za-z0-9\s.,!?'"\-\(\)]+$/),
-  ]
-,(req,res)=>{
+app.post("/api/products/postreview",requireLogin,(req,res)=>{
   const comment=req.body.comment;
  
   const nrStars=req.body.nrStars;
@@ -466,7 +347,7 @@ app.get("/api/cart",requireLogin,(req,res)=>{
   })
 })
 
-app.post("/api/addCart",cartLimiter,requireLogin,(req,res)=>{
+app.post("/api/addCart",requireLogin,(req,res)=>{
   const userId=Number(req.session.user.id)
   const productId=Number(req.body.productId)
   const quantity=Number(req.body.quantity)
@@ -506,7 +387,7 @@ app.post("/api/addCart",cartLimiter,requireLogin,(req,res)=>{
   
 })
 
-app.post("/api/delCart",cartLimiter,requireLogin,(req,res)=>{
+app.post("/api/delCart",requireLogin,(req,res)=>{
   const userId=req.session.user.id;
   const productId=req.body.productId
   query="DELETE FROM cart_products WHERE userid=? AND productid=?"
@@ -584,38 +465,7 @@ app.post("/api/cart/subtract", requireLogin, (req, res) => {
   });
 });
 
-app.post("/order/send",actionLimiter,[
-  body('nume')
-    .trim()
-    .isLength({ min: 3, max: 20 }).withMessage('Username must be 3-20 characters long')
-    .matches(/^[a-zA-Z0-9_]+$/).withMessage('Username must contain only letters, numbers, and underscores'),
-
-  body('email')
-    .isEmail().withMessage('Invalid email address')
-    .normalizeEmail(),
-
-  body('telefon')
-    .isLength({ min: 6, max: 20 })
-    .matches(/^[0-9+\-\s().]+$/)
-    .withMessage('Phone number contains invalid characters'),
-
-
-  body('judet')
-    .trim()
-    .notEmpty().withMessage('County (judet) is required')
-    .isLength({ max: 50 }).withMessage('County too long'),
-
-  body('localitate')
-    .trim()
-    .notEmpty().withMessage('City (oras) is required')
-    .isLength({ max: 50 }).withMessage('City too long'),
-
-  body('adresa')
-    .trim()
-    .notEmpty().withMessage('Address is required')
-    .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
-
-], (req, res) => {
+app.post("/order/send", (req, res) => {
   const {
     cartProd, costProd, costLivr, nume,
     email, telefon, judet, localitate, adresa,
@@ -677,7 +527,7 @@ app.post("/order/send",actionLimiter,[
   });
 })
 
-app.post("/order/getConf",actionLimiter,(req,res)=>{
+app.post("/order/getConf",(req,res)=>{
   const orderId=req.body.id
   console.log(orderId,typeof(orderId))
   const query="SELECT * FROM orders WHERE id=?"
