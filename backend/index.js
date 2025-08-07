@@ -58,8 +58,6 @@ app.use((req, res, next) => {
   next(); 
 });
 
-app.set('trust proxy', true);
-
 
 app.use(cors());
 app.use(compression());
@@ -149,7 +147,9 @@ const keyGen = (req) => {
 };
 
 const keyGenIp = (req) => {
-  return ipKeyGenerator(req);
+  const key=ipKeyGenerator(req);
+  console.log(key);
+  return key
 };
 
 const loginLimiter = rateLimit({
