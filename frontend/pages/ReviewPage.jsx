@@ -1,18 +1,38 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
 import RevCardBig from "../components/RevCardBig";
-
-export function loader(){
-    return [{id:33,name:"mena",productId:43,username:"meni",rating:4,comment:"asdasd"}]
-}
 
 export default function ReviewPage(){
 
-    const [currentPage,ssetCurrentPage]=React.useState(1)
-    const revList=useLoaderData()
+    const [currentPage,setCurrentPage]=React.useState(1)
+    const [revList,setRevList]=React.useState([])
+    const [loading,setLoading]=React.useState(false)
     const totalPages=Math.ceil(revList.length/12)
     const startIndex=(currentPage-1)*12
     const currentRevs=revList.slice(startIndex,startIndex+12)
+
+
+    React.useEffect(()=>{
+        setLoading(true)
+        const fetchRevs=async ()=>{
+            try{
+                const res=await fetch("/api/getrevpage")
+                if(res.ok){
+                    const data=await res.json()
+                    setRevList(data)
+                }else{
+                    throw new Error("databse error")
+                }
+                
+            }
+            catch(err){
+                console.error(err)
+            }
+            finally{
+                setLoading(false)
+            }
+        }
+        fetchRevs()
+    },[])
 
     const handlePrev = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -25,19 +45,21 @@ export default function ReviewPage(){
     return(
         <div className="rev-page-cont">
             <h1>Recenzii Clienți</h1>
-            <div className="rev-cont-list">
-                {currentRevs.map((rev,index)=>{
-                    <RevCardBig
-                        key={rev.id}
-                        id={rev.id}
-                        username={rev.username}
-                        rating={rev.rating}
-                        comment={rev.comment}
-                        productId={rev.productId}
-                    >
-                    </RevCardBig>
-                })}
-            </div>
+            {loading ? <h2>Se încarcă...</h2> : 
+                <div className="rev-cont-list">
+                    {currentRevs.map((rev,index)=>{
+                        <RevCardBig
+                            key={rev.id}
+                            id={rev.id}
+                            username={rev.username}
+                            rating={rev.rating}
+                            comment={rev.comment}
+                            productId={rev.productId}
+                        >
+                        </RevCardBig>
+                    })}
+                </div>
+            }
             <div className="pagination-controls">
                     <button onClick={handlePrev} disabled={currentPage === 1}>
                         Prev

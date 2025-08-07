@@ -19,7 +19,7 @@ import { HelmetProvider } from "react-helmet-async";
 import NotFound , {loader as notFoundLoader} from "./pages/NotFound";
 import CanonicalRedirect from "./components/CanonicalRedirect";
 import PhotoGallery from "./pages/PhotoAlbum";
-import ReviewPage ,{loader as reviewLoader} from "./pages/ReviewPage";
+import ReviewPage from "./pages/ReviewPage";
 
 async function productsLoader() {
     const items=null
@@ -121,7 +121,7 @@ const router=createBrowserRouter(createRoutesFromElements(
         </Route>
         <Route path="termeni&conditii" element={<TermsConds></TermsConds>}></Route>
         <Route path="albume-foto-video" element={<PhotoGallery/>}></Route>
-        <Route path="recenzii" loader={reviewLoader} element={<ReviewPage></ReviewPage>}></Route>
+        <Route path="recenzii" element={<ReviewPage></ReviewPage>}></Route>
         <Route path="*" loader={notFoundLoader} errorElement={<NotFound></NotFound>} element={<div></div>} />
     </Route>
 ))

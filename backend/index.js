@@ -307,6 +307,17 @@ app.post("/api/products/reviews",(req,res)=>{
   })
 })
 
+app.get("/api/getrevpage",(req,res)=>{
+  const query="SELECT * FROM productreviews"
+  db.query(query,(err,result)=>{
+    if(err){
+      res.status(500).json({message:"databse error",status:0})
+    }else{
+      res.json(result)
+    }
+  })
+})
+
 app.post("/api/products/postreview",requireLogin,(req,res)=>{
   const comment=req.body.comment;
  

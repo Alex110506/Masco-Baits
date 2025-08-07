@@ -5,7 +5,7 @@ import Canonical from "../components/Canonical";
 
 export function loader() {
     const dataPromise = fetch("/api/admin/recentOrders", {
-        method: "POST", // Make sure your backend expects POST
+        method: "POST",
         headers: {
         "Content-Type": "application/json",
         },
