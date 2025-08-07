@@ -20,6 +20,7 @@ import NotFound , {loader as notFoundLoader} from "./pages/NotFound";
 import CanonicalRedirect from "./components/CanonicalRedirect";
 import PhotoGallery from "./pages/PhotoAlbum";
 import ReviewPage from "./pages/ReviewPage";
+import SearchResultPage from "./pages/SearchResultPage";
 
 async function productsLoader() {
     const items=null
@@ -81,7 +82,10 @@ async function productsLoader() {
 const router=createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout></Layout>} loader={productsLoader} id="root">
         <Route index element={<Navigate to="/home" replace/>}></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/home" element={<Outlet></Outlet>}>
+            <Route index element={<Home></Home>}></Route>
+            <Route path=":search" element={<SearchResultPage></SearchResultPage>}></Route>
+        </Route>
         <Route path="admin" loader={adminLoader} element={<AdminPage></AdminPage>}></Route>
         <Route path="cart" element={<Outlet/>}>
             <Route index element={<Cart></Cart>}></Route>

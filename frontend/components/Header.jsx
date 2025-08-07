@@ -1,7 +1,9 @@
 import React from "react";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Link, NavLink, useRouteLoaderData } from "react-router-dom";
+import { Link, NavLink, useNavigate, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+
+const navigate=useNavigate()
 
 export default function Header(){
 
@@ -9,10 +11,19 @@ export default function Header(){
 
     const {cartProd,products}=useRouteLoaderData("root")
 
+    const [search,setSearch]=React.useState("")
+
     let cartSum=0
     cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity)    
     if(cartSum<700) cartSum+=25
     cartSum=Number(cartSum).toFixed(2)
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            navigate(`/home/${search}`)
+        }
+    };
+
     return (
         <header>
             <div className="dropdown">
@@ -38,7 +49,7 @@ export default function Header(){
                 <i className="bi bi-house" style={{fontSize:"36px"}}></i>
             </NavLink>
             <div className="search-bar-cont">
-                <input type="text" placeholder="Caută"></input>
+                <input type="text" placeholder="Caută" onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}></input>
                 <div className="search-cont">
                     <i className="bi bi-search" style={{fontSize:"18px"}}></i>
                 </div>
