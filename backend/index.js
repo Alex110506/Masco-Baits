@@ -326,7 +326,6 @@ app.post("/api/products/postreview",requireLogin,(req,res)=>{
   const query="INSERT INTO productreviews (productId,username,rating,comment) VALUES (?,?,?,?)"
   db.query(query,[productId,req.session.user.username,nrStars,comment],(err,result)=>{
     if(err){
-      console.log(err)
       res.status(500).json({message:"database error",status:0})
     }else{
       res.json({message:"Recenzie publicată",status:1,username:req.session.user.username})
