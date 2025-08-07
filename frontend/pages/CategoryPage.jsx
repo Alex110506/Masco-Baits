@@ -22,9 +22,9 @@ export default function CategoryPage(){
     }, [page]);
     
     const data=useLoaderData();
-    let categoryName=data.replace(/_/g," ").slice(1).toUpperCase();
+    let categoryName=data.replace(/_/g," ").slice(1).toLowerCase();
 
-    const categProds=products.filter((item)=>item.category.toUpperCase()==categoryName)
+    const categProds=products.filter((item)=>item.category==categoryName)
     const filteredProds = categProds.filter(item =>
         (weight == 0 || item.quantity == weight) &&
         (diameter == 0 || item.diameter == diameter)
@@ -107,7 +107,7 @@ export default function CategoryPage(){
                                     <option value={1000}>1kg</option>
                                     <option value={10000}>10kg</option>
                                 </select>
-                            </div>
+                            </div>  
                             :
                             null
                         }
