@@ -26,6 +26,8 @@ const store = new mysqlSession({
   database: process.env.MYSQLDATABASE,
 });
 
+
+
 const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -41,6 +43,8 @@ console.log("MySQL connected...");
 
 
 const app = express();
+
+app.set('trust proxy', true);
 
 app.use((req, res, next) => {
   const host = req.headers.host;
@@ -133,6 +137,9 @@ function requireAdmin(req,res,next){
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
+  keyGenerator: (req) => {
+    return req.ip;
+  },
   handler: (req, res) => {
     return res.status(429).json({
       message: "Ai încercat de prea multe ori. Te rog așteaptă 15 minute.",
@@ -144,6 +151,9 @@ const loginLimiter = rateLimit({
 const actionLimiter=rateLimit({
   windowMs: 5*60*1000,
   max:5,
+  keyGenerator: (req) => {
+    return req.session?.user?.id || req.ip;
+  },
   handler: (req, res) => {
     return res.status(429).json({
       message: "Ai încercat de prea multe ori. Te rog așteaptă 5 minute.",
