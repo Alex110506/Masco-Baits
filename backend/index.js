@@ -6,6 +6,7 @@ const bcrypt=require("bcryptjs");
 const { hash } = require('crypto');
 const { stat } = require('fs');
 const rateLimit = require('express-rate-limit');
+const { ipKeyGenerator } = require('express-rate-limit');
 const session = require("express-session");
 const nodemailer = require("nodemailer");
 require('dotenv').config(); 
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
   next(); 
 });
 
-
+app.set('trust proxy', true);
 
 
 app.use(cors());
@@ -101,6 +102,11 @@ app.use(
 );
 
 
+app.use((req, res, next) => {
+  console.log('Client IP:', req.ip);
+  next();
+});
+
 app.use(session({
   key: 'user-data',
   secret: process.env.SESSION_SECRET,
@@ -134,12 +140,24 @@ function requireAdmin(req,res,next){
   next()
 }
 
+const rateLimit = require('express-rate-limit');
+
+
+const keyGen = (req) => {
+  if (req.session?.user?.id) {
+    return req.session.user.id;
+  }
+  return ipKeyGenerator(req);
+};
+
+const keyGenIp = (req) => {
+  return ipKeyGenerator(req);
+};
+
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000, 
   max: 5,
-  keyGenerator: (req) => {
-    return req.ip;
-  },
+  keyGenerator: keyGenIp,
   handler: (req, res) => {
     return res.status(429).json({
       message: "Ai încercat de prea multe ori. Te rog așteaptă 15 minute.",
@@ -148,19 +166,17 @@ const loginLimiter = rateLimit({
   },
 });
 
-const actionLimiter=rateLimit({
-  windowMs: 5*60*1000,
-  max:5,
-  keyGenerator: (req) => {
-    return req.session?.user?.id || req.ip;
-  },
+const actionLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000, 
+  max: 5,                 
+  keyGenerator: keyGen,
   handler: (req, res) => {
     return res.status(429).json({
       message: "Ai încercat de prea multe ori. Te rog așteaptă 5 minute.",
       status: 0,
-    })
-  }
-})
+    });
+  },
+});
 
 const cartLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, 
@@ -168,7 +184,7 @@ const cartLimiter = rateLimit({
   handler: (req, res) => {
     return res.status(429).json({
       status: 0,
-      message: "Prea multe acțiuni într-un timp scurt. Încearcă din nou în câteva minute.",
+      message: "Prea multe acțiuni într-un timp scurt. Încearcă din nou în 5 minute.",
     })
   }
 });
