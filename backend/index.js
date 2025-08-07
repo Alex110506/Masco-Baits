@@ -165,8 +165,17 @@ const cartLimiter = rateLimit({
 
 app.use((req, res, next) => {
   const allowed = ['application/json', 'application/x-www-form-urlencoded'];
-  if (req.method === 'POST' && !allowed.includes(req.headers['content-type']?.split(';')[0])) {
-    return res.status(415).json({ message: 'Unsupported Content-Type' });
+
+  if (req.method === 'POST') {
+    const contentType = req.headers['content-type'];
+    if (!contentType) {
+      return res.status(415).json({ message: 'Content-Type header is required' });
+    }
+    const mimeType = contentType.split(';')[0].trim();
+
+    if (!allowed.includes(mimeType)) {
+      return res.status(415).json({ message: 'Unsupported Content-Type' });
+    }
   }
   next();
 });
