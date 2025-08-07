@@ -2234,3 +2234,18 @@ header {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+
+.rev-page-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.rev-cont-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
