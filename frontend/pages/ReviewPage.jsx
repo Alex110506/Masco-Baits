@@ -48,7 +48,7 @@ export default function ReviewPage(){
             {loading ? <h2>Se încarcă...</h2> : 
                 <div className="rev-cont-list">
                     {currentRevs.map((rev,index)=>{
-                        <RevCardBig
+                        return (<RevCardBig
                             key={rev.id}
                             id={rev.id}
                             username={rev.username}
@@ -56,7 +56,7 @@ export default function ReviewPage(){
                             comment={rev.comment}
                             productId={rev.productId}
                         >
-                        </RevCardBig>
+                        </RevCardBig>)
                     })}
                 </div>
             }
