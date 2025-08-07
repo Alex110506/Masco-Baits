@@ -328,7 +328,7 @@ app.post("/login",loginLimiter,[
   })
 })
 
-app.get("/logout",loginLimiter,(req,res)=>{
+app.get("/logout",(req,res)=>{
   req.session.destroy(()=>{
     res.clearCookie('user-data')
     res.json({message: "logged out"})
