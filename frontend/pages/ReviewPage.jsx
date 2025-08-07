@@ -23,7 +23,7 @@ export default function ReviewPage(){
                 const res=await fetch("/api/getrevpage")
                 if(res.ok){
                     const data=await res.json()
-                    setRevList(data)
+                    setRevList(data.slice().reverse())
                 }else{
                     throw new Error("databse error")
                 }
