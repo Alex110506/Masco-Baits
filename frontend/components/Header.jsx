@@ -3,11 +3,12 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link, NavLink, useNavigate, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
-const navigate=useNavigate()
+
 
 export default function Header(){
 
     const {isLoggedIn,setIsLoggedIn,admin}=useAuth()
+    const navigate=useNavigate()
 
     const {cartProd,products}=useRouteLoaderData("root")
 
@@ -64,7 +65,7 @@ export default function Header(){
                     <div className="cart-sum">{cartSum}&nbsp;ron</div>
                 </div>
                 <div className="acc-cont">
-                    {admin ? <NavLink to="admin"><i class="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}
+                    {admin ? <NavLink to="admin"><i className="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}
                     <NavLink to="login">
                         {isLoggedIn ? 
                             <i className="bi bi-person-circle" style={{fontSize:"36px"}}></i> 
