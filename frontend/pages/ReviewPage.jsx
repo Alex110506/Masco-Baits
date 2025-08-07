@@ -95,7 +95,7 @@ export default function ReviewPage(){
             <h1>Recenzii Clienți</h1>
 
             <div className="rev-cont-user-page">
-                <h2>Lasă o recenzie:</h2>
+                <h2>Lasă și tu o recenzie:</h2>
                 <form className="rev-form" onSubmit={handleSubmit}>
                     <select required onChange={(e)=>setNrStars(e.target.value)}>
                         <option value="">

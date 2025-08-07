@@ -2262,3 +2262,9 @@ header {
     align-items: center;
     gap: 10px;
 }
+.rev-cont-user-page{
+    margin-bottom: 15px;
+}
+.rev-page-cont{
+    padding-bottom: 10px;
+}
