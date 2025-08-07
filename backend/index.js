@@ -164,22 +164,7 @@ const cartLimiter = rateLimit({
 });
 
 
-app.use((req, res, next) => {
-  const allowed = ['application/json', 'application/x-www-form-urlencoded'];
 
-  if (req.method === 'POST') {
-    const contentType = req.headers['content-type'];
-    if (!contentType) {
-      return res.status(415).json({ message: 'Content-Type header is required' });
-    }
-    const mimeType = contentType.split(';')[0].trim();
-
-    if (!allowed.includes(mimeType)) {
-      return res.status(415).json({ message: 'Unsupported Content-Type' });
-    }
-  }
-  next();
-});
 
 const transporter = nodemailer.createTransport({
     service: "Gmail",
