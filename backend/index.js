@@ -217,7 +217,7 @@ app.post("/register",loginLimiter,[
     .isEmail().withMessage('Invalid email address')
     .normalizeEmail(),
 
-  check('tel')
+  body('tel')
     .isLength({ min: 6, max: 20 })
     .matches(/^[0-9+\-\s().]+$/)
     .withMessage('Phone number contains invalid characters'),
@@ -237,10 +237,6 @@ app.post("/register",loginLimiter,[
     .trim()
     .notEmpty().withMessage('Address is required')
     .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
-
-  body('postalcode')
-    .trim()
-    .matches(/^[0-9]{4,6}$/).withMessage('Postal code must be 4 to 6 digits'),
 ],(req,res)=>{
 
   const errors = validationResult(req);
@@ -367,9 +363,6 @@ app.post("/user/adressChange",actionLimiter,requireLogin,[
     .notEmpty().withMessage('Address is required')
     .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
 
-  body('postalcode')
-    .trim()
-    .matches(/^[0-9]{4,6}$/).withMessage('Postal code must be 4 to 6 digits'),
 ],(req,res)=>{
 
   const errors = validationResult(req);
@@ -444,14 +437,10 @@ app.get("/api/getrevpage",(req,res)=>{
 
 app.post("/api/products/postreview",actionLimiter,requireLogin,
   [
-    check('comment')
+    body('comment')
       .trim()
       .isLength({ min: 1, max: 500 }).withMessage('Comment must be between 1 and 500 characters')
       .matches(/^[A-Za-z0-9\s.,!?'"\-\(\)]+$/),
-
-    check('nrStars')
-      .isInt({ min: 1, max: 5 }) 
-      .withMessage('Stars must be an integer between 1 and 5'),
   ]
 ,(req,res)=>{
   const comment=req.body.comment;
@@ -610,7 +599,7 @@ app.post("/order/send",actionLimiter,[
     .isEmail().withMessage('Invalid email address')
     .normalizeEmail(),
 
-  check('telefon')
+  body('telefon')
     .isLength({ min: 6, max: 20 })
     .matches(/^[0-9+\-\s().]+$/)
     .withMessage('Phone number contains invalid characters'),
@@ -631,9 +620,6 @@ app.post("/order/send",actionLimiter,[
     .notEmpty().withMessage('Address is required')
     .matches(/^[a-zA-Z0-9\s,.-]+$/).withMessage('Address contains invalid characters'),
 
-  body('codPostal')
-    .trim()
-    .matches(/^[0-9]{4,6}$/).withMessage('Postal code must be 4 to 6 digits'),
 ], (req, res) => {
   const {
     cartProd, costProd, costLivr, nume,
