@@ -27,6 +27,8 @@ const store = new mysqlSession({
   database: process.env.MYSQLDATABASE,
 });
 
+
+
 const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
@@ -42,6 +44,8 @@ console.log("MySQL connected...");
 
 
 const app = express();
+
+app.set('trust proxy', true);
 
 app.use((req, res, next) => {
   const host = req.headers.host;
@@ -338,7 +342,7 @@ app.post("/login",loginLimiter,[
   })
 })
 
-app.get("/logout",loginLimiter,(req,res)=>{
+app.get("/logout",(req,res)=>{
   req.session.destroy(()=>{
     res.clearCookie('user-data')
     res.json({message: "logged out"})
