@@ -1649,6 +1649,9 @@ header {
         font-size: min(1.6rem,5vw);
         margin: 0;
     }
+    .desc-cont h2{
+        margin-top: 10px;
+    }
     .categ-cont p,.diam-cont p,.quant-cont-page p,.desc-cont p{
         font-size: min(1.3rem,4vw);
     }

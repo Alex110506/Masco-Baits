@@ -154,7 +154,7 @@ const keyGenIp = (req) => {
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 5,
+  max: 200,
   keyGenerator: keyGenIp,
   handler: (req, res) => {
     return res.status(429).json({
@@ -166,7 +166,7 @@ const loginLimiter = rateLimit({
 
 const actionLimiter = rateLimit({
   windowMs: 5 * 60 * 1000, 
-  max: 5,                 
+  max: 1000,                 
   keyGenerator: keyGen,
   handler: (req, res) => {
     return res.status(429).json({
