@@ -100,7 +100,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
     <div class="info-section">
       <h3>Pret: ${price}</h3>
       <h3>Livrare: ${livrare}</h3>
-      <h2>Total: ${price+livrare}</h2
+      <h2>Total: ${price} RON + taxe de livrare în funcție de comandă</h2
     </div>
 
     <div class="info-section">

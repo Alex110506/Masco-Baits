@@ -39,6 +39,8 @@ export default function Confirmation(){
         setOrderId(`#${data.id}`)
     }, []);
 
+    let costLivr=0
+
     return(
         <>
         <Canonical url={`https://www.masco-baits.ro/cart/checkout/confirmation/${orderId}`}></Canonical>
@@ -55,6 +57,15 @@ export default function Confirmation(){
                             const prodsArrDb = loadedData.products;
                             console.log(loadedData)
                             const productMap = new Map(products.map(item => [item.id, item]));
+
+                            let cartQuant=0
+                            prodsArrDb.forEach((item)=>{
+                                let product=products.find((product)=>product.id==item.productId)
+                                cartQuant+=Number(item.quantity*product.quantity)
+                            })
+
+                            const pachete=cartQuant%20000+1;
+                            costLivr=pachete*25
 
                             const prodsArr = prodsArrDb.map(product => {
                                 const item = productMap.get(product.productId);
@@ -82,7 +93,6 @@ export default function Confirmation(){
                                 ></ProductConfContainer>
                             }) 
 
-                            const costLivr=Number(loadedData.details.price)>=700 ? 0 : 25
 
                             return(
                                 <><div className="detail-cont-conf">
@@ -106,7 +116,8 @@ export default function Confirmation(){
                                         <li>Telefon: {loadedData.details.telefon}</li>
                                         <li>E-mail: {loadedData.details.email}</li>
                                     </ul>
-                                    <h3>📅 Estimare livrare: 1-3 zile</h3>
+                                    <h3>📅 Estimare livrare: până în 10 zile.
+                                    </h3>
                                     <h3>Dacă ai întrebări, nu ezita să ne contactezi la <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a> sau +40749048838.</h3>
                                     <h2>Mulțumim pentru încredere și îți dorim fir întins! 🎣</h2>
                                 </div>

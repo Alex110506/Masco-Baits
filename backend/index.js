@@ -715,7 +715,7 @@ app.post("/order/getConf",actionLimiter,(req,res)=>{
           console.log(err);
           res.status(500).json({message:"database error",status:0})
         }else{
-          const costLivr=Number(result[0].price)>=700 ? 0 : 25
+          const costLivr="25 RON la fiecare 20 de kg ale comenzii"
           const htmlContent=String(placedOrderEmail(result1,orderId,result[0].date,result[0].username,result[0].email,result[0].telefon,result[0].adresa,result[0].judet,result[0].localitate,result[0].price,costLivr,result[0].modalitate))
           sendEmail({
             to:result[0].email,
@@ -763,7 +763,7 @@ app.post("/orders/changeStatus",requireLogin,requireAdmin,(req,res)=>{
             sendEmail({to:result1[0].email,subject:"Comandă Confirmată",text:null,html:htmlContent})
           }else{
             if(status=="livrare"){
-              const costLivr=result1[0].price>=700 ? 0 : 25
+              const costLivr="25 RON la fiecare 20 de kg ale comenzii"
               const htmlContent=String(deliverOrderEmail(id,result1[0].date,result1[0].username,result1[0].email,result1[0].telefon,result1[0].adresa,result1[0].judet,result1[0].oras,result1[0].modalitate,result1[0].price,costLivr))
               sendEmail({to:result1[0].email,subject:"Comandă pe Drum",text:null,html:htmlContent})
             }

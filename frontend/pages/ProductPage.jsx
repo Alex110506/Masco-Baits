@@ -199,12 +199,7 @@ export default function ProductPage(){
                             : <p>{quant[0]} g</p>
                             }
                         </div>
-                        {description ?
-                            <div className="desc-cont">
-                                <h2>Descriere:</h2>
-                                <p>{description}</p>
-                            </div>
-                        : null}
+                        
                         
                     </div>
                 </div>
@@ -230,6 +225,12 @@ export default function ProductPage(){
                     
                 </div>
             </div>
+            {description ?
+                <div className="desc-cont">
+                    <h2>Descriere:</h2>
+                    <p>{description}</p>
+                </div>
+            : null}
             <div className="revs-cont">
                 <h1>Recenzii ({nrRevs===null ? 0 : nrRevs}): {stars} {ratingShow}</h1>
                 <div className="rec-cont-user">
