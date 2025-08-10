@@ -30,6 +30,8 @@ export default function CategoryPage(){
         (diameter == 0 || item.diameter == diameter)
     );
 
+    filteredProds.reverse()
+
     const categElems = filteredProds.map(item => (
     <ProductContainerCateg
         key={item.id}
