@@ -64,7 +64,7 @@ export default function Confirmation(){
                                 cartQuant+=Number(Number(item.quantity)*Number(product.quantity))
                             })
 
-                            const pachete=Number(cartQuant%20000+1);
+                            const pachete=Math.ceil(cartQuant / 20000);
                             costLivr=pachete*25
 
                             const prodsArr = prodsArrDb.map(product => {
