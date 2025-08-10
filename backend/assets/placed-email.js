@@ -149,11 +149,11 @@ function placedOrderEmail(products,id,data,nume,email,telefon,adresa,judet,local
         </tr>
         <tr>
           <td><strong>Transport:</strong></td>
-          <td>${transprot} RON</td>
+          <td>${transprot}</td>
         </tr>
         <tr>
           <td><strong>Total Plătit:</strong></td>
-          <td><strong>${total+transprot} RON</strong></td>
+          <td><strong>${total} RON + taxe de livrare în funcție de comandă</strong></td>
         </tr>
         <tr>
           <td><strong>Metodă de Plată:</strong></td>

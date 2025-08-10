@@ -37,8 +37,13 @@ export default function Cart(){
     function toCheckout(){
         navigate("/checkout")
     }
-
-    const costLivrare=cartSum>=700 ? 0 : 25
+    let costLivrare=0
+    let cartQuant
+    cartProd.forEach((item)=>{
+        cartQuant=cartQuant+Number(item.quantity*item.product.quantity)
+    })
+    const pachete=cartQuant%20000+1;
+    costLivrare=pachete*25;
 
     return(
         <>
@@ -67,7 +72,6 @@ export default function Cart(){
                     </div>
                     <h1>Total: {Number(cartSum+costLivrare).toFixed(2)}</h1>
                     {error ? <h2>{error}</h2> : null}
-                    <p>Comenzile peste 700.00 Lei dispun de livrare gratuită.</p>
                     <div className="check-btn-cont">
                         
                             {cartProd.length>0 ? 
