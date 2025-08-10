@@ -1541,7 +1541,10 @@ header {
     font-size: 1.3rem;
 }
 
-
+.desc-cont{
+    width: 90vw;
+    max-width: 1100px;
+}
 
 .pcs-cont{
     display: flex;
@@ -1631,7 +1634,7 @@ header {
         display: flex;
         flex-direction: column;
     }
-    .categ-cont,.diam-cont,.quant-cont-page,.desc-cont{
+    .categ-cont,.diam-cont,.quant-cont-page{
         display: flex;
         flex-direction: row;
         gap: 10px;
