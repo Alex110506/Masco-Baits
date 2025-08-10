@@ -42,7 +42,7 @@ export default function Cart(){
     cartProd.forEach((item)=>{
         cartQuant=cartQuant+Number(Number(item.quantity)*Number(item.product.quantity))
     })
-    const pachete=Number(cartQuant%20000+1);
+    const pachete=Math.ceil(cartQuant / 20000);;
     costLivrare=pachete*25;
 
     return(

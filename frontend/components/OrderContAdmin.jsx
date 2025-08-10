@@ -7,6 +7,7 @@ export default function OrderContAdmin(props){
     const id=props.id
     const [error,setError]=React.useState("")
     const [productsOrder,setProductsOrder]=React.useState([])
+    const {products}=useRouteLoaderData("root")
 
     const handleStatusChange=async (e)=>{
         e.preventDefault()
@@ -60,7 +61,15 @@ export default function OrderContAdmin(props){
             </tr> 
         )
     })
-    const costLivrare=props.price>=700 ? 0 : 25
+
+    let cartQuant=0
+    productsOrder.forEach((item)=>{
+        let product=products.find((product)=>product.id==item.productId)
+        cartQuant+=Number(Number(item.quantity)*Number(product.quantity))
+    })
+
+    const pachete=Math.ceil(cartQuant / 20000);
+    const costLivrare=pachete*25
 
     // const formattedDate = 
 	// 		String(props.date.getDate()).padStart(2, "0") + "/" +
