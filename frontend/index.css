@@ -1542,6 +1542,9 @@ header {
 }
 
 .desc-cont{
+    justify-self: center;
+    align-self: center;
+    margin: 0 auto;
     width: 90vw;
     max-width: 1100px;
 }
