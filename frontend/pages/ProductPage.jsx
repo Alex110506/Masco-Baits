@@ -228,7 +228,7 @@ export default function ProductPage(){
             {description ?
                 <div className="desc-cont">
                     <h2>Descriere:</h2>
-                    <p>{description}</p>
+                    <div dangerouslySetInnerHTML={{ __html: description }} />
                 </div>
             : null}
             <div className="revs-cont">
