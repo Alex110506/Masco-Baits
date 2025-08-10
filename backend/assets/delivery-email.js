@@ -67,7 +67,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
       <h1>Comanda ta este pe drum!</h1>
     </div>
     
-    <p>Bună <strong>I${nume}</strong>,</p>
+    <p>Bună <strong>${nume}</strong>,</p>
     <p>Comanda ta cu ID-ul <strong>${id}</strong>, plasată în data ${data}, a fost preluată de curier și se află acum în drum spre tine.</p>
 
     <div class="info-section">
