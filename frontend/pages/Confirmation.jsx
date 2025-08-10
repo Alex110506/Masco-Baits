@@ -61,10 +61,10 @@ export default function Confirmation(){
                             let cartQuant=0
                             prodsArrDb.forEach((item)=>{
                                 let product=products.find((product)=>product.id==item.productId)
-                                cartQuant+=Number(item.quantity*product.quantity)
+                                cartQuant+=Number(Number(item.quantity)*Number(product.quantity))
                             })
 
-                            const pachete=cartQuant%20000+1;
+                            const pachete=Number(cartQuant%20000+1);
                             costLivr=pachete*25
 
                             const prodsArr = prodsArrDb.map(product => {

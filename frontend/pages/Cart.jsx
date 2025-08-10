@@ -38,11 +38,11 @@ export default function Cart(){
         navigate("/checkout")
     }
     let costLivrare=0
-    let cartQuant
+    let cartQuant=0
     cartProd.forEach((item)=>{
-        cartQuant=cartQuant+Number(item.quantity*item.product.quantity)
+        cartQuant=cartQuant+Number(Number(item.quantity)*Number(item.product.quantity))
     })
-    const pachete=cartQuant%20000+1;
+    const pachete=Number(cartQuant%20000+1);
     costLivrare=pachete*25;
 
     return(
