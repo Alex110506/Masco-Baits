@@ -151,7 +151,7 @@ footer h4{
         justify-content: center;
         align-items: center;
         gap: 20px;
-        height: 290px;
+        height: 350px;
     }
     .aux-div-foot{
         gap: 20px;
@@ -2298,7 +2298,7 @@ header {
 
 .lig-cont-foot{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;

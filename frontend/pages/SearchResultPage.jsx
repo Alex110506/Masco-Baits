@@ -11,7 +11,7 @@ export function loader({request}){
 export default function SearchResultPage(){
 
     const data=useLoaderData()
-    let searchInput=data.toLowerCase()
+    let searchInput=decodeURIComponent(data.toLowerCase())
     
     const {products}=useRouteLoaderData("root")
     let foundPords=products
