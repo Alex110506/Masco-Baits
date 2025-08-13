@@ -122,8 +122,18 @@ footer {
     flex-direction: row;
     gap: 50px;
 }
+.aux-div-foot-d{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 footer h4{
     margin-top: 0;
+}
+.social-link-foot{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 .social-link-foot a{
     color: #ccc;
@@ -2284,4 +2294,12 @@ header {
     justify-content: center;
     align-items: center;
     padding: 10px;
+}
+
+.lig-cont-foot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
