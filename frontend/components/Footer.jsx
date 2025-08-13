@@ -36,7 +36,7 @@ export default function Footer() {
                     <a href="https://consumer-redress.ec.europa.eu/index_ro" className="link-lig-foot">
                         <img src="../assets/images/icons/anpc-sol.webp" alt="solutionare ligitii" />
                     </a>
-                    <a href="https://reclamatiisal.anpc.ro/">
+                    <a href="https://reclamatiisal.anpc.ro/" className="link-lig-foot">
                         <img src="../assets/images/icons/anpc-sal.webp" alt="solutionare ligitii anpc" />
                     </a>
                 </div>
