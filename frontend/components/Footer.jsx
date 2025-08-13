@@ -26,7 +26,7 @@ export default function Footer() {
                     <h4>Social Media</h4>
                     <p className="social-link-foot">
                         <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook" style={{fontSize:"28px"}}></i></a><br />
-                        <a href="https://www.tiktok.com/@marius.mascovits"><i class="bi bi-tiktok" style={{fontSize:"28px"}}></i></a>
+                        <a href="https://www.tiktok.com/@marius.mascovits" style={{marginTop:"0"}}><i class="bi bi-tiktok" style={{fontSize:"28px"}}></i></a>
                     </p>
                 </div>
             </div>
