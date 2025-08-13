@@ -25,13 +25,21 @@ export default function Footer() {
                 <div>
                     <h4>Social Media</h4>
                     <p className="social-link-foot">
-                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook"></i> Facebook</a><br />
-                        <a href="https://www.tiktok.com/@marius.mascovits"><i class="bi bi-tiktok"></i> TikTok</a>
+                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook" style={{fontSize:"28px"}}></i></a><br />
+                        <a href="https://www.tiktok.com/@marius.mascovits"><i class="bi bi-tiktok" style={{fontSize:"28px"}}></i></a>
                     </p>
                 </div>
             </div>
             
-            <div className="aux-div-foot">
+            <div className="aux-div-foot-d">
+                <div className="lig-cont-foot">
+                    <a href="https://consumer-redress.ec.europa.eu/index_ro" className="link-lig-foot">
+                        <img src="../assets/images/icons/anpc-sol.webp" alt="solutionare ligitii" />
+                    </a>
+                    <a href="https://reclamatiisal.anpc.ro/">
+                        <img src="../assets/images/icons/anpc-sal.webp" alt="solutionare ligitii anpc" />
+                    </a>
+                </div>
                 
                 <div style={{ fontSize: "14px", color: "#888" }}>
                     © 2025 Masco Baits. Toate drepturile rezervate.<br/>
