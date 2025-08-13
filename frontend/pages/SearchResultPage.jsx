@@ -14,7 +14,13 @@ export default function SearchResultPage(){
     let searchInput=data.toLowerCase()
     
     const {products}=useRouteLoaderData("root")
-    const foundPords=products.filter((product)=>product.name.toLowerCase().includes(searchInput))
+    let foundPords=products
+
+    const searchWordsArr=searchInput.split(" ")
+    searchWordsArr.forEach((word)=>{
+        foundPords=foundPords.filter((product)=>product.name.toLowerCase().includes(word))
+    })
+
     const foundProdElems=foundPords.map((item)=>{
         return (
             <ProductContainerCateg
