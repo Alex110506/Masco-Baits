@@ -43,7 +43,7 @@ export default function TermsConds(){
             </ul>
 
             <h2>5. Livrare</h2>
-            <p>Livrarea se efectuează prin curier rapid, în 1-3 zile lucrătoare. Costul este de 25 lei, gratuit peste 700.00 lei. În caz de întârziere, clientul va fi notificat.</p>
+            <p>Livrarea se efectuează prin curier rapid, în maxim 10 zile. Costul este de 25 lei pentru fiecare 20kg ale coletului. În caz de întârziere, clientul va fi notificat.</p>
 
             <h2>6. Politica de Retur</h2>
             <p>Produsele pot fi returnate în termen de 7 zile calendaristice. Trebuie returnate în starea originală. Costul returului este suportat de client. Contact: <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a></p>
