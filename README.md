@@ -50,11 +50,6 @@ It’s **production-ready**, **secure**, and designed for a seamless shopping ex
 
 ---
 
-## 📩 Contact  
-For business inquiries:  
-**MASCO BAITS SRL** — *(add company email here)*  
-
----
 
 ## 📜 License  
 This project is released under the **MIT License**.  
