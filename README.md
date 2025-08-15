@@ -51,5 +51,8 @@ It’s **production-ready**, **secure**, and designed for a seamless shopping ex
 ---
 
 
-## 📜 License  
-This project is released under the **MIT License**.  
+## 📜 License
+
+© 2025 MASCO BAITS SRL. All Rights Reserved.  
+
+This project is developed for MASCO BAITS SRL. The source code is provided for portfolio and demonstration purposes only. Unauthorized copying, modification, or commercial use is strictly prohibited.
