@@ -225,8 +225,8 @@ const emailContent=fs.readFileSync(path.join(__dirname, 'assets','welcome-email.
 app.post("/register",loginLimiter,[
   body('username')
     .trim()
-    .isLength({ min: 3, max: 20 }).withMessage('Username must be 3-20 characters long')
-    .matches(/^[a-zA-Z0-9_]+$/).withMessage('Username must contain only letters, numbers, and underscores'),
+    .isLength({ min: 3, max: 40 }).withMessage('Username must be 3-40 characters long')
+    .matches(/^[a-zA-Z0-9_\s]+$/).withMessage('Username must contain only letters, numbers, underscores, and spaces'),
 
   body('password')
     .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
