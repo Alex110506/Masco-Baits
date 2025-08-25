@@ -26,7 +26,6 @@ export default function OrderContAdmin(props){
             }
         }else{
             setError(data.message)
-            console.log("Error",data.message)
             return
         }
     }
@@ -44,7 +43,6 @@ export default function OrderContAdmin(props){
             if(data.status==0){
                 setError(data.message)
             }else{
-                console.log(data.result)
                 setProductsOrder(data.result)
             }
         }else{
@@ -70,11 +68,6 @@ export default function OrderContAdmin(props){
 
     const pachete=Math.ceil(cartQuant / 20000);
     const costLivrare=pachete*25
-
-    // const formattedDate = 
-	// 		String(props.date.getDate()).padStart(2, "0") + "/" +
-	// 		String(props.date.getMonth() + 1).padStart(2, "0") + "/" +
-	// 		props.date.getFullYear();
 
     return(
         <div className="order-admin-all-cont">

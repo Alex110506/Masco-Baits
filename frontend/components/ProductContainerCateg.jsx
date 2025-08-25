@@ -10,7 +10,6 @@ export default function ProductContainerCateg(props){
     const handleCart= async (e)=>{
         e.preventDefault();
         if(isLoggedIn){
-            console.log("adaugat",props.id)
             const res=await fetch("/api/addCart",{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },

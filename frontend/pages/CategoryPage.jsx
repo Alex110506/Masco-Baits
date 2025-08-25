@@ -60,7 +60,6 @@ export default function CategoryPage(){
     const startIdx = (page - 1) * 12;
     const categPageElems = categElems.slice(startIdx, startIdx + 12);
 
-    console.log(categProds)
 
     return (
         <>

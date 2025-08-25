@@ -47,7 +47,6 @@ export default function AdminPage(){
                             <Await resolve={data}>
                                 {
                                     (loadedData)=>{ 
-                                        console.log(loadedData)
                                         
                                         if(loadedData.status==0){
                                             return (<h1>{loadedData.message}</h1>)

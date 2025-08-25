@@ -23,7 +23,6 @@ export default function SignupForm(){
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
-        console.log(username,email,password)
         const res=await fetch("/register",{
             method:"POST",
             headers: { "Content-Type": "application/json" },
@@ -33,7 +32,6 @@ export default function SignupForm(){
 
         const data=await res.json()
         if(res.ok){
-            console.log(data)
             if(data.status===0){
                 setMessage(data.message)
                 setSuccess("")

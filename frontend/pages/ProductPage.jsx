@@ -71,7 +71,6 @@ export default function ProductPage(){
     }
 
     const nrRevs=product.nrRevs
-    console.log(stars)
     let diameter=null
     let diamElem=null
     let quantElem=null
@@ -100,7 +99,6 @@ export default function ProductPage(){
             body: JSON.stringify({nrStars,comment,id})
         })
         const data=await res.json();
-        console.log(data)
         if(res.ok){
             if(data.status===1){
                 setMyRevs(prev => [...prev,
@@ -126,7 +124,6 @@ export default function ProductPage(){
     const handleCart= async (e)=>{
         e.preventDefault();
         if(isLoggedIn){
-            console.log("adaugat",id,pcs)
             const res=await fetch("/api/addCart",{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },
@@ -154,7 +151,6 @@ export default function ProductPage(){
         
     }
 
-    console.log(myRevs)
     const myRevElems=myRevs.map((rev, index) => (
     <RevCard
         key={rev.id}
@@ -268,7 +264,6 @@ export default function ProductPage(){
                                     else
                                         setRating(0)
 
-                                    //console.log(loadedReviews)
                                     return (<div className="user-revs-cont">
                                     {myRevElems}
                                     {loadedReviews.length>0 ? loadedReviews.map((review) => (
