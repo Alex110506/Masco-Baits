@@ -38,7 +38,7 @@ export default function HeroSection(){
             images4[current4].classList.add('active4');
         }, 3000);
 
-        return () => clearInterval(interval); // Cleanup on unmount
+        return () => clearInterval(interval); 
     }, []);
 
     return(

@@ -3,7 +3,6 @@ import { NavLink, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 export default function ProductCartContainer(props){
-    // sa intriduc si detalii cum ar fi cantitatea si diametrul
     const {cartProd}=useRouteLoaderData("root")
     const {isLoggedIn,setIsLoggedIn} = useAuth()
     const [loading,setLoading]=React.useState(false)
@@ -50,7 +49,6 @@ export default function ProductCartContainer(props){
                 if(props.id==item.product.id)
                     ind=index
             })
-            console.log(ind,cartProd)
             if(action==="remove"){
                 if(props.pcs===1){
                     if(ind>-1) cart.splice(ind,1);
@@ -60,7 +58,6 @@ export default function ProductCartContainer(props){
             }else{
                 cart[ind].q+=1;
             } 
-            console.log(cartProd)
             localStorage.setItem("cartProducts",JSON.stringify(cart))
             location.reload()
         }else{

@@ -5,8 +5,6 @@ import Canonical from "../components/Canonical";
 
 export default function Checkout(){
     const {userData,isLoggedIn}=useAuth()
-    console.log(userData)
-    console.log(isLoggedIn,"menacaca")
 
     const {products,cartProd}=useRouteLoaderData("root");
 
@@ -25,7 +23,6 @@ export default function Checkout(){
 
     const orderId=123
 
-    //daca utilizatorul nu e logat sa se afiseze campuri cu numele, email si telefon
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
@@ -70,8 +67,6 @@ export default function Checkout(){
 
     const costLivr=costProd>=700 ? 0 : 25
 
-    //trimit comanda la baza de date cu detaliile si trimit in url doar id u la comanda
-    //in pagina de confirmare preiau comanda din baza de date si afisez datele
     const finalizeCheck=async (e)=>{
         e.preventDefault()
         if(cartProd.length>0){

@@ -56,7 +56,6 @@ export default function ReviewPage(){
             body: JSON.stringify({nrStars,comment,id:0})
         })
         const data=await res.json();
-        console.log(data)
         if(res.ok){
             if(data.status===1){
                 setMyRevs(prev => [...prev,

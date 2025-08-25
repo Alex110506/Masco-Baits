@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const photos = [];
 const PHOTOS_PER_PAGE = 12;
 
-for (let i = 4968; i <= 5091; i++) {
+for (let i = 4968; i <= 5102; i++) {
     photos.push(`IMG_${String(i)}.JPG`);
 }
 

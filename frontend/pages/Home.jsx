@@ -8,7 +8,6 @@ import CanonicalHome from "../components/CanonicalHome";
 export default function Home(){
 
     const {isLoggedIn,setIsLoggedIn}=useAuth()
-    console.log(isLoggedIn)
 
     React.useEffect(() => {
         window.scrollTo(0, 0); 
@@ -16,11 +15,9 @@ export default function Home(){
 
     const {products}=useRouteLoaderData("root");
 
-    console.log(products)
     
     const promProds=products.filter((item)=>item.promotie==1)
 
-    console.log(promProds)
 
     const promElems=promProds.map((item)=>{
         return <ProductContainer

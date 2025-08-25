@@ -6,7 +6,6 @@ const bcrypt=require("bcryptjs");
 const { hash } = require('crypto');
 const { stat } = require('fs');
 const rateLimit = require('express-rate-limit');
-const { ipKeyGenerator } = require('express-rate-limit');
 const session = require("express-session");
 const nodemailer = require("nodemailer");
 require('dotenv').config(); 
@@ -52,7 +51,7 @@ app.use((req, res, next) => {
 
   if (host === 'masco-baits.ro') {
     const fullUrl = 'https://www.masco-baits.ro' + req.originalUrl;
-    return res.redirect(301, fullUrl); // 301 = permanent redirect
+    return res.redirect(301, fullUrl);
   }
 
   next(); 
@@ -101,7 +100,6 @@ app.use(
 
 
 app.use((req, res, next) => {
-  console.log('Client IP:', req.ip);
   next();
 });
 
@@ -138,6 +136,7 @@ function requireAdmin(req,res,next){
   next()
 }
 
+const ipKeyGenerator = (req) => req.ip;
 
 const keyGen = (req) => {
   if (req.session?.user?.id) {
@@ -146,15 +145,16 @@ const keyGen = (req) => {
   return ipKeyGenerator(req);
 };
 
+
+
 const keyGenIp = (req) => {
-  const key=ipKeyGenerator(req);
-  console.log(key);
-  return key
+  const key = ipKeyGenerator(req);
+  return key;
 };
 
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
-  max: 200,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, // limit each IP to 200 requests per window
   keyGenerator: keyGenIp,
   handler: (req, res) => {
     return res.status(429).json({
@@ -210,7 +210,6 @@ async function sendEmail({ to, subject, text, html }) {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", info.response);
     return { success: true };
   } catch (error) {
     console.error("Error sending email:", error);
@@ -351,7 +350,6 @@ app.get("/user/data",requireLogin,(req,res)=>{
       console.log(err)
       res.status(500).json({message:"databse error",status:0})
     }else{
-      console.log(result)
       res.json(result)
   
     }
@@ -493,9 +491,7 @@ app.post("/api/addCart",cartLimiter,requireLogin,(req,res)=>{
       console.log(err)
       res.status(500).json({message:"database error",status:0})
     }else{
-      console.log(result)
       if(result.length===0){
-        console.log("prodNou")
         const query1="INSERT INTO cart_products (userid,productid,quantity) VALUES (?,?,?)"
         db.query(query1,[userId,productId,quantity],(err,result)=>{
           if(err){
@@ -695,14 +691,12 @@ app.post("/order/send",actionLimiter,[
 
 app.post("/order/getConf",actionLimiter,(req,res)=>{
   const orderId=req.body.id
-  console.log(orderId,typeof(orderId))
   const query="SELECT * FROM orders WHERE id=?"
   db.query(query,[orderId],(err,result)=>{
     if(err){
       console.log(err)
       res.status(500).json({message:"database error",status:0})
     }else{
-      console.log(result)
       const query1="SELECT * FROM order_items WHERE orderid=?"
       db.query(query1,[orderId],(err,result1)=>{
         if(err){
@@ -732,7 +726,6 @@ app.get("/orders/show",requireLogin,(req,res)=>{
       console.log(err)
       res.status(500).json({message:"database error",status:0})
     }else{
-      console.log(result,"mena");
       res.json(result)
     }
   })

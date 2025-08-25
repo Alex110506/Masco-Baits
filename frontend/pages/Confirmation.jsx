@@ -33,7 +33,6 @@ export default function Confirmation(){
 
     const data=useLoaderData();
     
-    //fain frumos afisez datele
     React.useEffect(() => {
         window.scrollTo(0, 0); 
         setOrderId(`#${data.id}`)
@@ -53,9 +52,7 @@ export default function Confirmation(){
                 <Await resolve={data.dataPromise}>
                     {
                         (loadedData)=>{
-                            console.log(loadedData)
                             const prodsArrDb = loadedData.products;
-                            console.log(loadedData)
                             const productMap = new Map(products.map(item => [item.id, item]));
 
                             let cartQuant=0
@@ -80,7 +77,6 @@ export default function Confirmation(){
                             })
                             .filter(Boolean);
 
-                            console.log(prodsArr) 
 
                             const prodElems=prodsArr.map((item)=>{
                                 return <ProductConfContainer

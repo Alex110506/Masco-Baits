@@ -26,7 +26,6 @@ export default function LoginForm(){
 
         const data=await res.json()
         if(res.ok){
-            console.log(data)
             if(data.status===0){
                 setMessage(data.message)
                 setSuccess("")
