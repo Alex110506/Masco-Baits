@@ -3,11 +3,14 @@ import React, { useState } from "react";
 const photos = [];
 const PHOTOS_PER_PAGE = 12;
 
-for (let i = 4968; i <= 5102; i++) {
+for (let i = 4968; i <= 5107; i++) {
     photos.push(`IMG_${String(i)}.JPG`);
 }
 
 export default function PhotoGallery() {
+
+    photos.sort(() => Math.random() - 0.5);
+    
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalPages = Math.ceil(photos.length / PHOTOS_PER_PAGE);
