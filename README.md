@@ -9,7 +9,6 @@ It’s **production-ready**, **secure**, and designed for a seamless shopping ex
 - **Frontend:** React + React Router + Vite + CSS  
 - **Backend:** Node.js + Express  
 - **Database:** MySQL  
-- **Other:** Authentication, secure sessions, cart & checkout system  
 
 ---
 
@@ -32,7 +31,7 @@ It’s **production-ready**, **secure**, and designed for a seamless shopping ex
 ## 📐 Architecture  
 - **Frontend:** React SPA powered by Vite for fast builds  
 - **Backend API:** RESTful Node.js/Express service  
-- **Database:** MySQL relational schema with products, orders, reviews & users  
+- **Database:** MySQL relational schema with products, orders, reviews, users, etc.  
 - **Security:** Input validation, protected routes, password hashing, secure cookies  
 - **Compliance:** Built to follow GDPR standards for data storage, cookies & privacy  
 - **Emails:** Automated transactional emails for key user actions (account + orders)  
@@ -46,10 +45,43 @@ It’s **production-ready**, **secure**, and designed for a seamless shopping ex
 - Developed for a **real company** (MASCO BAITS SRL)  
 - Clean code & structured architecture for easy future development  
 - SEO & performance tested with **great results**  
-- Automated **email system** to improve customer experience  
+- Automated **email system** and clean UI/UX to improve customer experience  
 
 ---
 
+## 🖥️ Getting Started
+
+### Prerequisites
+
+Make sure you have these installed:
+
+- [Node.js](https://nodejs.org/)
+- [XAMPP](https://www.apachefriends.org/)
+
+### Environment variables for local use
+
+(This is an example)
+
+- MYSQLDATABASE=mascobaits
+- MYSQLHOST=localhost
+- MYSQLUSER=root
+- MYSQLPORT=3306
+- MYSQLPASSWORD=
+- SESSION_SECRET=Abc123@
+- EMAIL_USERNAME=example@gmail.com
+- EMAIL_APP_PASSWORD= (must be configured in google app passwords)
+
+### Installation
+
+```bash
+git clone https://github.com/Alex110506/masco-baits.git
+cd masco-baits
+npm install
+node index
+
+```
+
+---
 
 ## 📜 License
 
