@@ -68,7 +68,7 @@ Make sure you have these installed:
 - MYSQLPORT=3306
 - MYSQLPASSWORD=
 - SESSION_SECRET=Abc123@
-- EMAIL_USERNAME=example@gmail.com
+- EMAIL_USERNAME=example@example.com
 - EMAIL_APP_PASSWORD= (must be configured in google app passwords)
 
 ### Installation
