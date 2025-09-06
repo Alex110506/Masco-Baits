@@ -39,6 +39,15 @@ const db = mysql.createPool({
   multipleStatements: false
 });
 
+db.query("SELECT 1", (err) => {
+  if (err) console.error("DB Warm-up failed:", err);
+  else console.log("DB Connection Pool Ready!");
+});
+
+setInterval(() => {
+  db.query("SELECT 1");
+}, 300000);
+
 console.log("MySQL connected...");
 
 
