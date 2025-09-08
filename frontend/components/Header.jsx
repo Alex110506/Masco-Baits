@@ -12,12 +12,7 @@ export default function Header(){
 
     const {cartProd,products}=useRouteLoaderData("root")
 
-    const [search,setSearch]=React.useState("")
-
-    let cartSum=0
-    cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity)    
-    if(cartSum<700) cartSum+=25
-    cartSum=Number(cartSum).toFixed(2)
+    const [search,setSearch]=React.useState("")   
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
@@ -60,9 +55,7 @@ export default function Header(){
                 <div className="cart-cont">
                     <NavLink to="cart">
                         <i className="bi bi-cart" style={{fontSize: "36px"}}></i>
-                    </NavLink>
-                    
-                    <div className="cart-sum">{cartSum}&nbsp;ron</div>
+                    </NavLink>                    
                 </div>
                 <div className="acc-cont">
                     {admin ? <NavLink to="admin"><i className="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}

@@ -21,8 +21,20 @@ export default function CategoryPage(){
         window.scrollTo(0, 0);
     }, [page]);
     
+    
+
     const data=useLoaderData();
     let categoryName=data.replace(/_/g," ").slice(1).toLowerCase();
+
+    React.useEffect(()=>{
+        setDiameter(0);
+        setWeight(0);
+    },[categoryName])
+
+    React.useEffect(()=>{
+        setDiameter(0);
+        setWeight(0);
+    },[])
 
     const categProds=products.filter((item)=>item.category==categoryName)
     const filteredProds = categProds.filter(item =>
