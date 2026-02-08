@@ -7,7 +7,6 @@ export default function OrderContAdmin(props){
     const id=props.id
     const [error,setError]=React.useState("")
     const [productsOrder,setProductsOrder]=React.useState([])
-    const {products}=useRouteLoaderData("root")
 
     const handleStatusChange=async (e)=>{
         e.preventDefault()
@@ -26,6 +25,7 @@ export default function OrderContAdmin(props){
             }
         }else{
             setError(data.message)
+            console.log("Error",data.message)
             return
         }
     }
@@ -43,6 +43,7 @@ export default function OrderContAdmin(props){
             if(data.status==0){
                 setError(data.message)
             }else{
+                console.log(data.result)
                 setProductsOrder(data.result)
             }
         }else{
@@ -54,20 +55,17 @@ export default function OrderContAdmin(props){
         return(
             <tr>
                 <td>{product.name}</td>
-                <td>{Number(product.price).toFixed(2)} Lei</td>
+                <td>{product.price} Lei</td>
                 <td>{product.quantity}</td>
             </tr> 
         )
     })
+    const costLivrare=props.price>=700 ? 0 : 25
 
-    let cartQuant=0
-    productsOrder.forEach((item)=>{
-        let product=products.find((product)=>product.id==item.productId)
-        cartQuant+=Number(Number(item.quantity)*Number(product.quantity))
-    })
-
-    const pachete=Math.ceil(cartQuant / 20000);
-    const costLivrare=pachete*25
+    // const formattedDate = 
+	// 		String(props.date.getDate()).padStart(2, "0") + "/" +
+	// 		String(props.date.getMonth() + 1).padStart(2, "0") + "/" +
+	// 		props.date.getFullYear();
 
     return(
         <div className="order-admin-all-cont">
@@ -118,9 +116,9 @@ export default function OrderContAdmin(props){
                         </table>
                     </div>
                         
-                        <p>Cost produse: {Number(props.price).toFixed(2)} Lei</p>
-                        <p>Cost Livrare: {Number(costLivrare).toFixed(2)} Lei</p>
-                        <h2>Total: {(Number(props.price) + Number(costLivrare)).toFixed(2)} Lei </h2>
+                        <p>Cost produse: {props.price} Lei</p>
+                        <p>Cost Livrare: {costLivrare} Lei</p>
+                        <h2>Total: {Number(props.price) + Number(costLivrare)} Lei </h2>
                     </div>
                     
                 </div>

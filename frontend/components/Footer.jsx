@@ -11,7 +11,7 @@ export default function Footer() {
                         MASCO-BAITS SRL<br />
                         CUI: 42410332<br />
                         J02/348/2020<br />
-                        <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a><br />
+                        masco.baits@gmail.com<br />
                         +40 749 048 838
                     </p>
                 </div>
@@ -25,21 +25,13 @@ export default function Footer() {
                 <div>
                     <h4>Social Media</h4>
                     <p className="social-link-foot">
-                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook" style={{fontSize:"28px"}}></i></a><br />
-                        <a href="https://www.tiktok.com/@marius.mascovits" style={{marginTop:"0"}}><i class="bi bi-tiktok" style={{fontSize:"28px"}}></i></a>
+                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook"></i> Facebook</a><br />
+                        <a href="https://www.tiktok.com/@marius.mascovits"><i class="bi bi-tiktok"></i> TikTok</a>
                     </p>
                 </div>
             </div>
             
-            <div className="aux-div-foot-d">
-                <div className="lig-cont-foot">
-                    <a href="https://consumer-redress.ec.europa.eu/index_ro" className="link-lig-foot">
-                        <img src="../assets/images/icons/anpc-sol.webp" alt="solutionare ligitii" />
-                    </a>
-                    <a href="https://reclamatiisal.anpc.ro/" className="link-lig-foot">
-                        <img src="../assets/images/icons/anpc-sal.webp" alt="solutionare ligitii anpc" />
-                    </a>
-                </div>
+            <div className="aux-div-foot">
                 
                 <div style={{ fontSize: "14px", color: "#888" }}>
                     © 2025 Masco Baits. Toate drepturile rezervate.<br/>

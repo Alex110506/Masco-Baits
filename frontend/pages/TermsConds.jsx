@@ -1,26 +1,23 @@
 import React from "react";
-import Canonical from "../components/Canonical";
 
 export default function TermsConds(){
     React.useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
     return(
-        <>
-        <Canonical url="https://www.masco-baits.ro/termeni&conditii"></Canonical>
         <div class="container">
-            <h1 className="foot-side-head"><img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img> Termeni și Condiții - Masco Baits</h1>
-            <p><strong>Ultima actualizare:</strong> 24.07.2025</p>
+            <h1 className="foot-side-head"><img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img> Termeni și Condiții - Masco Baits</h1>
+            <p><strong>Ultima actualizare:</strong> 21.07.2025</p>
 
             <h2>1. Informații generale</h2>
-            <p>Website-ul <strong>www.masco-baits.ro</strong> este deținut și operat de:</p>
+            <p>Website-ul <strong>www.mascobaits.ro</strong> este deținut și operat de:</p>
             <p>
-            <strong>Denumire:</strong> [MASCO-BAITS SRL]<br/>
-            <strong>CUI:</strong> [42410332]<br/>
-            <strong>Registrul Comerțului:</strong> [J02/348/2020]<br/>
-            <strong>Sediu:</strong> [Strada: I. Brezoianu Nr.1 Apartament 2,3, Județ: Arad, Oraș: Arad]<br/>
-            <strong>Email:</strong> <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a><br/>
-            <strong>Telefon:</strong> +40 749 048 838
+            <strong>Denumire:</strong> [Masco Baits SRL]<br/>
+            <strong>CUI:</strong> [XXXXXXX]<br/>
+            <strong>Registrul Comerțului:</strong> [JXX/XXXX/20XX]<br/>
+            <strong>Sediu:</strong> [Str., nr., oraș, județ]<br/>
+            <strong>Email:</strong> contact@mascobaits.ro<br/>
+            <strong>Telefon:</strong> +40 XXX XXX XXX
             <p>Accesarea, navigarea și utilizarea acestui website implică acceptarea termenilor și condițiilor de mai jos.</p>
             </p>
 
@@ -39,19 +36,18 @@ export default function TermsConds(){
             <p>Metode de plată:</p>
             <ul>
             <li>Plata la livrare (ramburs)</li>
-            <li>Transfer bancar (IBAN): RO49 BTRL RONC RT05 4632 7801</li>
+            <li>Transfer bancar (IBAN): ROXX XXXX XXXX XXXX XXXX XXXX</li>
             </ul>
 
             <h2>5. Livrare</h2>
-            <p>Livrarea se efectuează prin curier rapid, în maxim 10 zile. Costul este de 25 lei pentru fiecare 20kg ale coletului. În caz de întârziere, clientul va fi notificat.</p>
+            <p>Livrarea se efectuează prin curier rapid, în 1-3 zile lucrătoare. Costul este de 25 lei, gratuit peste [Y] lei. În caz de întârziere, clientul va fi notificat.</p>
 
             <h2>6. Politica de Retur</h2>
-            <p>Produsele pot fi returnate în termen de 7 zile calendaristice. Trebuie returnate în starea originală. Costul returului este suportat de client. Contact: <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a></p>
+            <p>Produsele pot fi returnate în termen de 14 zile calendaristice. Trebuie returnate în starea originală. Costul returului este suportat de client. Contact: contact@mascobaits.ro</p>
 
             <h2>7. Garanții</h2>
-            <p>Produsele comercializate pe acest website beneficiază de garanție conform legislației în vigoare (Legea nr. 449/2003 privind vânzarea produselor și garanțiile asociate acestora). Termenul de garanție este specificat în descrierea fiecărui produs și poate varia în funcție de producător.
-                <br></br>Pentru a beneficia de garanție, clientul trebuie să păstreze dovada achiziției (factură/chitanță) și, în unele cazuri, certificatul de garanție. Garanția acoperă doar defectele de fabricație și nu se aplică în caz de uzură normală, utilizare necorespunzătoare sau intervenții neautorizate.
-                <br></br>În cazul în care un produs se dovedește a fi defect în perioada de garanție, vă rugăm să ne contactați la [email/contact] pentru a demara procesul de înlocuire sau reparație.<br/>
+            <p>Produsele beneficiază de garanție conform legii 449/2003.<br/>
+            Garanția nu se aplică în cazuri de utilizare incorectă sau uzură naturală.
             </p>
 
             <h2>8. Drepturi de Autor</h2>
@@ -88,7 +84,7 @@ export default function TermsConds(){
                 <li>În cazul în care vă ștergeți contul: toate datele asociate contului se șterg definitiv, inclusiv comenzile anterioare. Această acțiune este ireversibilă.</li>
             </ul>
 
-            <p>Pentru ștergerea contului, trimiteți solicitarea la: <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a></p>
+            <p>Pentru ștergerea contului, trimiteți solicitarea la: cont@mascobaits.ro</p>
 
             <h2>13. Limitarea Răspunderii</h2>
             <p>Masco Baits nu răspunde pentru defecțiuni tehnice sau întârzieri cauzate de terți, întârzieri cauzate de terți (curieri, bănci), utilizarea incorectă a produselor cumpărate.</p>
@@ -101,11 +97,10 @@ export default function TermsConds(){
             <h2>15. Contact</h2>
             <p>Pentru întrebări, reclamații sau asistență:</p>
             <p>
-            📧 Email: <a href="mailto:&#109;&#097;&#115;&#099;&#111;&#046;&#098;&#097;&#105;&#116;&#115;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;">Email</a><br/>
-            📞 Telefon: +40 749 048 838<br/>
+            📧 Email: contact@mascobaits.ro<br/>
+            📞 Telefon: +40 XXX XXX XXX<br/>
             🕐 Program: Luni-Vineri, 09:00-17:00
             </p>
         </div>
-        </>
     )
 }

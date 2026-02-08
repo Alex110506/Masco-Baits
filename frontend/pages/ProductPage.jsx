@@ -2,7 +2,6 @@ import React from "react";
 import { useLoaderData, useRouteLoaderData,Await,defer} from "react-router-dom";
 import RevCard from "../components/RevCard";
 import { useAuth } from "../components/AuthContext";
-import Canonical from "../components/Canonical";
 
 export function loader({request}){
     const url=new URL(request.url).pathname;
@@ -71,6 +70,7 @@ export default function ProductPage(){
     }
 
     const nrRevs=product.nrRevs
+    console.log(stars)
     let diameter=null
     let diamElem=null
     let quantElem=null
@@ -99,6 +99,7 @@ export default function ProductPage(){
             body: JSON.stringify({nrStars,comment,id})
         })
         const data=await res.json();
+        console.log(data)
         if(res.ok){
             if(data.status===1){
                 setMyRevs(prev => [...prev,
@@ -124,6 +125,7 @@ export default function ProductPage(){
     const handleCart= async (e)=>{
         e.preventDefault();
         if(isLoggedIn){
+            console.log("adaugat",id,pcs)
             const res=await fetch("/api/addCart",{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },
@@ -151,6 +153,7 @@ export default function ProductPage(){
         
     }
 
+    console.log(myRevs)
     const myRevElems=myRevs.map((rev, index) => (
     <RevCard
         key={rev.id}
@@ -162,14 +165,12 @@ export default function ProductPage(){
     ))
 
     return(
-        <>
-        <Canonical url={`https://www.masco-baits.ro/${product.category.replace(/ /g, "_").toLowerCase()}/${id}`}></Canonical>
         <div className="product-page-cont">
             <h1 className="prod-name-cont-page">{product.name}</h1>
             <div className="prod-dets">
                 <div className="primary-prod-dets-cont">
                     <div className="prod-img-cont-page">
-                        <img src={`../assets/images/prod-imgs/${product.photo}`} alt={product.name + "image"}></img>
+                        <img src={`../assets/images/prod-imgs/${product.photo}`}></img>
                     </div>
                     <div className="prod-dets-cont-page">
                         <div className="categ-cont">
@@ -195,14 +196,19 @@ export default function ProductPage(){
                             : <p>{quant[0]} g</p>
                             }
                         </div>
-                        
+                        {description ?
+                            <div className="desc-cont">
+                                <h2>Descriere:</h2>
+                                <p>{description}</p>
+                            </div>
+                        : null}
                         
                     </div>
                 </div>
                 
                 <div className="add-cart-cont">
                     <form className="add-cart-card" onSubmit={handleCart}>
-                        <h2>{Number(price).toFixed(2)} Lei</h2>
+                        <h2>{price} Lei</h2>
                         <p className="stock-p"><span className="in-stock-color-circ">&#9679;</span> In Stoc {/*Sa punn in baza de date in stoc status*/}</p>
                         <div className="pcs-cont">
                             <input value={pcs} type="number" onChange={(e) => setPcs(e.target.value)}></input>
@@ -221,13 +227,6 @@ export default function ProductPage(){
                     
                 </div>
             </div>
-            {description ?
-                <div className="desc-cont">
-                    <h2>Descriere:</h2>
-                    <br />
-                    <div dangerouslySetInnerHTML={{ __html: description }} />
-                </div>
-            : null}
             <div className="revs-cont">
                 <h1>Recenzii ({nrRevs===null ? 0 : nrRevs}): {stars} {ratingShow}</h1>
                 <div className="rec-cont-user">
@@ -264,6 +263,7 @@ export default function ProductPage(){
                                     else
                                         setRating(0)
 
+                                    //console.log(loadedReviews)
                                     return (<div className="user-revs-cont">
                                     {myRevElems}
                                     {loadedReviews.length>0 ? loadedReviews.map((review) => (
@@ -283,6 +283,5 @@ export default function ProductPage(){
                 </div>
             </div>
         </div>
-        </>
     )
 }

@@ -3,11 +3,11 @@ import HeroSection from "../components/HeroSection";
 import ProductContainer from "../components/ProductContainer";
 import { Link, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
-import CanonicalHome from "../components/CanonicalHome";
 
 export default function Home(){
 
     const {isLoggedIn,setIsLoggedIn}=useAuth()
+    console.log(isLoggedIn)
 
     React.useEffect(() => {
         window.scrollTo(0, 0); 
@@ -15,9 +15,11 @@ export default function Home(){
 
     const {products}=useRouteLoaderData("root");
 
+    console.log(products)
     
     const promProds=products.filter((item)=>item.promotie==1)
 
+    console.log(promProds)
 
     const promElems=promProds.map((item)=>{
         return <ProductContainer
@@ -38,21 +40,19 @@ export default function Home(){
 
 
     return(
-        <>
-        <CanonicalHome url="https://www.masco-baits.ro/home"></CanonicalHome>
         <div className="home-cont">
             <div className="bg-cnt"></div>
             <HeroSection></HeroSection>
             <div className="product-list-container">
-                <h1 className="list-title">PRODUSELE NOASTRE (BOILIES ȘI ALTELE)</h1>
+                <div className="list-title">PRODUSELE NOASTRE</div>
                 <div className="list-items">
-                    <Link to={"/boilies"} className="cnt">Boilies</Link>
-                    <Link to={"/boilies_carlig"} className="cnt">Boilies Carlig</Link>
-                    <Link to={"/boilies_critic_echilibrat"} className="cnt">Boilies Critic Echilibrat</Link>
-                    <Link to={"/pasta_solubila_boilies"} className="cnt">Pasta Solubila Boilies</Link>
-                    <Link to={"/popup_&_wafters"} className="cnt">Pop-up & Wafters</Link >
-                    <Link to={"/lichide_nutritive_&_aditivi"} className="cnt">Lichide Nutritive & Aditivi</Link>
-                    <Link to={"/pelete_&_grundbait"} className="cnt">Pelete & Grundbait </Link>
+                    <Link to={"/Boilies"} className="cnt">Boilies</Link>
+                    <Link to={"/Boilies_Carlig"} className="cnt">Boilies Carlig</Link>
+                    <Link to={"/Boilies_Critic_Echilibrat"} className="cnt">Boilies Critic Echilibrat</Link>
+                    <Link to={"/Pasta_Solubila_Boilies"} className="cnt">Pasta Solubila Boilies</Link>
+                    <Link to={"/Popup_&_Wafters"} className="cnt">Pop-up & Wafters</Link >
+                    <Link to={"/Lichide_Nutritive_&_Aditivi"} className="cnt">Lichide Nutritive & Aditivi</Link>
+                    <Link to={"/Pelete_&_Grundbait"} className="cnt">Pelete & Grundbait </Link>
                 </div>
             </div>
             <div className="others-container">
@@ -61,7 +61,7 @@ export default function Home(){
             </div>
             <section className="products-cont">
                 <div className="new-prod-cont">
-                    <h2>Produse pentru Tine</h2>
+                    <h1>Promotii</h1>
                     <div className="new-prod-list">
                         {promElems}
                     </div>
@@ -69,6 +69,5 @@ export default function Home(){
             </section>
             
         </div>
-        </>
     )
 }

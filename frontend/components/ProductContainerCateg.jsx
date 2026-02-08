@@ -7,9 +7,29 @@ export default function ProductContainerCateg(props){
 
     const {isLoggedIn,setIsLoggedIn}=useAuth()
 
+    //sa fac stelele in functie de review
+
+    const rating = Math.floor(2 * props.rating);
+    let stars = [];
+
+    for (let i = 0; i < Math.floor(rating / 2); i++) {
+    stars.push(<i className="bi bi-star-fill" style={{color:"gold"}} key={i}></i>);
+    }
+
+    if (rating % 2 === 1) {
+    stars.push(<i className="bi bi-star-half" style={{color:"gold"}} key={stars.length}></i>);
+    }
+
+    while (stars.length < 5) {
+    stars.push(<i className="bi bi-star" style={{color:"gold"}} key={stars.length}></i>);
+    }
+
+    const nrRevs=props.nrRevs
+
     const handleCart= async (e)=>{
         e.preventDefault();
         if(isLoggedIn){
+            console.log("adaugat",props.id)
             const res=await fetch("/api/addCart",{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },
@@ -41,15 +61,17 @@ export default function ProductContainerCateg(props){
         <div className="product-cont">
 
             <div className="prod-img-cont">
-                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
+                <img src={`../assets/images/prod-imgs/${props.photo}`}></img>
             </div>
             <div className="prod-name-cont">
                 <NavLink className="prod-name-cont-tit" to={`${props.id}`}>{props.name}</NavLink>
             </div>
-            
+            <div className="prod-rev-cont">
+                {stars}
+            </div>
             <form className="price-add-cont" onSubmit={handleCart}>
                 <div className="price-cont">
-                    <span>{Number(props.price).toFixed(2)} Lei</span>
+                    <span>{props.price} Lei</span>
                 </div>
                 <div className="add-btn-cont">
                     <button>
