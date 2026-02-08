@@ -1,11 +1,10 @@
 import React from "react";
 import { Await,useLoaderData,defer } from "react-router-dom";
 import OrderContAdmin from "../components/OrderContAdmin";
-import Canonical from "../components/Canonical";
 
 export function loader() {
     const dataPromise = fetch("/api/admin/recentOrders", {
-        method: "POST",
+        method: "POST", // Make sure your backend expects POST
         headers: {
         "Content-Type": "application/json",
         },
@@ -32,8 +31,6 @@ export default function AdminPage(){
 
     return (
         <>
-        <Canonical url="https://www.masco-baits.ro/admin"></Canonical>
-
         <div className="admin-page-cont">
             <h1>Pagina de Admin</h1>
             <div className="admin-sect">
@@ -47,6 +44,7 @@ export default function AdminPage(){
                             <Await resolve={data}>
                                 {
                                     (loadedData)=>{ 
+                                        console.log(loadedData)
                                         
                                         if(loadedData.status==0){
                                             return (<h1>{loadedData.message}</h1>)

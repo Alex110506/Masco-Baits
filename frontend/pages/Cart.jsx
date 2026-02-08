@@ -1,7 +1,6 @@
 import React from "react";
 import ProductCartContainer from "../components/ProductCartContainer";
 import { NavLink, useNavigate,useRouteLoaderData } from "react-router-dom";
-import Canonical from "../components/Canonical";
 
 export default function Cart(){
     React.useEffect(() => {
@@ -9,7 +8,6 @@ export default function Cart(){
     }, []);
 
     const {cartProd,products}=useRouteLoaderData("root");
-    const [error,setError]=React.useState("")
 
     let cartSum=0
     cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity) 
@@ -37,21 +35,15 @@ export default function Cart(){
     function toCheckout(){
         navigate("/checkout")
     }
-    let costLivrare=0
-    let cartQuant=0
-    cartProd.forEach((item)=>{
-        cartQuant=cartQuant+Number(Number(item.quantity)*Number(item.product.quantity))
-    })
-    const pachete=Math.ceil(cartQuant / 20000);;
-    costLivrare=pachete*25;
+
+    const costLivrare=25
 
     return(
         <>
-            <Canonical url="https://www.masco-baits.ro/cart"></Canonical>
             <div className="cart-page-cont">
                 <div className="products-side-cont">
                     <div className="prod-side-head">
-                        <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
+                        <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
                         <span>Coșul Meu</span>
                     </div>
                     <div className="prod-side-list">
@@ -63,24 +55,18 @@ export default function Cart(){
                     <div className="detalii">
                         <div className="cost-cont">
                             <span>Cost Produse:</span>
-                            <span>{Number(cartSum).toFixed(2)}</span>
+                            <span>{cartSum}</span>
                         </div>
                         <div className="livr-cont">
                             <span>Cost Livrare:</span>
-                            <span>{Number(costLivrare).toFixed(2)} Lei</span>
+                            <span>{costLivrare} Lei</span>
                         </div>
                     </div>
-                    <h1>Total: {Number(cartSum+costLivrare).toFixed(2)}</h1>
-                    {error ? <h2>{error}</h2> : null}
+                    <h1>Total: {cartSum+costLivrare}</h1>
                     <div className="check-btn-cont">
-                        
-                            {cartProd.length>0 ? 
-                                <button>
-                                    <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>
-                                </button>:
-                                <h3 style={{color:"red"}}>Trebuie să aveți cel putin un produs în coș pentru a comanda.</h3>
-                            }
-                        
+                        <button>
+                            <NavLink to="checkout">Spre&nbsp;Comandă</NavLink>
+                        </button>
                     </div>
                     
                 </div>

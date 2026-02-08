@@ -1,3 +1,4 @@
+// components/CookieConsent.js
 import React, { useEffect, useState } from 'react';
 
 export default function CookieConsent() {
@@ -13,6 +14,7 @@ export default function CookieConsent() {
   const acceptCookies = () => {
     localStorage.setItem('cookie_consent', 'true');
     setVisible(false);
+    // Initialize Google Analytics or other logic here
   };
 
   if (!visible) return null;

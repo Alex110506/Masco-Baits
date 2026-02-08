@@ -49,6 +49,7 @@ export default function ProductCartContainer(props){
                 if(props.id==item.product.id)
                     ind=index
             })
+            console.log(ind,cartProd)
             if(action==="remove"){
                 if(props.pcs===1){
                     if(ind>-1) cart.splice(ind,1);
@@ -58,6 +59,7 @@ export default function ProductCartContainer(props){
             }else{
                 cart[ind].q+=1;
             } 
+            console.log(cartProd)
             localStorage.setItem("cartProducts",JSON.stringify(cart))
             location.reload()
         }else{
@@ -102,11 +104,11 @@ export default function ProductCartContainer(props){
     return(
         <div className="prod-cont-cart">
             <div className="prod-cart-img-cont">
-                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name + "image"}></img>
+                <img src={`../assets/images/prod-imgs/${props.photo}`}></img>
             </div>
             <div className="prod-info-cart">
                 <div className="prod-cart-name-cont">
-                    <NavLink to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`} className="cart-prod-tit">
+                    <NavLink to={`/${props.category}/${props.id}`} className="cart-prod-tit">
                         {props.name}
                     </NavLink>
                 </div>
@@ -114,7 +116,7 @@ export default function ProductCartContainer(props){
                     <span>Brand: {props.brand}</span>
                 </div>
                 <div className="prod-cart-prc-cont">
-                    <span>{Number(props.price).toFixed(2)} Lei</span>
+                    <span>{props.price} Lei</span>
                 </div>
                 <div className="quant-cont">
                     <form className="buc-cont" onSubmit={handleQuant}>
@@ -123,10 +125,11 @@ export default function ProductCartContainer(props){
                         <button onClick={()=>setAction("add")} disabled={loading}>+</button>
                     </form>
                     <form className="del-it-cont" onSubmit={handleDel}>
-                        <button>Șterge</button>
+                        <button>Sterge</button>
                     </form>
                 </div>
             </div>
+            
         </div>
     )
 }
