@@ -2309,7 +2309,9 @@ header {
 
 .cancel-order-btn{
     background-color: #c90439;
-    border: white 3px solid;
-    font-size: 12px;
+    border: white 2px solid;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
     padding: 2px;
 }

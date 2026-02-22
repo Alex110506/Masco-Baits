@@ -792,7 +792,7 @@ app.delete("/order/delOrder/:id", requireLogin, (req, res) => {
 
     // Siguranță pe backend: blocăm ștergerea dacă comanda este în livrare sau finalizată
     const currentStatus = orderResult[0].status;
-    if (currentStatus === "livrare" || currentStatus === "finalizat") {
+    if (currentStatus === "finalizat") {
       return res.status(400).json({ message: "Comanda nu mai poate fi anulată în acest stadiu.", status: 0 });
     }
 
