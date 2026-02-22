@@ -147,14 +147,12 @@ export default function UserPage() {
                     <h4>{order.price} Lei</h4>
                 </div>
                 
-                {order.status !== "finalizat" && order.status !== "livrare" && (
-                    <button 
-                        className="cancel-order-btn" 
-                        onClick={() => handleCancelOrder(order.id)}
-                    >
-                        Anulează Comanda
-                    </button>
-                )}
+                <button 
+                    className="cancel-order-btn" 
+                    onClick={() => handleCancelOrder(order.id)}
+                >
+                    Anulează Comanda
+                </button>
             </div>
         );
     });
