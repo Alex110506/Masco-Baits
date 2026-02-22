@@ -773,6 +773,52 @@ app.post("/orders/changeStatus",requireLogin,requireAdmin,(req,res)=>{
   })
 })
 
+// === RUTA NOUĂ ADAUGATĂ AICI PENTRU ANULAREA COMENZII === //
+app.delete("/order/delOrder/:id", requireLogin, (req, res) => {
+  const orderId = req.params.id;
+  const userId = req.session.user.id;
+
+  // 1. Verificăm mai întâi dacă comanda îi aparține utilizatorului logat
+  const checkOrderQuery = "SELECT * FROM orders WHERE id = ? AND userid = ?";
+  db.query(checkOrderQuery, [orderId, userId], (err, orderResult) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "database error", status: 0 });
+    }
+
+    if (orderResult.length === 0) {
+      return res.status(404).json({ message: "Comanda nu a fost găsită sau nu îți aparține.", status: 0 });
+    }
+
+    // Siguranță pe backend: blocăm ștergerea dacă comanda este în livrare sau finalizată
+    const currentStatus = orderResult[0].status;
+    if (currentStatus === "livrare" || currentStatus === "finalizat") {
+      return res.status(400).json({ message: "Comanda nu mai poate fi anulată în acest stadiu.", status: 0 });
+    }
+
+    // 2. Ștergem produsele din coș asociate cu orderId
+    const deleteItemsQuery = "DELETE FROM order_items WHERE orderid = ?";
+    db.query(deleteItemsQuery, [orderId], (err, itemsResult) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Eroare la ștergerea produselor din comandă.", status: 0 });
+      }
+
+      // 3. Ștergem comanda în sine
+      const deleteOrderQuery = "DELETE FROM orders WHERE id = ?";
+      db.query(deleteOrderQuery, [orderId], (err, finalResult) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ message: "Eroare la ștergerea comenzii.", status: 0 });
+        }
+
+        res.status(200).json({ message: "Comanda a fost anulată cu succes.", status: 1 });
+      });
+    });
+  });
+});
+// ======================================================== //
+
 app.post("/api/admin/recentOrders",requireLogin,requireAdmin,(req,res)=>{
   const userId=req.session.user.id
   const query="SELECT * FROM orders";
