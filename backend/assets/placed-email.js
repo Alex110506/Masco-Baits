@@ -149,11 +149,11 @@ function placedOrderEmail(products,id,data,nume,email,telefon,adresa,judet,local
         </tr>
         <tr>
           <td><strong>Transport:</strong></td>
-          <td>${transprot}</td>
+          <td>${transprot} RON</td>
         </tr>
         <tr>
           <td><strong>Total Plătit:</strong></td>
-          <td><strong>${total} RON + taxe de livrare în funcție de comandă</strong></td>
+          <td><strong>${total+transprot} RON</strong></td>
         </tr>
         <tr>
           <td><strong>Metodă de Plată:</strong></td>
@@ -165,7 +165,7 @@ function placedOrderEmail(products,id,data,nume,email,telefon,adresa,judet,local
     <div class="footer">
       <p>Îți mulțumim că ai ales <strong>Masco Baits</strong>!</p>
       <p>Te vom anunța prin email când comanda este expediată.</p>
-      <p><a href="https://www.masco-baits.ro/home" target="_blank">www.masco-baits.ro</a></p>
+      <p><a href="https://masco-baits.ro" target="_blank">www.masco-baits.ro</a></p>
     </div>
   </div>
 </body>

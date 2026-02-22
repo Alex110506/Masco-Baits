@@ -67,7 +67,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
       <h1>Comanda ta este pe drum!</h1>
     </div>
     
-    <p>Bună <strong>${nume}</strong>,</p>
+    <p>Bună <strong>I${nume}</strong>,</p>
     <p>Comanda ta cu ID-ul <strong>${id}</strong>, plasată în data ${data}, a fost preluată de curier și se află acum în drum spre tine.</p>
 
     <div class="info-section">
@@ -100,7 +100,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
     <div class="info-section">
       <h3>Pret: ${price}</h3>
       <h3>Livrare: ${livrare}</h3>
-      <h2>Total: ${price} RON + taxe de livrare în funcție de comandă</h2
+      <h2>Total: ${price+livrare}</h2
     </div>
 
     <div class="info-section">
@@ -111,7 +111,7 @@ function deliverOrderEmail(id,data,nume,email,telefon,adresa,judet,localitate,mo
     <p>Îți mulțumim că ai ales <strong>Masco Baits</strong>! Dacă ai întrebări despre livrare, ne poți contacta oricând.</p>
 
     <div class="footer">
-      Masco Baits © 2025 · contact: <a href="mailto:masco.baits@gmail.com">masco.baits@gmail.com</a>
+      Masco Baits © 2025 · contact: <a href="mailto:support@masco-baits.ro">support@masco-baits.ro</a>
     </div>
   </div>
 </body>
