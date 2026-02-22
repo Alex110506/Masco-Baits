@@ -1,174 +1,260 @@
-const { db, requireLogin, requireAdmin, sendEmail, placedOrderEmail, confirmOrderEmail, deliverOrderEmail } = require('../shared');
+import React from "react";
+import { useAuth } from "./AuthContext";
 
-function registerOrderRoutes(app) {
-  app.post('/order/send', (req, res) => {
-    const {
-      cartProd, costProd, costLivr, nume,
-      email, telefon, judet, localitate, adresa,
-      codPostal, modalitate
-    } = req.body;
+export default function UserPage() {
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const [username, setUsername] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [tel, setTel] = React.useState("");
+    const [judet, setJudet] = React.useState("");
+    const [oras, setOras] = React.useState("");
+    const [adress, setAdress] = React.useState("");
+    const [postalcode, setPostalcode] = React.useState("");
+    const [orders, setOrder] = React.useState([]);
 
-    const userId = req.session.user?.id || 0;
-    const totalPrice = costProd + costLivr;
+    const [loading, setLoading] = React.useState(false);
 
-    const insertOrderQuery = `
-    INSERT INTO orders (userid, price, username, email, telefon, judet, oras, adresa, cod_postal, modalitate)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `;
+    React.useEffect(() => {
+        const fetchAll = async () => {
+            try {
+                setLoading(true);
 
-    db.query(insertOrderQuery, [
-      userId, totalPrice, nume, email, telefon,
-      judet, localitate, adresa, codPostal, modalitate
-    ], (err, result) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ message: 'database error on order insert', status: 0 });
-      }
+                const [userRes, ordersRes] = await Promise.all([
+                    fetch("/user/data"),
+                    fetch("/orders/show"),
+                ]);
 
-      const getLastOrderQuery = `SELECT * FROM orders WHERE userid = ? ORDER BY id DESC LIMIT 1`;
+                if (!userRes.ok) throw new Error("Failed to get user data");
+                if (!ordersRes.ok) throw new Error("Failed to get orders");
 
-      db.query(getLastOrderQuery, [userId], (err, result) => {
-        if (err || result.length === 0) {
-          return res.status(500).json({ message: 'database error on order fetch', status: 0 });
-        }
+                const userData = await userRes.json();
+                const ordersData = await ordersRes.json();
 
-        const orderId = result[0].id;
+                setUsername(userData[0].username);
+                setEmail(userData[0].email);
+                setTel(userData[0].telefon);
+                setJudet(userData[0].judet);
+                setOras(userData[0].oras);
+                setAdress(userData[0].adresa);
+                setPostalcode(userData[0].cod_postal);
 
-        let completed = 0;
-        let hasError = false;
-
-        if (cartProd.length === 0) {
-          return res.status(200).json({ message: 'success (empty cart)', status: 1 });
-        }
-
-        cartProd.forEach((item) => {
-          const insertItemQuery = `INSERT INTO order_items (productId,name, orderid, quantity, price) VALUES (?,?, ?, ?, ?)`;
-
-          db.query(insertItemQuery, [item.product.id, item.product.name, orderId, item.quantity, Number(item.product.price)], (err) => {
-            if (hasError) return;
-
-            if (err) {
-              hasError = true;
-              console.log(err);
-              return res.status(500).json({ message: 'database error on item insert', status: 0 });
+                setOrder(ordersData);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
             }
+        };
 
-            completed++;
+        fetchAll();
+    }, []);
 
-            if (completed === cartProd.length) {
-              return res.status(200).json({ message: 'success', status: 1, orderId });
-            }
-          });
-        });
-      });
-    });
-  });
-
-  app.post('/order/getConf', (req, res) => {
-    const orderId = req.body.id;
-    console.log(orderId, typeof (orderId));
-    const query = 'SELECT * FROM orders WHERE id=?';
-    db.query(query, [orderId], (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ message: 'database error', status: 0 });
-      } else {
-        console.log(result);
-        const query1 = 'SELECT * FROM order_items WHERE orderid=?';
-        db.query(query1, [orderId], (err, result1) => {
-          if (err) {
-            console.log(err);
-            res.status(500).json({ message: 'database error', status: 0 });
-          } else {
-            const htmlContent = String(placedOrderEmail(result1, orderId, result[0].date, result[0].username, result[0].email, result[0].telefon, result[0].adresa, result[0].judet, result[0].localitate, result[0].price, 25, result[0].modalitate));
-            sendEmail({
-              to: result[0].email,
-              subject: 'Comandă Plasată',
-              text: null,
-              html: htmlContent
-            });
-            res.status(200).json({ details: result[0], products: result1 });
-          }
-        });
-      }
-    });
-  });
-
-  app.get('/orders/show', requireLogin, (req, res) => {
-    const userId = req.session.user.id;
-    const query = 'SELECT * FROM orders WHERE userid=?';
-    db.query(query, [userId], (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ message: 'database error', status: 0 });
-      } else {
-        console.log(result, 'mena');
-        res.json(result);
-      }
-    });
-  });
-
-  app.post('/orders/changeStatus', requireLogin, requireAdmin, (req, res) => {
-    const { id, status } = req.body;
-    const query = 'UPDATE orders SET status=? WHERE id=?';
-    db.query(query, [status, id], (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ message: 'database error', status: 0 });
-      } else {
-        const query1 = 'SELECT * FROM orders WHERE id=?';
-        db.query(query1, [id], (err, result1) => {
-          if (err) {
-            console.log(err);
-            res.status(500).json({ message: 'database error', status: 0 });
-          } else {
-            if (status === 'procesat') {
-              const htmlContent = String(confirmOrderEmail(id, result1[0].date, result1[0].username, result1[0].email, result1[0].telefon, result1[0].adresa, result1[0].judet, result1[0].oras, result1[0].modalitate));
-              sendEmail({ to: result1[0].email, subject: 'Comandă Confirmată', text: null, html: htmlContent });
+    const handleLogout = async () => {
+        try {
+            const res = await fetch("/logout");
+            const data = await res.json();
+            if (res.ok) {
+                setIsLoggedIn(false);
+                location.reload();
             } else {
-              if (status === 'livrare') {
-                const htmlContent = String(deliverOrderEmail(id, result1[0].date, result1[0].username, result1[0].email, result1[0].telefon, result1[0].adresa, result1[0].judet, result1[0].oras, result1[0].modalitate, result1[0].price, 25));
-                sendEmail({ to: result1[0].email, subject: 'Comandă pe Drum', text: null, html: htmlContent });
-              }
+                console.error("Logout failed:", data.message);
             }
-            res.json({ message: 'success', status: 1 });
-          }
-        });
-      }
-    });
-  });
-
-  // --- RUTA NOUĂ PENTRU ȘTERGEREA COMENZII ---
-  app.delete('/order/delOrder/:id', requireLogin, (req, res) => {
-    const orderId = req.params.id;
-    const userId = req.session.user.id;
-
-    // 1. Ștergem întâi produsele din comanda respectivă (pentru a evita erori de Foreign Key)
-    const deleteItemsQuery = 'DELETE FROM order_items WHERE orderid = ?';
-    db.query(deleteItemsQuery, [orderId], (err, itemsResult) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ message: 'Eroare la ștergerea produselor din comandă', status: 0 });
-      }
-
-      // 2. Ștergem comanda în sine. Verificăm și userid pentru siguranță!
-      const deleteOrderQuery = 'DELETE FROM orders WHERE id = ? AND userid = ?';
-      db.query(deleteOrderQuery, [orderId, userId], (err, orderResult) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ message: 'Eroare la ștergerea comenzii', status: 0 });
+        } catch (error) {
+            console.error("Error during logout:", error);
         }
+    };
 
-        // Dacă nicio comandă nu a fost ștearsă (ex: ID invalid sau comanda aparține altcuiva)
-        if (orderResult.affectedRows === 0) {
-          return res.status(404).json({ message: 'Comanda nu a fost găsită sau nu îți aparține', status: 0 });
+    const handleAdressChange = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch("/user/adressChange", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ judet, oras, adress, postalcode })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                location.reload();
+            } else {
+                console.error("Adress change failed", data.message);
+            }
+        } catch (error) {
+            console.error(error);
         }
+    };
 
-        res.status(200).json({ message: 'Comanda a fost anulată cu succes', status: 1 });
-      });
+    const handleCancelOrder = async (orderId) => {
+        const confirmare = window.confirm("Ești sigur că vrei să anulezi această comandă?");
+        if (!confirmare) return;
+
+        try {
+            const res = await fetch(`/order/delOrder/${orderId}`, {
+                method: "DELETE",
+            });
+
+            if (res.ok) {
+                setOrder((prevOrders) => prevOrders.filter((order) => order.id !== orderId));
+            } else {
+                const data = await res.json();
+                console.error("Anularea comenzii a eșuat:", data.message);
+            }
+        } catch (error) {
+            console.error("Eroare la anularea comenzii:", error);
+        }
+    };
+
+    const ordersElems = orders.map((order) => {
+        const isoString = order.date;
+        const date = new Date(isoString);
+
+        const formattedDate =
+            String(date.getDate()).padStart(2, "0") + "/" +
+            String(date.getMonth() + 1).padStart(2, "0") + "/" +
+            date.getFullYear();
+
+        return (
+            <div className="order-cont-card" key={order.id}>
+                <div className="upper-order-cont">
+                    <div className="order-icon">
+                        {order.status === "livrare" ?
+                            <i className="bi bi-truck" style={{ color: "white", fontSize: "40px" }}></i> :
+                            order.status === "finalizat" ?
+                                <i className="bi bi-house-check" style={{ color: "white", fontSize: "40px" }}></i> :
+                                order.status === "procesat" ? 
+                                    <i className="bi bi-box-seam" style={{ color: "white", fontSize: "40px" }}></i> :
+                                    <i className="bi bi-hourglass-split" style={{ color: "white", fontSize: "40px" }}></i>
+                        }
+                    </div>
+                    <div className="order-id-cont">
+                        <h3>ID Comandă:</h3>
+                        <h4>{order.id}</h4>
+                    </div>
+                    <div className="sec-data-cont">
+                        <div className="order-status-cont">
+                            <span>Status:</span>
+                            <span>{order.status}</span>
+                        </div>
+                        <div className="order-date-cont">
+                            <span>Data:</span>
+                            <span>{formattedDate}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="order-price-cont">
+                    <h3>Total:</h3>
+                    <h4>{order.price} Lei</h4>
+                </div>
+                
+                {order.status !== "finalizat" && order.status !== "livrare" && (
+                    <button 
+                        className="cancel-order-btn" 
+                        onClick={() => handleCancelOrder(order.id)}
+                    >
+                        Anulează Comanda
+                    </button>
+                )}
+            </div>
+        );
     });
-  });
 
+    return (
+        <div className="user-page-cont-main">
+            <div className="my-acc-cont">
+                <h1>Contul Meu</h1>
+                <section>
+                    {loading ? <h1>Se încarcă...</h1> :
+                        <>
+                            <div className="det-cont-main">
+                                <h2>Nume:</h2>
+                                <input type="text" value={username} readOnly></input>
+                            </div>
+                            <div className="det-cont-main">
+                                <h2>E-mail:</h2>
+                                <input type="text" value={email} readOnly></input>
+                            </div>
+                            <div className="det-cont-main">
+                                <h2>Număr Telefon:</h2>
+                                <input type="text" value={tel} readOnly></input>
+                            </div>
+                            <form className="adr-cont-main" onSubmit={handleAdressChange}>
+                                <h2>Adresă Livrare:</h2>
+                                <ul className="adr-list">
+                                    <li>
+                                        <span>Județ:</span>
+                                        <select name="judete" required onChange={(e) => setJudet(e.target.value)} value={judet}>
+                                            <option value="">Alege Judet</option>
+                                            <option value="Alba">Alba</option>
+                                            <option value="Arad">Arad</option>
+                                            <option value="Arges">Arges</option>
+                                            <option value="Bacau">Bacau</option>
+                                            <option value="Bihor">Bihor</option>
+                                            <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                                            <option value="Botosani">Botosani</option>
+                                            <option value="Brasov">Brasov</option>
+                                            <option value="Braila">Braila</option>
+                                            <option value="Bucuresti">Bucuresti</option>
+                                            <option value="Buzau">Buzau</option>
+                                            <option value="Caras Severin">Caras Severin</option>
+                                            <option value="Calarasi">Calarasi</option>
+                                            <option value="Cluj">Cluj</option>
+                                            <option value="Constanta">Constanta</option>
+                                            <option value="Covasna">Covasna</option>
+                                            <option value="Dambovita">Dambovita</option>
+                                            <option value="Dolj">Dolj</option>
+                                            <option value="Galati">Galati</option>
+                                            <option value="Giurgiu">Giurgiu</option>
+                                            <option value="Gorj">Gorj</option>
+                                            <option value="Harghita">Harghita</option>
+                                            <option value="Hunedoara">Hunedoara</option>
+                                            <option value="Ialomita">Ialomita</option>
+                                            <option value="Iasi">Iasi</option>
+                                            <option value="Ilfov">Ilfov</option>
+                                            <option value="Maramures">Maramures</option>
+                                            <option value="Mehedinti">Mehedinti</option>
+                                            <option value="Mures">Mures</option>
+                                            <option value="Neamt">Neamt</option>
+                                            <option value="Olt">Olt</option>
+                                            <option value="Prahova">Prahova</option>
+                                            <option value="Satu Mare">Satu Mare</option>
+                                            <option value="Salaj">Salaj</option>
+                                            <option value="Sibiu">Sibiu</option>
+                                            <option value="Suceava">Suceava</option>
+                                            <option value="Teleorman">Teleorman</option>
+                                            <option value="Timis">Timis</option>
+                                            <option value="Tulcea">Tulcea</option>
+                                            <option value="Vaslui">Vaslui</option>
+                                            <option value="Valcea">Valcea</option>
+                                            <option value="Vrancea">Vrancea</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <span>Oraș:</span>
+                                        <input type="text" value={oras} required onChange={(e) => setOras(e.target.value)} />
+                                    </li>
+                                    <li>
+                                        <span>Adresă:</span>
+                                        <input type="text" value={adress} required onChange={(e) => setAdress(e.target.value)} />
+                                    </li>
+                                    <li>
+                                        <span>Cod&nbsp;Poștal:</span>
+                                        <input type="text" value={postalcode} required onChange={(e) => setPostalcode(e.target.value)} />
+                                    </li>
+                                </ul>
+                                <button type="submit">Modifică Adresa</button>
+                            </form>
+                            <button className="logout-btn" onClick={handleLogout}>Log&nbsp;Out</button>
+                        </>
+                    }
+                </section>
+            </div>
+            <div className="my-ord-cont">
+                <h1>Comenzile Mele</h1>
+                <section className="">
+                    {ordersElems.length > 0 ? ordersElems : <h1>Nu există comenzi...</h1>}
+                </section>
+            </div>
+        </div>
+    );
 }
-
-module.exports = { registerOrderRoutes };
