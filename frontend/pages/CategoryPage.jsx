@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData,useRouteLoaderData } from "react-router-dom";
 import ProductContainerCateg from "../components/ProductContainerCateg";
+import Canonical from "../components/Canonical";
 
 export function loader({request}){
     const url=new URL(request.url).pathname;
@@ -20,14 +21,28 @@ export default function CategoryPage(){
         window.scrollTo(0, 0);
     }, [page]);
     
-    const data=useLoaderData();
-    let categoryName=data.replace(/_/g," ").slice(1).toUpperCase();
+    
 
-    const categProds=products.filter((item)=>item.category.toUpperCase()==categoryName)
+    const data=useLoaderData();
+    let categoryName=data.replace(/_/g," ").slice(1).toLowerCase();
+
+    React.useEffect(()=>{
+        setDiameter(0);
+        setWeight(0);
+    },[categoryName])
+
+    React.useEffect(()=>{
+        setDiameter(0);
+        setWeight(0);
+    },[])
+
+    const categProds=products.filter((item)=>item.category==categoryName)
     const filteredProds = categProds.filter(item =>
         (weight == 0 || item.quantity == weight) &&
         (diameter == 0 || item.diameter == diameter)
     );
+
+    filteredProds.reverse()
 
     const categElems = filteredProds.map(item => (
     <ProductContainerCateg
@@ -57,12 +72,13 @@ export default function CategoryPage(){
     const startIdx = (page - 1) * 12;
     const categPageElems = categElems.slice(startIdx, startIdx + 12);
 
-    console.log(categProds)
 
     return (
+        <>
+        <Canonical url={data}></Canonical>
         <div className="categ-page-cont">
             <div className="categ-banner-cont">
-                <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="header-banner"></img>
                 <span>{categoryName}</span>
             </div>
             {
@@ -104,7 +120,7 @@ export default function CategoryPage(){
                                     <option value={1000}>1kg</option>
                                     <option value={10000}>10kg</option>
                                 </select>
-                            </div>
+                            </div>  
                             :
                             null
                         }
@@ -124,5 +140,6 @@ export default function CategoryPage(){
                 </div>
             : null}
         </div>
+        </>
     )
 }

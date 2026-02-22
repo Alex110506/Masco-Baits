@@ -1,16 +1,24 @@
 import React from "react";
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Link, NavLink, useRouteLoaderData } from "react-router-dom";
+import { Link, NavLink, useNavigate, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+
+
 
 export default function Header(){
 
     const {isLoggedIn,setIsLoggedIn,admin}=useAuth()
+    const navigate=useNavigate()
 
     const {cartProd,products}=useRouteLoaderData("root")
 
-    let cartSum=0
-    cartProd.forEach((item)=>cartSum+=item.product.price*item.quantity)    
+    const [search,setSearch]=React.useState("")   
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            navigate(`/home/${search}`)
+        }
+    };
 
     return (
         <header>
@@ -20,12 +28,13 @@ export default function Header(){
                 </button>
                 <div className="dropdown-content">
                     <p>Categorii</p>
-                    <Link to={"/Boilies"}>Boilies</Link>
-                    <Link to={"/Boilies_Carlig"}>Boilies Carlig</Link>
-                    <Link to={"/Pasta_Solubila_Boilies"}>Pasta Solubila Boilies</Link>
-                    <Link to={"/Popup_&_Wafters"}>Pop-up & Wafters</Link >
-                    <Link to={"/Lichide_Nutritive_&_Aditivi"}>Lichide Nutritive & Aditivi</Link>
-                    <Link to={"/Pelete_&_Grundbait"}>Pelete & Grundbait </Link>
+                        <Link to={"/boilies"} className="cnt-head">Boilies</Link>
+                        <Link to={"/boilies_carlig"} className="cnt-head">Boilies Carlig</Link>
+                        <Link to={"/boilies_critic_echilibrat"} className="cnt-head">Boilies Critic Echilibrat</Link>
+                        <Link to={"/pasta_solubila_boilies"} className="cnt-head">Pasta Solubila Boilies</Link>
+                        <Link to={"/popup_&_wafters"} className="cnt-head">Pop-up & Wafters</Link >
+                        <Link to={"/lichide_nutritive_&_aditivi"} className="cnt-head">Lichide Nutritive & Aditivi</Link>
+                        <Link to={"/pelete_&_grundbait"} className="cnt-head">Pelete & Grundbait </Link>
                     <br/>
                     <p>Despre Noi</p>
                     <Link to={"/albume-foto-video"}>Albume Foto & Video</Link>
@@ -36,7 +45,7 @@ export default function Header(){
                 <i className="bi bi-house" style={{fontSize:"36px"}}></i>
             </NavLink>
             <div className="search-bar-cont">
-                <input type="text" placeholder="Caută"></input>
+                <input type="text" placeholder="Caută" onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}></input>
                 <div className="search-cont">
                     <i className="bi bi-search" style={{fontSize:"18px"}}></i>
                 </div>
@@ -46,12 +55,10 @@ export default function Header(){
                 <div className="cart-cont">
                     <NavLink to="cart">
                         <i className="bi bi-cart" style={{fontSize: "36px"}}></i>
-                    </NavLink>
-                    
-                    <div className="cart-sum">{cartSum}&nbsp;ron</div>
+                    </NavLink>                    
                 </div>
                 <div className="acc-cont">
-                    {admin ? <NavLink to="admin"><i class="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}
+                    {admin ? <NavLink to="admin"><i className="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}
                     <NavLink to="login">
                         {isLoggedIn ? 
                             <i className="bi bi-person-circle" style={{fontSize:"36px"}}></i> 

@@ -1,11 +1,10 @@
 import React from "react";
 import { useNavigate , useRouteLoaderData} from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
+import Canonical from "../components/Canonical";
 
 export default function Checkout(){
     const {userData,isLoggedIn}=useAuth()
-    console.log(userData)
-    console.log(isLoggedIn,"menacaca")
 
     const {products,cartProd}=useRouteLoaderData("root");
 
@@ -19,13 +18,11 @@ export default function Checkout(){
     const [telefon,setTelefon]=React.useState("")
 
     const [costProd,setCostProd]=React.useState(0)
-    const [costLivr,setCostLivr]=React.useState(0)
     
     const [error,setError]=React.useState("")
 
     const orderId=123
 
-    //daca utilizatorul nu e logat sa se afiseze campuri cu numele, email si telefon
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
@@ -41,6 +38,12 @@ export default function Checkout(){
             transf.style.display = "block";
             ramb.style.display = "none";
         }
+
+        let costProdAux=0
+        cartProd.forEach((item)=>{
+            costProdAux+=(Number(item.product.price)*Number(item.quantity))
+        })
+        setCostProd(costProdAux)
 
     }, [modalitate]);
 
@@ -62,32 +65,38 @@ export default function Checkout(){
 
     const navigate=useNavigate() 
 
+    const costLivr=costProd>=700 ? 0 : 25
 
-    //trimit comanda la baza de date cu detaliile si trimit in url doar id u la comanda
-    //in pagina de confirmare preiau comanda din baza de date si afisez datele
     const finalizeCheck=async (e)=>{
         e.preventDefault()
-        const res=await fetch("/order/send",{
-            method:"POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({cartProd,costProd,costLivr,nume,email,telefon,judet,localitate,adresa,codPostal,modalitate})
-        })
-        const data=await res.json();
-        if(res.ok){
-            const orderId=data.orderId
-            navigate(`/cart/checkout/confirmation/${orderId}`)
+        if(cartProd.length>0){
+                const res=await fetch("/order/send",{
+                method:"POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({cartProd,costProd,costLivr,nume,email,telefon,judet,localitate,adresa,codPostal,modalitate})
+            })
+            const data=await res.json();
+            if(res.ok){
+                const orderId=data.orderId
+                navigate(`/cart/checkout/confirmation/${orderId}`)
+            }else{
+                setError(data.message)
+            }
         }else{
-            setError(data.message)
+            setError("Comanda nu poate fi goală!")
         }
+        
     }
 
-        
+    
 
     return(
+        <>
+        <Canonical url="https://www.masco-baits.ro/cart/checkout"></Canonical>
         <div className="checkout-pg-cont">
             <div className="prod-side-head check-head">
-                <img src="..\assets\images\logo\maco-baits-logo.png.jpg"></img>
+                <img src="..\assets\images\logo\maco-baits-logo.png.jpg" alt="company logo"></img>
                 <span>Finalizare Comandă</span>
             </div>
             <form className="comanda-info-cont" onSubmit={finalizeCheck}>
@@ -97,14 +106,14 @@ export default function Checkout(){
                     <div className="check-price-cont">
                         <div className="cst-cont-chk">
                             <span>Cost Produse:</span>
-                            <span>{costProd} Lei</span>
+                            <span>{Number(costProd).toFixed(2)} Lei</span>
                         </div>
                         <div className="lvr-cont-chk">
                             <span>Cost Livrare:</span>
-                            <span>{costLivr} Lei</span>
+                            <span>{Number(costLivr).toFixed(2)} Lei</span>
                         </div>
                     </div>
-                    <h2>Total: {costProd+costLivr} Lei</h2>
+                    <h2>Total: {Number(costProd+costLivr).toFixed(2)} Lei</h2>
                 </div>
                 <div className="det-liv-cont">
                     <h1>Detalii Contact:</h1>
@@ -210,19 +219,19 @@ export default function Checkout(){
                             <div className="det-tansf">
                                 <div className="det-transf-sect">
                                     <span>IBAN:&nbsp;</span>
-                                    <span>222222222</span>
+                                    <span>RO49BTRLRONCRT0546327801</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Nume titular:&nbsp;</span>
-                                    <span>Masco Baits</span>
+                                    <span>MASCO-BAITS SRL</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Banca:&nbsp;</span>
-                                    <span>Banca transilvania</span>
+                                    <span>Banca Transilvania</span>
                                 </div>
                                 <div className="det-transf-sect">
                                     <span>Cod SWIFT:&nbsp;</span>
-                                    <span>AAAAROBU</span>
+                                    <span>BTRLRO22</span>
                                 </div>
                                 
                             </div>
@@ -231,15 +240,13 @@ export default function Checkout(){
                             <p>Plata se va realiza la momentul livrării la curier.</p>
                         </div>
                     </div>
-                    <div className="det-transf-sect cod-comanda">
-                        <span>Cod Comandă:&nbsp;</span>
-                        <span>{orderId}</span>
-                    </div>
+                    
                     <div className="fin-btn-cont">
                         <button disabled={false} className="fin-btn-check" type="submit">Finalizați Comanda</button>
                     </div>
                 </div>
             </form>
         </div>
+        </>
     )
 }

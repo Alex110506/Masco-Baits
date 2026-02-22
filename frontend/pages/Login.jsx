@@ -4,6 +4,7 @@ import SignupForm from "../components/SignupForm";
 import { useAuth } from "../components/AuthContext";
 import UserPage from "../components/UserPage";
 import { useNavigate } from "react-router-dom";
+import Canonical from "../components/Canonical";
 
 
 
@@ -17,6 +18,7 @@ export default function Login(){
 
     return(
         <>
+            <Canonical url="https://www.masco-baits.ro/login"></Canonical>
             {isLoggedIn===false ? 
             <div className="form-structor">
                 
