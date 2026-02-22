@@ -2306,3 +2306,10 @@ header {
 .link-lig-foot img{
     height: 30px;
 }
+
+.cancel-order-btn{
+    background-color: #c90439;
+    border: white 3px solid;
+    font-size: 12px;
+    padding: 2px;
+}
