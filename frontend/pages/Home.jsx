@@ -42,23 +42,51 @@ export default function Home(){
         <CanonicalHome url="https://www.masco-baits.ro/home"></CanonicalHome>
         <div className="home-cont">
             <div className="bg-cnt"></div>
+            
+            <div className="welcome-banner">
+                <span className="welcome-tag">Premium Bait Solutions</span>
+                <h1 className="welcome-title">Secretul Unei Partide de Pescuit Reușite</h1>
+                <p className="welcome-subtitle">
+                    Producem nadă de calitate superioară, testată riguros în condiții reale pentru a asigura capturi memorabile.
+                </p>
+            </div>
+
             <HeroSection></HeroSection>
+
             <div className="product-list-container">
                 <h1 className="list-title">PRODUSELE NOASTRE (BOILIES ȘI ALTELE)</h1>
                 <div className="list-items">
-                    <Link to={"/boilies"} className="cnt">Boilies</Link>
-                    <Link to={"/boilies_carlig"} className="cnt">Boilies Carlig</Link>
-                    <Link to={"/boilies_critic_echilibrat"} className="cnt">Boilies Critic Echilibrat</Link>
-                    <Link to={"/pasta_solubila_boilies"} className="cnt">Pasta Solubila Boilies</Link>
-                    <Link to={"/popup_&_wafters"} className="cnt">Pop-up & Wafters</Link >
-                    <Link to={"/lichide_nutritive_&_aditivi"} className="cnt">Lichide Nutritive & Aditivi</Link>
-                    <Link to={"/pelete_&_grundbait"} className="cnt">Pelete & Grundbait </Link>
+                    <Link to={"/boilies"} className="cnt">
+                        <i className="bi bi-circle-fill" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Boilies
+                    </Link>
+                    <Link to={"/boilies_carlig"} className="cnt">
+                        <i className="bi bi-record-circle" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Boilies Carlig
+                    </Link>
+                    <Link to={"/boilies_critic_echilibrat"} className="cnt">
+                        <i className="bi bi-arrow-down-up" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Boilies Critic Echilibrat
+                    </Link>
+                    <Link to={"/pasta_solubila_boilies"} className="cnt">
+                        <i className="bi bi-droplet-half" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Pasta Solubila
+                    </Link>
+                    <Link to={"/popup_&_wafters"} className="cnt">
+                        <i className="bi bi-arrow-up-circle-fill" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Pop-up & Wafters
+                    </Link >
+                    <Link to={"/lichide_nutritive_&_aditivi"} className="cnt">
+                        <i className="bi bi-funnel-fill" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Lichide & Aditivi
+                    </Link>
+                    <Link to={"/pelete_&_grundbait"} className="cnt">
+                        <i className="bi bi-grid-3x3-gap-fill" style={{ marginRight: '8px', color: 'var(--accent-color)' }}></i>
+                        Pelete & Grundbait
+                    </Link>
                 </div>
             </div>
-            <div className="others-container">
-                <Link to={"/albume-foto-video"} className="foto-cont cont">Albume Foto & Video</Link>
-                <Link to={"/recenzii"} className="rev-cont cont">Recenzii Clienți</Link>
-            </div>
+
             <section className="products-cont">
                 <div className="new-prod-cont">
                     <h2>Produse pentru Tine</h2>
@@ -67,6 +95,52 @@ export default function Home(){
                     </div>
                 </div>
             </section>
+
+            {/* Unique features highlights section */}
+            <div className="features-highlight-section">
+                <h2 className="section-gradient-title">De Ce Să Alegi Masco Baits?</h2>
+                <div className="features-grid">
+                    <div className="feature-card">
+                        <div className="feature-icon-wrapper">
+                            <i className="bi bi-award-fill"></i>
+                        </div>
+                        <h3>Ingrediente Premium</h3>
+                        <p>Folosim doar făinuri, aditivi și arome de cea mai înaltă calitate pentru a stimula hrănirea peștilor.</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon-wrapper">
+                            <i className="bi bi-shield-check"></i>
+                        </div>
+                        <h3>Testat pe Apă</h3>
+                        <p>Rețetele noastre sunt perfecționate în urma a sute de ore de teste pe diverse lacuri din țară.</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon-wrapper">
+                            <i className="bi bi-truck"></i>
+                        </div>
+                        <h3>Livrare Rapidă</h3>
+                        <p>Livrăm rapid produsele preferate direct la ușa ta, ambalate corespunzător pentru prospețime maximă.</p>
+                    </div>
+                    <div className="feature-card">
+                        <div className="feature-icon-wrapper">
+                            <i className="bi bi-chat-heart-fill"></i>
+                        </div>
+                        <h3>Suport Clienți</h3>
+                        <p>Suntem pescari la fel ca tine și îți oferim recomandări personalizate pentru partidele tale.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="others-container">
+                <Link to={"/albume-foto-video"} className="foto-cont cont">
+                    <i className="bi bi-images" style={{ marginRight: '10px' }}></i>
+                    Albume Foto & Video
+                </Link>
+                <Link to={"/recenzii"} className="rev-cont cont">
+                    <i className="bi bi-star-fill" style={{ marginRight: '10px', color: '#ffb300' }}></i>
+                    Recenzii Clienți
+                </Link>
+            </div>
             
         </div>
         </>
