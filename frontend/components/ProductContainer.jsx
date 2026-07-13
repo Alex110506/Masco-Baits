@@ -52,7 +52,7 @@ export default function ProductContainer(props){
                 </div>
                 <div className="add-btn-cont">
                     <button>
-                        <i class="bi bi-cart" style={{fontSize:"min(6vw,36px)"}}></i>
+                        <i className="bi bi-cart" style={{fontSize:"min(6vw,36px)"}}></i>
                     </button>
                 </div>
             </form>

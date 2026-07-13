@@ -244,7 +244,7 @@ export default function ProductPage(){
                             <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
                         </select>
                         <input type="text" placeholder="Scrie-ți părerea (opțional)" onChange={(e)=>setComment(e.target.value)}></input>
-                        <button><i class="bi bi-send" style={{color:"white",fontSize:"1.5rem"}}></i> Trimite</button>
+                        <button><i className="bi bi-send" style={{color:"white",fontSize:"1.5rem"}}></i> Trimite</button>
                     </form>
                     {revMessage ? <h2 style={{color:"lime"}}>{revMessage}</h2> : null}
                     {revErr ? <h3 style={{color:"red"}}>{revErr}</h3> : null}

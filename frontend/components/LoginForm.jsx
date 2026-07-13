@@ -56,11 +56,11 @@ export default function LoginForm(){
                 <div className="sgn-btn-cont">
                     <button>
                         Google&nbsp;
-                        <i class="bi bi-google" style={{color:"black", fontSize:"1.3rem"}}></i>
+                        <i className="bi bi-google" style={{color:"black", fontSize:"1.3rem"}}></i>
                     </button>
                     <button>
                         Facebook&nbsp;
-                        <i class="bi bi-facebook" style={{color:"black", fontSize:"1.3rem"}}></i>
+                        <i className="bi bi-facebook" style={{color:"black", fontSize:"1.3rem"}}></i>
                     </button>
                 </div>
             </div>} */}
