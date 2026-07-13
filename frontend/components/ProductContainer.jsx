@@ -41,7 +41,7 @@ export default function ProductContainer(props){
         <div className="product-cont">
 
             <div className="prod-img-cont">
-                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name+"image"}></img>
+                <img src={`../assets/images/prod-imgs/${props.photo}`} alt={props.name+" image"}></img>
             </div>
             <div className="prod-name-cont">
                 <NavLink className="prod-name-cont-tit" to={`/${props.category.replace(/ /g, "_").toLowerCase()}/${props.id}`}>{props.name}</NavLink>
@@ -52,7 +52,7 @@ export default function ProductContainer(props){
                 </div>
                 <div className="add-btn-cont">
                     <button>
-                        <i class="bi bi-cart" style={{fontSize:"min(6vw,36px)"}}></i>
+                        <i className="bi bi-cart-plus cart-add-icon"></i>
                     </button>
                 </div>
             </form>

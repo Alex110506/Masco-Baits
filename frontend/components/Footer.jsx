@@ -18,15 +18,15 @@ export default function Footer() {
 
                 <div>
                     <h4>Linkuri utile</h4>
-                    <ul style={{ listStyle: "none", padding: 0 }}>
-                        <li><Link to={"/termeni&conditii"} style={{ color: "#ccc" }}>Termeni și Condiții</Link></li>
+                    <ul className="footer-links-list">
+                        <li><Link to={"/termeni&conditii"} className="footer-link">Termeni și Condiții</Link></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Social Media</h4>
                     <p className="social-link-foot">
-                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" style={{marginTop:"0"}}><i class="bi bi-facebook" style={{fontSize:"28px"}}></i></a><br />
-                        <a href="https://www.tiktok.com/@marius.mascovits" style={{marginTop:"0"}}><i class="bi bi-tiktok" style={{fontSize:"28px"}}></i></a>
+                        <a href="https://www.facebook.com/mascobaits/?locale=ro_RO" className="social-icon-link"><i className="bi bi-facebook social-icon"></i></a><br />
+                        <a href="https://www.tiktok.com/@marius.mascovits" className="social-icon-link"><i className="bi bi-tiktok social-icon"></i></a>
                     </p>
                 </div>
             </div>
@@ -41,9 +41,9 @@ export default function Footer() {
                     </a>
                 </div>
                 
-                <div style={{ fontSize: "14px", color: "#888" }}>
+                <div className="footer-copyright">
                     © 2025 Masco Baits. Toate drepturile rezervate.<br/>
-                    Site realizat de <a href="https://github.com/Alex110506" style={{ color: "#999" }}>Alexandru Marius Rădulescu</a>
+                    Site realizat de <a href="https://github.com/Alex110506" className="footer-dev-link">Alexandru Marius Rădulescu</a>
                 </div>
             </div>
             

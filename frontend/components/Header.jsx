@@ -9,22 +9,31 @@ export default function Header(){
 
     const {isLoggedIn,setIsLoggedIn,admin}=useAuth()
     const navigate=useNavigate()
+    const [scrolled, setScrolled] = React.useState(false)
 
     const {cartProd,products}=useRouteLoaderData("root")
 
     const [search,setSearch]=React.useState("")   
 
-    const handleKeyDown = (event) => {
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 30)
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    const handleKeyDown = (event) =>{
         if (event.key === "Enter") {
             navigate(`/home/${search}`)
         }
     };
 
     return (
-        <header>
+        <header className={scrolled ? 'scrolled' : ''}>
             <div className="dropdown">
                 <button className="dropbtn">
-                    <i className="bi bi-list menu-btn" style={{fontSize: "36px"}}></i>
+                    <i className="bi bi-list menu-btn header-icon"></i>
                 </button>
                 <div className="dropdown-content">
                     <p>Categorii</p>
@@ -41,27 +50,27 @@ export default function Header(){
                     <Link to={"/recenzii"}>Recenzii Clienți</Link>
                 </div>
             </div>
-            <NavLink to="/">
-                <i className="bi bi-house" style={{fontSize:"36px"}}></i>
+            <NavLink to="/" className="header-nav-link">
+                <i className="bi bi-house header-icon"></i>
             </NavLink>
             <div className="search-bar-cont">
-                <input type="text" placeholder="Caută" onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}></input>
-                <div className="search-cont">
-                    <i className="bi bi-search" style={{fontSize:"18px"}}></i>
-                </div>
+                <input type="text" placeholder="Caută produse..." onChange={(e)=>setSearch(e.target.value)} onKeyDown={handleKeyDown}></input>
+                <button className="search-cont" onClick={() => { if(search) navigate(`/home/${search}`) }}>
+                    <i className="bi bi-search search-icon"></i>
+                </button>
                 
             </div>
             <div className="right">
                 <div className="cart-cont">
                     <NavLink to="cart">
-                        <i className="bi bi-cart" style={{fontSize: "36px"}}></i>
+                        <i className="bi bi-cart header-icon"></i>
                     </NavLink>                    
                 </div>
                 <div className="acc-cont">
-                    {admin ? <NavLink to="admin"><i className="bi bi-shield-lock" style={{fontSize:"36px"}}></i></NavLink> : null}
+                    {admin ? <NavLink to="admin"><i className="bi bi-shield-lock header-icon"></i></NavLink> : null}
                     <NavLink to="login">
                         {isLoggedIn ? 
-                            <i className="bi bi-person-circle" style={{fontSize:"36px"}}></i> 
+                            <i className="bi bi-person-circle header-icon"></i> 
                             : <h3>Logare</h3>}
                         
                     </NavLink>
