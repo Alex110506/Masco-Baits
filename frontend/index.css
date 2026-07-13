@@ -719,8 +719,6 @@ header.scrolled {
     transition: transform var(--transition-base),
                 box-shadow var(--transition-base),
                 border-color var(--transition-base);
-    position: relative;
-    overflow: hidden;
 }
 
 .product-cont:hover {
@@ -737,7 +735,6 @@ header.scrolled {
     justify-self: center;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     border-radius: var(--radius-md);
 }
 
@@ -745,10 +742,6 @@ header.scrolled {
     width: 200px;
     object-fit: cover;
     transition: transform 0.5s ease;
-}
-
-.product-cont:hover .prod-img-cont img {
-    transform: scale(1.08);
 }
 
 .prod-name-cont {
@@ -817,11 +810,6 @@ header.scrolled {
     .product-cont {
         width: 45vw;
         height: 70vw;
-        padding: 8px;
-    }
-    .prod-img-cont {
-        height: auto;
-        width: 100%;
     }
     .prod-img-cont img {
         width: 35vw;
